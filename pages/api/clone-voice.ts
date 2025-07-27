@@ -1,7 +1,7 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import { cacheVoiceClone } from './generate-speech';
 
-const ELEVENLABS_API_KEY = process.env.ELEVENLABS_API_KEY || "sk_a44152702031b3af9f1a87072171fc9993fdbfb477fba26c";
+const ELEVENLABS_API_KEY = "sk_a44152702031b3af9f1a87072171fc9993fdbfb477fba26c";
 const DEFAULT_VOICE_ID = "21m00Tcm4TlvDq8ikWAM"; // Rachel voice
 
 // 세션별 클로닝된 음성 저장소 (메모리 기반 캐시)
