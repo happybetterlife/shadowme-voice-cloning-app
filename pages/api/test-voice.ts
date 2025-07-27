@@ -1,10 +1,20 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 
+const ELEVENLABS_API_KEY = "sk_a44152702031b3af9f1a87072171fc9993fdbfb477fba26c";
+
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   console.log('🧪 Voice cloning test endpoint called');
-  console.log('🔑 ELEVENLABS_API_KEY present:', !!process.env.ELEVENLABS_API_KEY);
+  console.log('🔑 ELEVENLABS_API_KEY present:', !!ELEVENLABS_API_KEY);
   console.log('🔗 Request method:', req.method);
   console.log('📝 Request body:', JSON.stringify(req.body, null, 2));
+  
+  if (req.method === 'GET') {
+    return res.status(200).json({ 
+      status: 'API working', 
+      apiKeyPresent: !!ELEVENLABS_API_KEY,
+      timestamp: new Date().toISOString() 
+    });
+  }
   
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
@@ -15,7 +25,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     const response = await fetch('https://api.elevenlabs.io/v1/text-to-speech/21m00Tcm4TlvDq8ikWAM', {
       method: 'POST',
       headers: {
-        'xi-api-key': process.env.ELEVENLABS_API_KEY || '',
+        'xi-api-key': ELEVENLABS_API_KEY,
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
