@@ -1,5 +1,4 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { cacheVoiceClone } from '../../../utils/voice-cache';
 
 const ELEVENLABS_API_KEY = "sk_a44152702031b3af9f1a87072171fc9993fdbfb477fba26c";
 const DEFAULT_VOICE_ID = "21m00Tcm4TlvDq8ikWAM"; // Rachel voice
@@ -231,9 +230,6 @@ export async function POST(request: NextRequest) {
       });
       console.log('💾 세션 음성 캐시에 저장:', sessionId, '->', clonedVoiceId);
       console.log('📊 현재 캐시된 세션들:', Array.from(sessionVoiceCache.keys()));
-      
-      // generate-speech API용 캐시에도 저장
-      cacheVoiceClone(sessionId, clonedVoiceId, text);
     } else {
       console.warn('⚠️ sessionId가 없어서 캐시에 저장하지 못했습니다!');
     }
