@@ -2,14 +2,27 @@ export const voiceApi = {
   // 음성 클로닝
   async cloneVoice(audioBlob: Blob, text?: string, sessionId?: string): Promise<{ url: string }> {
     try {
+      console.log('🎤 Starting voice cloning...');
+      console.log('🎵 Blob size:', audioBlob.size);
+      console.log('🎵 Blob type:', audioBlob.type);
+      
       // Convert blob to base64
       const reader = new FileReader();
-      const base64Promise = new Promise<string>((resolve) => {
-        reader.onloadend = () => resolve(reader.result as string);
+      const base64Promise = new Promise<string>((resolve, reject) => {
+        reader.onloadend = () => {
+          console.log('✅ FileReader completed');
+          resolve(reader.result as string);
+        };
+        reader.onerror = () => {
+          console.error('❌ FileReader error');
+          reject(new Error('FileReader failed'));
+        };
         reader.readAsDataURL(audioBlob);
       });
       
       const base64Audio = await base64Promise;
+      console.log('📝 Base64 audio length:', base64Audio.length);
+      console.log('📝 Base64 starts with:', base64Audio.substring(0, 50));
       
       const response = await fetch('/api/clone-voice', {
         method: 'POST',

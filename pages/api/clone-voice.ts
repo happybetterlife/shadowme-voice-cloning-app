@@ -29,10 +29,13 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     console.log('📝 Text received:', text);
     console.log('🎵 Audio data present:', !!audioData);
     console.log('🎵 Audio data type:', typeof audioData);
+    console.log('🎵 Audio data length:', audioData ? audioData.length : 0);
+    console.log('🎵 Audio data starts with:', audioData ? audioData.substring(0, 50) : 'N/A');
     console.log('🆔 Session ID:', sessionId);
     
-    if (!audioData) {
-      console.log('❌ No audio data provided, using default voice');
+    if (!audioData || audioData.length < 100) {
+      console.log('❌ No valid audio data provided, using default voice');
+      console.log('🔍 Reason: audioData is', audioData ? `too short (${audioData.length} chars)` : 'missing');
       return await generateWithDefaultVoice(text, res);
     }
 
