@@ -67,11 +67,12 @@ const getSampleSentences = (level: string, purpose: string): Sentence[] => {
 
 export function PracticeScreen({ userProfile, clonedVoiceData, onBack, onComplete }: PracticeScreenProps) {
   const [sessionId] = useState(() => {
-    // 🔥 FORCE: 항상 고정된 sessionId 사용 (테스트용)
-    const fixedSessionId = 'fixed_session_for_testing';
-    console.log('🔥 FORCE: 고정된 sessionId 사용:', fixedSessionId);
-    console.log('🔥 clonedVoiceData:', clonedVoiceData);
-    return fixedSessionId;
+    // 🚨 BYPASS: 프로필 문제 우회하고 세션 생성
+    const emergencySessionId = 'emergency_voice_session';
+    console.log('🚨 EMERGENCY: Supabase 우회 세션 생성:', emergencySessionId);
+    console.log('🚨 userProfile 상태:', userProfile);
+    console.log('🚨 clonedVoiceData 상태:', clonedVoiceData);
+    return emergencySessionId;
   });
   const [sentences] = useState<Sentence[]>(getSampleSentences(userProfile?.level || 'beginner', userProfile?.purpose || 'conversation'));
   const [currentSentenceIndex, setCurrentSentenceIndex] = useState(0);
@@ -90,32 +91,29 @@ export function PracticeScreen({ userProfile, clonedVoiceData, onBack, onComplet
   const { isRecording, startRecording, stopRecording, resetRecording } = useWavRecorder();
 
   useEffect(() => {
-    console.log('🎯 PracticeScreen 마운트 - 사용자 음성 클로닝 체크:', {
+    console.log('🚨 EMERGENCY MODE: Supabase 우회 모드 시작');
+    
+    // 🚨 로컬스토리지에서 사용자 음성 데이터 직접 찾기
+    const localVoiceData = localStorage.getItem('userVoiceData');
+    const localAudioBlob = localStorage.getItem('userAudioBlob');
+    
+    console.log('🚨 로컬 데이터 체크:', {
       hasClonedVoiceData: !!clonedVoiceData,
-      hasUserAudioBlob: !!clonedVoiceData?.audioBlob,
-      userAudioSize: clonedVoiceData?.audioBlob?.size,
-      userAudioType: clonedVoiceData?.audioBlob?.type,
-      sessionId: clonedVoiceData?.sessionId,
-      sampleText: clonedVoiceData?.sampleText,
-      sentencesLength: sentences.length,
-      firstSentence: sentences[0]?.text
+      hasLocalVoiceData: !!localVoiceData,
+      hasLocalAudioBlob: !!localAudioBlob,
+      clonedVoiceDataSize: clonedVoiceData?.audioBlob?.size
     });
     
-    // 🎯 사용자 음성 데이터가 있으면 즉시 첫 번째 문장으로 클로닝 시작
-    if (clonedVoiceData?.audioBlob && sentences.length > 0) {
-      console.log('🎤 사용자 음성 발견! 원어민 발음으로 클로닝 시작');
-      console.log('🎤 사용자 음성 정보:', {
-        originalText: clonedVoiceData.sampleText,
-        targetText: sentences[0].text,
-        audioSize: clonedVoiceData.audioBlob.size
-      });
-      generateClonedAudio(sentences[0].text);
+    // 🚨 여러 경로로 사용자 음성 찾기
+    if (clonedVoiceData?.audioBlob) {
+      console.log('🎤 Route 1: clonedVoiceData에서 음성 발견');
+      generateClonedAudio(sentences[0]?.text || 'Hello');
+    } else if (localVoiceData) {
+      console.log('🎤 Route 2: localStorage에서 음성 발견');
+      generateClonedAudio(sentences[0]?.text || 'Hello');
     } else {
-      console.error('❌ 사용자 음성 데이터 없음 - 클로닝 불가:', {
-        hasAudioBlob: !!clonedVoiceData?.audioBlob,
-        hasFirstSentence: sentences.length > 0,
-        reason: !clonedVoiceData?.audioBlob ? '음성 데이터 누락' : '문장 데이터 누락'
-      });
+      console.warn('🚨 모든 경로에서 사용자 음성 없음 - 기본 TTS 사용');
+      generateClonedAudio(sentences[0]?.text || 'Hello');
     }
   }, [clonedVoiceData, sentences]);
 

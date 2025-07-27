@@ -51,6 +51,26 @@ export function TutorialScreen({ onComplete }: TutorialScreenProps) {
             console.log('🎵 Audio blob size:', recordedBlob.size, 'bytes');
             console.log('🎵 Audio blob type:', recordedBlob.type);
             
+            // 🚨 EMERGENCY: 로컬스토리지에 음성 데이터 저장
+            try {
+              const reader = new FileReader();
+              reader.onloadend = () => {
+                const base64Audio = reader.result as string;
+                localStorage.setItem('userVoiceData', JSON.stringify({
+                  sessionId,
+                  sampleText: sampleSentence,
+                  audioSize: recordedBlob.size,
+                  audioType: recordedBlob.type,
+                  timestamp: Date.now()
+                }));
+                localStorage.setItem('userAudioBlob', base64Audio);
+                console.log('🚨 EMERGENCY: 음성 데이터 로컬 저장 완료');
+              };
+              reader.readAsDataURL(recordedBlob);
+            } catch (storageError) {
+              console.warn('로컬 저장 실패:', storageError);
+            }
+            
             // 실제 음성 클로닝 API 호출 (sessionId 포함)
             const result = await voiceApi.cloneVoice(recordedBlob, sampleSentence, sessionId);
             console.log('✅ Voice cloning API response:', result);
