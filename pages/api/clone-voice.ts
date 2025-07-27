@@ -98,15 +98,19 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     console.log('📁 Audio data received, size:', audioBuffer.length);
     
     console.log('🧬 Creating voice clone with ElevenLabs...');
+    console.log('📊 Environment check:');
+    console.log('  - Runtime:', typeof process !== 'undefined' ? 'Node.js' : 'Browser');
+    console.log('  - Platform:', typeof process !== 'undefined' ? process.platform : 'Unknown');
+    console.log('  - Memory usage:', typeof process !== 'undefined' && process.memoryUsage ? process.memoryUsage() : 'Unknown');
     
     // Step 1: Create voice clone using IVC (Instant Voice Cloning) 
     const formData = new FormData();
     formData.append('name', `user_voice_${Date.now()}`);
     formData.append('description', 'User voice for pronunciation learning');
     
-    // Create blob from buffer
-    const audioBlob = new Blob([audioBuffer], { type: 'audio/webm' });
-    formData.append('files', audioBlob, 'recording.webm');
+    // Create blob from buffer - try mp3 format for better compatibility
+    const audioBlob = new Blob([audioBuffer], { type: 'audio/mp3' });
+    formData.append('files', audioBlob, 'recording.mp3');
 
     const cloneResponse = await fetch('https://api.elevenlabs.io/v1/voices/add', {
       method: 'POST',
