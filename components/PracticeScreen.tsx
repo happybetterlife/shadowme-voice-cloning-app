@@ -90,22 +90,31 @@ export function PracticeScreen({ userProfile, clonedVoiceData, onBack, onComplet
   const { isRecording, startRecording, stopRecording, resetRecording } = useWavRecorder();
 
   useEffect(() => {
-    console.log('🚀 PracticeScreen 마운트됨:', {
+    console.log('🎯 PracticeScreen 마운트 - 사용자 음성 클로닝 체크:', {
       hasClonedVoiceData: !!clonedVoiceData,
-      hasAudioBlob: !!clonedVoiceData?.audioBlob,
+      hasUserAudioBlob: !!clonedVoiceData?.audioBlob,
+      userAudioSize: clonedVoiceData?.audioBlob?.size,
+      userAudioType: clonedVoiceData?.audioBlob?.type,
       sessionId: clonedVoiceData?.sessionId,
+      sampleText: clonedVoiceData?.sampleText,
       sentencesLength: sentences.length,
       firstSentence: sentences[0]?.text
     });
     
-    // Generate cloned audio for the first sentence when component mounts
+    // 🎯 사용자 음성 데이터가 있으면 즉시 첫 번째 문장으로 클로닝 시작
     if (clonedVoiceData?.audioBlob && sentences.length > 0) {
-      console.log('✅ 조건 만족 - 첫 번째 문장 음성 클로닝 시작');
+      console.log('🎤 사용자 음성 발견! 원어민 발음으로 클로닝 시작');
+      console.log('🎤 사용자 음성 정보:', {
+        originalText: clonedVoiceData.sampleText,
+        targetText: sentences[0].text,
+        audioSize: clonedVoiceData.audioBlob.size
+      });
       generateClonedAudio(sentences[0].text);
     } else {
-      console.warn('❌ 조건 불만족 - 음성 클로닝 건너뜀:', {
+      console.error('❌ 사용자 음성 데이터 없음 - 클로닝 불가:', {
         hasAudioBlob: !!clonedVoiceData?.audioBlob,
-        hasFirstSentence: sentences.length > 0
+        hasFirstSentence: sentences.length > 0,
+        reason: !clonedVoiceData?.audioBlob ? '음성 데이터 누락' : '문장 데이터 누락'
       });
     }
   }, [clonedVoiceData, sentences]);
