@@ -21,10 +21,18 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   }
 
   try {
-    console.log('🎤 Voice cloning request received...');
-    console.log('📝 Request body keys:', Object.keys(req.body));
+    console.log('🚨 CRITICAL: Voice cloning request received...');
+    console.log('🚨 Request method:', req.method);
+    console.log('🚨 Request body keys:', Object.keys(req.body));
+    console.log('🚨 Request body size:', JSON.stringify(req.body).length);
     
     const { text = "Hello, how are you today?", audioData, sessionId } = req.body;
+    
+    console.log('🚨 EXTRACTED DATA:');
+    console.log('  - text:', text);
+    console.log('  - audioData exists:', !!audioData);
+    console.log('  - audioData length:', audioData ? audioData.length : 0);
+    console.log('  - sessionId:', sessionId);
     
     console.log('📝 Text received:', text);
     console.log('🎵 Audio data present:', !!audioData);
