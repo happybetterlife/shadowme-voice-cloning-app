@@ -1,0 +1,210 @@
+
+> shadowme-nextjs@1.0.0 dev
+> next dev
+
+   ▲ Next.js 15.0.3
+   - Local:        http://localhost:3000
+   - Environments: .env.local
+
+ ✓ Starting...
+ ⚠ Invalid next.config.js options detected: 
+ ⚠     Unrecognized key(s) in object: 'serverComponentsExternalPackages' at "experimental"
+ ⚠ See more info here: https://nextjs.org/docs/messages/invalid-next-config
+ ⚠ `experimental.serverComponentsExternalPackages` has been moved to `serverExternalPackages`. Please update your next.config.js file accordingly.
+ ✓ Ready in 1278ms
+ ○ Compiling / ...
+ ✓ Compiled / in 821ms (851 modules)
+ GET / 200 in 968ms
+ ✓ Compiled in 63ms (409 modules)
+ GET / 200 in 10ms
+ GET / 200 in 23ms
+ ✓ Compiled /api/clone-voice in 197ms (502 modules)
+Voice cloning request received...
+Using default voice for TTS...
+ POST /api/clone-voice 200 in 1930ms
+ ✓ Compiled in 99ms (486 modules)
+ GET / 200 in 122ms
+ GET / 200 in 21ms
+ ⨯ ./pages/api/clone-voice.ts
+Error:   [31mx[0m Expression expected
+     ,-[[36;1;4m/Users/joy/Desktop/figma_local/ShadowME - AI Voice Cloning Language Learning App/shadowme-nextjs/pages/api/clone-voice.ts[0m:151:1]
+ [2m148[0m | 
+ [2m149[0m |   return res.status(500).json({ error: 'All voice generation methods failed' });
+ [2m150[0m | }
+ [2m151[0m | }
+     : [35;1m^[0m
+ [2m152[0m | 
+ [2m153[0m | export const config = {
+ [2m154[0m |   api: {
+     `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./pages/api/clone-voice.ts
+ ⨯ ./pages/api/clone-voice.ts
+Error:   [31mx[0m Expression expected
+     ,-[[36;1;4m/Users/joy/Desktop/figma_local/ShadowME - AI Voice Cloning Language Learning App/shadowme-nextjs/pages/api/clone-voice.ts[0m:151:1]
+ [2m148[0m | 
+ [2m149[0m |   return res.status(500).json({ error: 'All voice generation methods failed' });
+ [2m150[0m | }
+ [2m151[0m | }
+     : [35;1m^[0m
+ [2m152[0m | 
+ [2m153[0m | export const config = {
+ [2m154[0m |   api: {
+     `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./pages/api/clone-voice.ts
+ ⨯ ./pages/api/clone-voice.ts
+Error:   [31mx[0m Expression expected
+     ,-[[36;1;4m/Users/joy/Desktop/figma_local/ShadowME - AI Voice Cloning Language Learning App/shadowme-nextjs/pages/api/clone-voice.ts[0m:151:1]
+ [2m148[0m | 
+ [2m149[0m |   return res.status(500).json({ error: 'All voice generation methods failed' });
+ [2m150[0m | }
+ [2m151[0m | }
+     : [35;1m^[0m
+ [2m152[0m | 
+ [2m153[0m | export const config = {
+ [2m154[0m |   api: {
+     `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./pages/api/clone-voice.ts
+ ○ Compiling /_not-found ...
+ ⨯ ./pages/api/clone-voice.ts
+Error:   [31mx[0m Expression expected
+     ,-[[36;1;4m/Users/joy/Desktop/figma_local/ShadowME - AI Voice Cloning Language Learning App/shadowme-nextjs/pages/api/clone-voice.ts[0m:151:1]
+ [2m148[0m | 
+ [2m149[0m |   return res.status(500).json({ error: 'All voice generation methods failed' });
+ [2m150[0m | }
+ [2m151[0m | }
+     : [35;1m^[0m
+ [2m152[0m | 
+ [2m153[0m | export const config = {
+ [2m154[0m |   api: {
+     `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./pages/api/clone-voice.ts
+ GET / 500 in 582ms
+ POST /api/clone-voice 500 in 854ms
+ GET / 500 in 2ms
+ GET / 500 in 3ms
+ ✓ Compiled /_error in 77ms (504 modules)
+ GET /_next/static/webpack/9dd912b88ea8add6.webpack.hot-update.json 404 in 84ms
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ GET / 200 in 79ms
+ GET / 200 in 19ms
+🎤 Voice cloning request received...
+📁 Audio data received, size: 86496
+🧬 Creating voice clone with ElevenLabs...
+❌ Voice cloning failed: {"detail":{"status":"voice_limit_reached","message":"You have reached your maximum amount of custom voices (12 / 10). You can upgrade your subscription to increase your custom voice limit."}}
+🔄 Using default voice fallback...
+ POST /api/clone-voice 200 in 1922ms
+ ✓ Compiled in 708ms (1089 modules)
+ ✓ Compiled in 233ms (1089 modules)
+ ✓ Compiled in 182ms (1089 modules)
+ GET / 200 in 123ms
+ GET / 200 in 5ms
+ GET / 200 in 4ms
+ GET / 200 in 101ms
+ ✓ Compiled /api/clone-voice in 104ms (503 modules)
+🎤 Voice cloning request received...
+📁 Audio data received, size: 113311
+🧬 Creating voice clone with ElevenLabs...
+❌ Voice cloning failed: {"detail":{"status":"voice_limit_reached","message":"You have reached your maximum amount of custom voices (12 / 10). You can upgrade your subscription to increase your custom voice limit."}}
+🔄 Using default voice fallback...
+ POST /api/clone-voice 200 in 1836ms
+ GET / 200 in 111ms
+ ✓ Compiled in 88ms (487 modules)
+ GET / 200 in 131ms
+ ✓ Compiled /_not-found in 158ms (1078 modules)
+ GET /apple-touch-icon-precomposed.png 404 in 196ms
+ GET /apple-touch-icon.png 404 in 5ms
+ GET / 200 in 84ms
+ GET / 200 in 19ms
+ GET / 200 in 18ms
+ ✓ Compiled /api/clone-voice in 106ms (504 modules)
+🎤 Voice cloning request received...
+📝 Request body keys: [ 'text', 'audioData' ]
+📝 Text received: Hello, my name is Sarah and I love learning English.
+🎵 Audio data present: true
+🎵 Audio data type: string
+📁 Audio data received, size: 92988
+🧬 Creating voice clone with ElevenLabs...
+❌ Voice cloning failed: {"detail":{"status":"voice_limit_reached","message":"You have reached your maximum amount of custom voices (12 / 10). You can upgrade your subscription to increase your custom voice limit."}}
+🔄 Using default voice fallback...
+ POST /api/clone-voice 200 in 2197ms
+ ✓ Compiled /api/analyze-voice in 96ms (505 modules)
+ POST /api/analyze-voice 200 in 103ms
+🎤 Voice cloning request received...
+📝 Request body keys: [ 'text', 'audioData' ]
+📝 Text received: Hello, how are you today?
+🎵 Audio data present: true
+🎵 Audio data type: string
+📁 Audio data received, size: 57696
+🧬 Creating voice clone with ElevenLabs...
+❌ Voice cloning failed: {"detail":{"status":"voice_limit_reached","message":"You have reached your maximum amount of custom voices (12 / 10). You can upgrade your subscription to increase your custom voice limit."}}
+🔄 Using default voice fallback...
+ POST /api/clone-voice 200 in 1670ms
+ POST /api/analyze-voice 200 in 3ms
+🎤 Voice cloning request received...
+📝 Request body keys: [ 'text', 'audioData' ]
+📝 Text received: Hello, how are you today?
+🎵 Audio data present: true
+🎵 Audio data type: string
+📁 Audio data received, size: 55546
+🧬 Creating voice clone with ElevenLabs...
+❌ Voice cloning failed: {"detail":{"status":"voice_limit_reached","message":"You have reached your maximum amount of custom voices (12 / 10). You can upgrade your subscription to increase your custom voice limit."}}
+🔄 Using default voice fallback...
+ POST /api/clone-voice 200 in 1453ms
+ ✓ Compiled in 102ms (487 modules)
+ ✓ Compiled in 355ms (1089 modules)
+ GET / 200 in 63ms
+ ✓ Compiled /api/clone-voice in 90ms (503 modules)
+🎤 Voice cloning request received...
+📝 Request body keys: [ 'text', 'audioData' ]
+📝 Text received: Hello world test
+🎵 Audio data present: true
+🎵 Audio data type: string
+📁 Audio data received, size: 3
+🧬 Creating voice clone with ElevenLabs...
+❌ Voice cloning failed: {"detail":{"status":"voice_limit_reached","message":"You have reached your maximum amount of custom voices (12 / 10). You can upgrade your subscription to increase your custom voice limit."}}
+🧹 Voice limit reached, attempting to clean up old voices...
+🔍 Fetching current voices...
+🎯 Found 0 user voices to clean up
+✅ Cleanup completed
+🔄 Retrying voice cloning after cleanup...
+🔄 Using default voice fallback...
+ POST /api/clone-voice 200 in 2235ms
+ ✓ Compiled /api/analyze-voice in 35ms (505 modules)
+ POST /api/analyze-voice 200 in 40ms
+ ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ ✓ Compiled /_not-found in 193ms (1078 modules)
+ GET / 404 in 295ms
+ GET / 404 in 153ms
+ GET /_next/static/chunks/main-app.js?v=1753459097709 404 in 11ms
+ GET /_next/static/chunks/app-pages-internals.js 404 in 11ms
+ GET /_next/static/css/app/layout.css?v=1753459097709 404 in 13ms
+ GET / 404 in 16ms
+ GET /_next/static/css/app/layout.css?v=1753459100164 404 in 9ms
+ GET /_next/static/chunks/main-app.js?v=1753459100164 404 in 11ms
+ GET /_next/static/chunks/app-pages-internals.js 404 in 11ms
+ GET / 404 in 16ms
+ GET /_next/static/chunks/main-app.js?v=1753459103219 404 in 12ms
+ GET /_next/static/chunks/app-pages-internals.js 404 in 12ms
+ GET /_next/static/css/app/layout.css?v=1753459103219 404 in 13ms
+[?25h

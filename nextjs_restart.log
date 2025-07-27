@@ -1,0 +1,545 @@
+
+> shadowme-nextjs@1.0.0 dev
+> next dev
+
+ ⚠ Port 3000 is in use, trying 3001 instead.
+   ▲ Next.js 15.0.3
+   - Local:        http://localhost:3001
+   - Environments: .env.local
+
+ ✓ Starting...
+ ✓ Ready in 1310ms
+ ○ Compiling / ...
+ ✓ Compiled / in 2.2s (855 modules)
+ GET / 200 in 2422ms
+ ✓ Compiled in 62ms (411 modules)
+ ✓ Compiled /api/clone-voice in 185ms (504 modules)
+🎤 Voice cloning request received...
+📝 Request body keys: [ 'text', 'audioData' ]
+📝 Text received: Hello world
+🎵 Audio data present: true
+🎵 Audio data type: string
+📁 Audio data received, size: 3
+🧬 Creating voice clone with ElevenLabs...
+❌ Voice cloning failed: {"detail":{"status":"invalid_content","message":"File recording.webm is corrupted. Please ensure it is playable audio."}}
+🔄 Using default voice fallback...
+ POST /api/clone-voice 200 in 1710ms
+ ✓ Compiled /api/analyze-voice in 76ms (506 modules)
+ POST /api/analyze-voice 200 in 80ms
+ GET / 200 in 103ms
+🎤 Voice cloning request received...
+📝 Request body keys: [ 'text', 'audioData' ]
+📝 Text received: Hello, my name is Sarah and I love learning English.
+🎵 Audio data present: true
+🎵 Audio data type: string
+📁 Audio data received, size: 119001
+🧬 Creating voice clone with ElevenLabs...
+✅ Voice cloned successfully! Voice ID: 5rUGwxFcytLUiB8txeD7
+🗣️ Generating speech with cloned voice...
+🎉 Voice cloning completed successfully!
+🗑️ Temporary voice cleaned up
+ POST /api/clone-voice 200 in 6215ms
+🎤 Voice cloning request received...
+📝 Request body keys: [ 'text', 'audioData' ]
+📝 Text received: Hello, how are you today?
+🎵 Audio data present: true
+🎵 Audio data type: string
+📁 Audio data received, size: 119001
+🧬 Creating voice clone with ElevenLabs...
+✅ Voice cloned successfully! Voice ID: mcjINRl5puRsnrJ2VvZm
+🗣️ Generating speech with cloned voice...
+🎉 Voice cloning completed successfully!
+🗑️ Temporary voice cleaned up
+ POST /api/clone-voice 200 in 7388ms
+ POST /api/analyze-voice 200 in 5ms
+🎤 Voice cloning request received...
+📝 Request body keys: [ 'text', 'audioData' ]
+📝 Text received: I like coffee and tea.
+🎵 Audio data present: true
+🎵 Audio data type: string
+📁 Audio data received, size: 119001
+🧬 Creating voice clone with ElevenLabs...
+✅ Voice cloned successfully! Voice ID: 4FhCSUFij5J8k3kmRKUY
+🗣️ Generating speech with cloned voice...
+🎉 Voice cloning completed successfully!
+🗑️ Temporary voice cleaned up
+ POST /api/clone-voice 200 in 7165ms
+ POST /api/analyze-voice 200 in 3ms
+🎤 Voice cloning request received...
+📝 Request body keys: [ 'text', 'audioData' ]
+📝 Text received: What time is it now?
+🎵 Audio data present: true
+🎵 Audio data type: string
+📁 Audio data received, size: 119001
+🧬 Creating voice clone with ElevenLabs...
+✅ Voice cloned successfully! Voice ID: GSvw6p1M0W6MmmKntfbD
+🗣️ Generating speech with cloned voice...
+🎉 Voice cloning completed successfully!
+🗑️ Temporary voice cleaned up
+ POST /api/clone-voice 200 in 5597ms
+ POST /api/analyze-voice 200 in 6ms
+🎤 Voice cloning request received...
+📝 Request body keys: [ 'text', 'audioData' ]
+📝 Text received: Nice to meet you.
+🎵 Audio data present: true
+🎵 Audio data type: string
+📁 Audio data received, size: 119001
+🧬 Creating voice clone with ElevenLabs...
+✅ Voice cloned successfully! Voice ID: a3YcmeaE5Ua3QcLDtgOZ
+🗣️ Generating speech with cloned voice...
+🎉 Voice cloning completed successfully!
+🗑️ Temporary voice cleaned up
+ POST /api/clone-voice 200 in 4912ms
+ POST /api/analyze-voice 200 in 10ms
+ POST /api/analyze-voice 200 in 4ms
+🎤 Voice cloning request received...
+📝 Request body keys: [ 'text', 'audioData' ]
+📝 Text received: We call it bear.
+🎵 Audio data present: true
+🎵 Audio data type: string
+📁 Audio data received, size: 119001
+🧬 Creating voice clone with ElevenLabs...
+✅ Voice cloned successfully! Voice ID: XwbniHRygtMkwjLdc15v
+🗣️ Generating speech with cloned voice...
+🎉 Voice cloning completed successfully!
+🗑️ Temporary voice cleaned up
+ POST /api/clone-voice 200 in 6031ms
+🎤 Voice cloning request received...
+📝 Request body keys: [ 'text', 'audioData' ]
+📝 Text received: We call it bear.
+🎵 Audio data present: true
+🎵 Audio data type: string
+📁 Audio data received, size: 51023
+🧬 Creating voice clone with ElevenLabs...
+✅ Voice cloned successfully! Voice ID: 7ZructtzCTCWh9cd8zlf
+🗣️ Generating speech with cloned voice...
+🎉 Voice cloning completed successfully!
+🗑️ Temporary voice cleaned up
+ POST /api/clone-voice 200 in 5725ms
+ POST /api/analyze-voice 200 in 3ms
+🎤 Voice cloning request received...
+📝 Request body keys: [ 'text', 'audioData' ]
+📝 Text received: We call it bear.
+🎵 Audio data present: true
+🎵 Audio data type: string
+📁 Audio data received, size: 119001
+🧬 Creating voice clone with ElevenLabs...
+✅ Voice cloned successfully! Voice ID: fiMcoFiDdDw4DMnEuW4s
+🗣️ Generating speech with cloned voice...
+🎉 Voice cloning completed successfully!
+🗑️ Temporary voice cleaned up
+ POST /api/clone-voice 200 in 8129ms
+ ✓ Compiled in 242ms (488 modules)
+ ✓ Compiled in 630ms (1091 modules)
+ GET / 200 in 171ms
+ GET / 200 in 10ms
+ GET / 200 in 10ms
+ ✓ Compiled in 247ms (1091 modules)
+ GET / 200 in 38ms
+ ✓ Compiled in 282ms (1091 modules)
+ GET / 200 in 44ms
+ ✓ Compiled in 288ms (1077 modules)
+ ✓ Compiled in 128ms (1077 modules)
+ ✓ Compiled in 346ms (1091 modules)
+ GET / 200 in 37ms
+ ✓ Compiled in 233ms (1091 modules)
+ GET / 200 in 63ms
+ ✓ Compiled in 211ms (1091 modules)
+ GET / 200 in 44ms
+ ✓ Compiled in 316ms (1091 modules)
+ GET / 200 in 61ms
+ ✓ Compiled in 217ms (1091 modules)
+ GET / 200 in 35ms
+ ✓ Compiled in 182ms (1091 modules)
+ GET / 200 in 47ms
+ ✓ Compiled in 169ms (1077 modules)
+ ✓ Compiled in 184ms (1091 modules)
+ GET / 200 in 43ms
+ ✓ Compiled in 409ms (1091 modules)
+ GET / 200 in 40ms
+ GET / 200 in 125ms
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename '/Users/joy/Desktop/figma_local/ShadowME - AI Voice Cloning Language Learning App/shadowme-nextjs/.next/cache/webpack/server-development/0.pack.gz_' -> '/Users/joy/Desktop/figma_local/ShadowME - AI Voice Cloning Language Learning App/shadowme-nextjs/.next/cache/webpack/server-development/0.pack.gz'
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename '/Users/joy/Desktop/figma_local/ShadowME - AI Voice Cloning Language Learning App/shadowme-nextjs/.next/cache/webpack/client-development/0.pack.gz_' -> '/Users/joy/Desktop/figma_local/ShadowME - AI Voice Cloning Language Learning App/shadowme-nextjs/.next/cache/webpack/client-development/0.pack.gz'
+ ✓ Compiled in 221ms (1077 modules)
+ ✓ Compiled in 196ms (1080 modules)
+ ✓ Compiled in 109ms (1080 modules)
+ ✓ Compiled in 203ms (1080 modules)
+ ✓ Compiled in 178ms (1080 modules)
+ ✓ Compiled in 140ms (1080 modules)
+ ✓ Compiled /api/setup-database in 109ms (507 modules)
+🚀 Setting up ShadowME database tables...
+Profile table error: {
+  code: 'PGRST202',
+  details: 'Searched for the function public.execute_sql with parameter sql or with a single unnamed json/jsonb parameter, but no matches were found in the schema cache.',
+  hint: null,
+  message: 'Could not find the function public.execute_sql(sql) in the schema cache'
+}
+Session table error: {
+  code: 'PGRST202',
+  details: 'Searched for the function public.execute_sql with parameter sql or with a single unnamed json/jsonb parameter, but no matches were found in the schema cache.',
+  hint: null,
+  message: 'Could not find the function public.execute_sql(sql) in the schema cache'
+}
+Progress table error: {
+  code: 'PGRST202',
+  details: 'Searched for the function public.execute_sql with parameter sql or with a single unnamed json/jsonb parameter, but no matches were found in the schema cache.',
+  hint: null,
+  message: 'Could not find the function public.execute_sql(sql) in the schema cache'
+}
+Index creation error: {
+  code: 'PGRST202',
+  details: 'Searched for the function public.execute_sql with parameter sql or with a single unnamed json/jsonb parameter, but no matches were found in the schema cache.',
+  hint: null,
+  message: 'Could not find the function public.execute_sql(sql) in the schema cache'
+}
+✅ Database setup completed successfully
+ POST /api/setup-database 200 in 2341ms
+ GET / 200 in 118ms
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename '/Users/joy/Desktop/figma_local/ShadowME - AI Voice Cloning Language Learning App/shadowme-nextjs/.next/cache/webpack/client-development/0.pack.gz_' -> '/Users/joy/Desktop/figma_local/ShadowME - AI Voice Cloning Language Learning App/shadowme-nextjs/.next/cache/webpack/client-development/0.pack.gz'
+ ✓ Compiled /api/clone-voice in 113ms (506 modules)
+🎤 Voice cloning request received...
+📝 Request body keys: [ 'text', 'audioData', 'sessionId' ]
+📝 Text received: Hello, my name is Sarah and I love learning English.
+🎵 Audio data present: true
+🎵 Audio data type: string
+📁 Audio data received, size: 89928
+🧬 Creating voice clone with ElevenLabs...
+✅ Voice cloned successfully! Voice ID: r2Jzy1ede7jOEqE3V58T
+💾 Cached voice clone for session tutorial_1753603773754_lu0alh06w: r2Jzy1ede7jOEqE3V58T
+🗣️ Generating speech with cloned voice...
+🎉 Voice cloning completed successfully!
+🗑️ Temporary voice cleaned up
+ POST /api/clone-voice 200 in 8551ms
+🎤 Voice cloning request received...
+📝 Request body keys: [ 'text', 'audioData' ]
+📝 Text received: Hello, how are you today?
+🎵 Audio data present: true
+🎵 Audio data type: string
+📁 Audio data received, size: 89928
+🧬 Creating voice clone with ElevenLabs...
+✅ Voice cloned successfully! Voice ID: thavAw9DCzHnfEahYq8P
+🗣️ Generating speech with cloned voice...
+🎉 Voice cloning completed successfully!
+🗑️ Temporary voice cleaned up
+ POST /api/clone-voice 200 in 8431ms
+ ✓ Compiled /api/analyze-voice in 61ms (508 modules)
+ POST /api/analyze-voice 200 in 66ms
+ ✓ Compiled in 597ms (1094 modules)
+ ✓ Compiled in 197ms (1094 modules)
+ ⨯ ./components/PracticeScreen.tsx
+Error:   [31mx[0m Expected a semicolon
+     ,-[[36;1;4m/Users/joy/Desktop/figma_local/ShadowME - AI Voice Cloning Language Learning App/shadowme-nextjs/components/PracticeScreen.tsx[0m:281:1]
+ [2m278[0m |         throw new Error('기본 TTS 생성 실패');
+ [2m279[0m |       }
+ [2m280[0m |       
+ [2m281[0m |     } catch (error) {
+     : [35;1m      ^^^^^[0m
+ [2m282[0m |       console.error('❌ AI audio playback failed:', error);
+ [2m283[0m |       setIsPlaying(false);
+ [2m284[0m |       
+     `----
+  [31mx[0m Expression expected
+     ,-[[36;1;4m/Users/joy/Desktop/figma_local/ShadowME - AI Voice Cloning Language Learning App/shadowme-nextjs/components/PracticeScreen.tsx[0m:299:1]
+ [2m296[0m |         console.log('ℹ️ Using simulation mode for AI audio');
+ [2m297[0m |       }
+ [2m298[0m |     }
+ [2m299[0m |   };
+     : [35;1m  ^[0m
+ [2m300[0m | 
+ [2m301[0m |   // 클로닝된 음성 재생 (튜토리얼 클로닝된 음성 사용)
+ [2m302[0m |   const handlePlayClonedVoice = async () => {
+     `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./components/PracticeScreen.tsx
+./app/page.tsx
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename '/Users/joy/Desktop/figma_local/ShadowME - AI Voice Cloning Language Learning App/shadowme-nextjs/.next/cache/webpack/client-development/0.pack.gz_' -> '/Users/joy/Desktop/figma_local/ShadowME - AI Voice Cloning Language Learning App/shadowme-nextjs/.next/cache/webpack/client-development/0.pack.gz'
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename '/Users/joy/Desktop/figma_local/ShadowME - AI Voice Cloning Language Learning App/shadowme-nextjs/.next/cache/webpack/server-development/1.pack.gz_' -> '/Users/joy/Desktop/figma_local/ShadowME - AI Voice Cloning Language Learning App/shadowme-nextjs/.next/cache/webpack/server-development/1.pack.gz'
+ ✓ Compiled in 419ms (1096 modules)
+ ✓ Compiled in 264ms (1096 modules)
+ ✓ Compiled in 419ms (1082 modules)
+ ✓ Compiled in 152ms (1084 modules)
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename '/Users/joy/Desktop/figma_local/ShadowME - AI Voice Cloning Language Learning App/shadowme-nextjs/.next/cache/webpack/server-development/0.pack.gz_' -> '/Users/joy/Desktop/figma_local/ShadowME - AI Voice Cloning Language Learning App/shadowme-nextjs/.next/cache/webpack/server-development/0.pack.gz'
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename '/Users/joy/Desktop/figma_local/ShadowME - AI Voice Cloning Language Learning App/shadowme-nextjs/.next/cache/webpack/client-development/1.pack.gz_' -> '/Users/joy/Desktop/figma_local/ShadowME - AI Voice Cloning Language Learning App/shadowme-nextjs/.next/cache/webpack/client-development/1.pack.gz'
+ ✓ Compiled in 142ms (1084 modules)
+ ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ GET / 200 in 138ms
+ GET / 200 in 93ms
+ ✓ Compiled /api/clone-voice in 109ms (508 modules)
+🎤 Voice cloning request received...
+📝 Request body keys: [ 'text', 'audioData', 'sessionId' ]
+📝 Text received: Hello, my name is Sarah and I love learning English.
+🎵 Audio data present: true
+🎵 Audio data type: string
+🆔 Session ID: tutorial_1753617276831_q61m2191y
+📁 Audio data received, size: 99118
+🧬 Creating voice clone with ElevenLabs...
+✅ Voice cloned successfully! Voice ID: x9Cg4nqj7vrGflLH5xn8
+💾 세션 음성 캐시에 저장: tutorial_1753617276831_q61m2191y -> x9Cg4nqj7vrGflLH5xn8
+💾 Cached voice clone for session tutorial_1753617276831_q61m2191y: x9Cg4nqj7vrGflLH5xn8
+🗣️ Generating speech with cloned voice...
+🎉 Voice cloning completed successfully!
+💾 음성 캐시에 보관됨 (30분 후 자동 정리)
+ POST /api/clone-voice 200 in 5254ms
+🎤 Voice cloning request received...
+📝 Request body keys: [ 'text', 'audioData' ]
+📝 Text received: Hello, how are you today?
+🎵 Audio data present: true
+🎵 Audio data type: string
+🆔 Session ID: undefined
+📁 Audio data received, size: 99118
+🧬 Creating voice clone with ElevenLabs...
+✅ Voice cloned successfully! Voice ID: qd90oBn9sOsVG73Aatd8
+🗣️ Generating speech with cloned voice...
+🎉 Voice cloning completed successfully!
+💾 음성 캐시에 보관됨 (30분 후 자동 정리)
+ POST /api/clone-voice 200 in 3965ms
+ ✓ Compiled /api/analyze-voice in 60ms (510 modules)
+ POST /api/analyze-voice 200 in 66ms
+🎤 Voice cloning request received...
+📝 Request body keys: [ 'text', 'audioData' ]
+📝 Text received: I like coffee and tea.
+🎵 Audio data present: true
+🎵 Audio data type: string
+🆔 Session ID: undefined
+📁 Audio data received, size: 99118
+🧬 Creating voice clone with ElevenLabs...
+✅ Voice cloned successfully! Voice ID: VsZbRKzQQG5O7VejyXLb
+🗣️ Generating speech with cloned voice...
+🎉 Voice cloning completed successfully!
+💾 음성 캐시에 보관됨 (30분 후 자동 정리)
+ POST /api/clone-voice 200 in 3773ms
+ POST /api/analyze-voice 200 in 15ms
+🎤 Voice cloning request received...
+📝 Request body keys: [ 'text', 'audioData' ]
+📝 Text received: What time is it now?
+🎵 Audio data present: true
+🎵 Audio data type: string
+🆔 Session ID: undefined
+📁 Audio data received, size: 99118
+🧬 Creating voice clone with ElevenLabs...
+✅ Voice cloned successfully! Voice ID: pHHBifwzY1V20vckwMsM
+🗣️ Generating speech with cloned voice...
+🎉 Voice cloning completed successfully!
+💾 음성 캐시에 보관됨 (30분 후 자동 정리)
+ POST /api/clone-voice 200 in 3827ms
+ POST /api/analyze-voice 200 in 5ms
+🎤 Voice cloning request received...
+📝 Request body keys: [ 'text', 'audioData' ]
+📝 Text received: Nice to meet you.
+🎵 Audio data present: true
+🎵 Audio data type: string
+🆔 Session ID: undefined
+📁 Audio data received, size: 99118
+🧬 Creating voice clone with ElevenLabs...
+✅ Voice cloned successfully! Voice ID: XL7lqDTJYgjIHdMjNLAZ
+🗣️ Generating speech with cloned voice...
+🎉 Voice cloning completed successfully!
+💾 음성 캐시에 보관됨 (30분 후 자동 정리)
+ POST /api/clone-voice 200 in 3652ms
+ POST /api/analyze-voice 200 in 2ms
+🎤 Voice cloning request received...
+📝 Request body keys: [ 'text', 'audioData' ]
+📝 Text received: Have a great day!
+🎵 Audio data present: true
+🎵 Audio data type: string
+🆔 Session ID: undefined
+📁 Audio data received, size: 99118
+🧬 Creating voice clone with ElevenLabs...
+✅ Voice cloned successfully! Voice ID: sTaETPUyabBb5i7EOAA2
+🗣️ Generating speech with cloned voice...
+🎉 Voice cloning completed successfully!
+💾 음성 캐시에 보관됨 (30분 후 자동 정리)
+ POST /api/clone-voice 200 in 5990ms
+ POST /api/analyze-voice 200 in 3ms
+ ✓ Compiled /api/generate-speech in 108ms (511 modules)
+🎯 Speech generation request received...
+📝 Text: We call it bear.
+🆔 Session ID: tutorial_1753617276831_q61m2191y
+🎭 Use cloned voice: true
+⚠️ 세션에 캐시된 음성 없음, 기본 음성 사용 (먼저 샘플 녹음 필요)
+ POST /api/generate-speech 200 in 980ms
+ ✓ Compiled in 171ms (491 modules)
+ ✓ Compiled /_not-found in 740ms (1087 modules)
+ ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ GET / 200 in 11ms
+ GET /_next/static/webpack/099344c071e06a7f.webpack.hot-update.json 404 in 327ms
+ GET / 200 in 71ms
+ GET /_next/static/chunks/app-pages-internals.js 404 in 22ms
+ GET /_next/static/chunks/main-app.js?v=1753618109071 404 in 19ms
+ GET /_next/static/css/app/layout.css?v=1753618109071 404 in 19ms
+ GET / 200 in 19ms
+ GET /_next/static/chunks/main-app.js?v=1753618118456 404 in 11ms
+ GET /_next/static/chunks/app-pages-internals.js 404 in 25ms
+ GET /_next/static/css/app/layout.css?v=1753618118456 404 in 28ms
+ GET / 200 in 29ms
+ GET /_next/static/chunks/main-app.js?v=1753618167378 404 in 10ms
+ GET /_next/static/chunks/app-pages-internals.js 404 in 10ms
+ GET /_next/static/css/app/layout.css?v=1753618167378 404 in 19ms
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, lstat '/Users/joy/Desktop/figma_local/ShadowME - AI Voice Cloning Language Learning App/shadowme-nextjs/.next/server/vendor-chunks/webidl-conversions.js'
+<w> [webpack.cache.PackFileCacheStrategy/webpack.FileSystemInfo] Resolving './vendor-chunks/webidl-conversions' in /Users/joy/Desktop/figma_local/ShadowME - AI Voice Cloning Language Learning App/shadowme-nextjs/.next/server for build dependencies doesn't lead to expected result '/Users/joy/Desktop/figma_local/ShadowME - AI Voice Cloning Language Learning App/shadowme-nextjs/.next/server/vendor-chunks/webidl-conversions.js', but to 'Error: Can't resolve './vendor-chunks/webidl-conversions' in '/Users/joy/Desktop/figma_local/ShadowME - AI Voice Cloning Language Learning App/shadowme-nextjs/.next/server'' instead. Resolving dependencies are ignored for this path.
+<w>  at resolve commonjs file ./vendor-chunks/webidl-conversions (expected /Users/joy/Desktop/figma_local/ShadowME - AI Voice Cloning Language Learning App/shadowme-nextjs/.next/server/vendor-chunks/webidl-conversions.js)
+<w>  at file dependencies /Users/joy/Desktop/figma_local/ShadowME - AI Voice Cloning Language Learning App/shadowme-nextjs/.next/server/webpack-runtime.js
+<w>  at file /Users/joy/Desktop/figma_local/ShadowME - AI Voice Cloning Language Learning App/shadowme-nextjs/.next/server/webpack-runtime.js
+<w>  at file dependencies /Users/joy/Desktop/figma_local/ShadowME - AI Voice Cloning Language Learning App/shadowme-nextjs/.next/server/app/page.js
+<w>  at file /Users/joy/Desktop/figma_local/ShadowME - AI Voice Cloning Language Learning App/shadowme-nextjs/.next/server/app/page.js
+<w>  at file dependencies /Users/joy/Desktop/figma_local/ShadowME - AI Voice Cloning Language Learning App/shadowme-nextjs/node_modules/next/dist/server/require.js
+<w>  at file /Users/joy/Desktop/figma_local/ShadowME - AI Voice Cloning Language Learning App/shadowme-nextjs/node_modules/next/dist/server/require.js
+<w>  at file dependencies /Users/joy/Desktop/figma_local/ShadowME - AI Voice Cloning Language Learning App/shadowme-nextjs/node_modules/next/dist/server/load-components.js
+<w>  at file /Users/joy/Desktop/figma_local/ShadowME - AI Voice Cloning Language Learning App/shadowme-nextjs/node_modules/next/dist/server/load-components.js
+<w>  at file dependencies /Users/joy/Desktop/figma_local/ShadowME - AI Voice Cloning Language Learning App/shadowme-nextjs/node_modules/next/dist/build/utils.js
+<w>  at file /Users/joy/Desktop/figma_local/ShadowME - AI Voice Cloning Language Learning App/shadowme-nextjs/node_modules/next/dist/build/utils.js
+<w>  at file dependencies /Users/joy/Desktop/figma_local/ShadowME - AI Voice Cloning Language Learning App/shadowme-nextjs/node_modules/next/dist/build/webpack/loaders/next-route-loader/index.js
+<w>  at file /Users/joy/Desktop/figma_local/ShadowME - AI Voice Cloning Language Learning App/shadowme-nextjs/node_modules/next/dist/build/webpack/loaders/next-route-loader/index.js
+<w>  at file dependencies /Users/joy/Desktop/figma_local/ShadowME - AI Voice Cloning Language Learning App/shadowme-nextjs/node_modules/next/dist/compiled/loader-runner/LoaderRunner.js
+<w>  at file /Users/joy/Desktop/figma_local/ShadowME - AI Voice Cloning Language Learning App/shadowme-nextjs/node_modules/next/dist/compiled/loader-runner/LoaderRunner.js
+<w>  at file dependencies /Users/joy/Desktop/figma_local/ShadowME - AI Voice Cloning Language Learning App/shadowme-nextjs/node_modules/next/dist/compiled/webpack/bundle5.js
+<w>  at file /Users/joy/Desktop/figma_local/ShadowME - AI Voice Cloning Language Learning App/shadowme-nextjs/node_modules/next/dist/compiled/webpack/bundle5.js
+<w>  at file dependencies /Users/joy/Desktop/figma_local/ShadowME - AI Voice Cloning Language Learning App/shadowme-nextjs/node_modules/next/dist/compiled/webpack/webpack.js
+<w>  at file /Users/joy/Desktop/figma_local/ShadowME - AI Voice Cloning Language Learning App/shadowme-nextjs/node_modules/next/dist/compiled/webpack/webpack.js
+<w>  at file dependencies /Users/joy/Desktop/figma_local/ShadowME - AI Voice Cloning Language Learning App/shadowme-nextjs/node_modules/next/dist/build/webpack/plugins/define-env-plugin.js
+<w>  at file /Users/joy/Desktop/figma_local/ShadowME - AI Voice Cloning Language Learning App/shadowme-nextjs/node_modules/next/dist/build/webpack/plugins/define-env-plugin.js
+<w>  at file dependencies /Users/joy/Desktop/figma_local/ShadowME - AI Voice Cloning Language Learning App/shadowme-nextjs/node_modules/next/dist/build/swc/index.js
+<w>  at file /Users/joy/Desktop/figma_local/ShadowME - AI Voice Cloning Language Learning App/shadowme-nextjs/node_modules/next/dist/build/swc/index.js
+<w>  at file dependencies /Users/joy/Desktop/figma_local/ShadowME - AI Voice Cloning Language Learning App/shadowme-nextjs/node_modules/next/dist/build/webpack/loaders/next-barrel-loader.js
+<w>  at file /Users/joy/Desktop/figma_local/ShadowME - AI Voice Cloning Language Learning App/shadowme-nextjs/node_modules/next/dist/build/webpack/loaders/next-barrel-loader.js
+<w>  at resolve commonjs /Users/joy/Desktop/figma_local/ShadowME - AI Voice Cloning Language Learning App/shadowme-nextjs/node_modules/next/dist/build/webpack/loaders/next-barrel-loader.js
+<w> [webpack.cache.PackFileCacheStrategy/webpack.FileSystemInfo] Resolving './vendor-chunks/class-variance-authority' in /Users/joy/Desktop/figma_local/ShadowME - AI Voice Cloning Language Learning App/shadowme-nextjs/.next/server for build dependencies doesn't lead to expected result '/Users/joy/Desktop/figma_local/ShadowME - AI Voice Cloning Language Learning App/shadowme-nextjs/.next/server/vendor-chunks/class-variance-authority.js', but to 'Error: Can't resolve './vendor-chunks/class-variance-authority' in '/Users/joy/Desktop/figma_local/ShadowME - AI Voice Cloning Language Learning App/shadowme-nextjs/.next/server'' instead. Resolving dependencies are ignored for this path.
+<w>  at resolve commonjs file ./vendor-chunks/class-variance-authority (expected /Users/joy/Desktop/figma_local/ShadowME - AI Voice Cloning Language Learning App/shadowme-nextjs/.next/server/vendor-chunks/class-variance-authority.js)
+<w>  at file dependencies /Users/joy/Desktop/figma_local/ShadowME - AI Voice Cloning Language Learning App/shadowme-nextjs/.next/server/webpack-runtime.js
+<w>  at file /Users/joy/Desktop/figma_local/ShadowME - AI Voice Cloning Language Learning App/shadowme-nextjs/.next/server/webpack-runtime.js
+<w>  at file dependencies /Users/joy/Desktop/figma_local/ShadowME - AI Voice Cloning Language Learning App/shadowme-nextjs/.next/server/app/page.js
+<w>  at file /Users/joy/Desktop/figma_local/ShadowME - AI Voice Cloning Language Learning App/shadowme-nextjs/.next/server/app/page.js
+<w>  at file dependencies /Users/joy/Desktop/figma_local/ShadowME - AI Voice Cloning Language Learning App/shadowme-nextjs/node_modules/next/dist/server/require.js
+<w>  at file /Users/joy/Desktop/figma_local/ShadowME - AI Voice Cloning Language Learning App/shadowme-nextjs/node_modules/next/dist/server/require.js
+<w>  at file dependencies /Users/joy/Desktop/figma_local/ShadowME - AI Voice Cloning Language Learning App/shadowme-nextjs/node_modules/next/dist/server/load-components.js
+<w>  at file /Users/joy/Desktop/figma_local/ShadowME - AI Voice Cloning Language Learning App/shadowme-nextjs/node_modules/next/dist/server/load-components.js
+<w>  at file dependencies /Users/joy/Desktop/figma_local/ShadowME - AI Voice Cloning Language Learning App/shadowme-nextjs/node_modules/next/dist/build/utils.js
+<w>  at file /Users/joy/Desktop/figma_local/ShadowME - AI Voice Cloning Language Learning App/shadowme-nextjs/node_modules/next/dist/build/utils.js
+<w>  at file dependencies /Users/joy/Desktop/figma_local/ShadowME - AI Voice Cloning Language Learning App/shadowme-nextjs/node_modules/next/dist/build/webpack/loaders/next-route-loader/index.js
+<w>  at file /Users/joy/Desktop/figma_local/ShadowME - AI Voice Cloning Language Learning App/shadowme-nextjs/node_modules/next/dist/build/webpack/loaders/next-route-loader/index.js
+<w>  at file dependencies /Users/joy/Desktop/figma_local/ShadowME - AI Voice Cloning Language Learning App/shadowme-nextjs/node_modules/next/dist/compiled/loader-runner/LoaderRunner.js
+<w>  at file /Users/joy/Desktop/figma_local/ShadowME - AI Voice Cloning Language Learning App/shadowme-nextjs/node_modules/next/dist/compiled/loader-runner/LoaderRunner.js
+<w>  at file dependencies /Users/joy/Desktop/figma_local/ShadowME - AI Voice Cloning Language Learning App/shadowme-nextjs/node_modules/next/dist/compiled/webpack/bundle5.js
+<w>  at file /Users/joy/Desktop/figma_local/ShadowME - AI Voice Cloning Language Learning App/shadowme-nextjs/node_modules/next/dist/compiled/webpack/bundle5.js
+<w>  at file dependencies /Users/joy/Desktop/figma_local/ShadowME - AI Voice Cloning Language Learning App/shadowme-nextjs/node_modules/next/dist/compiled/webpack/webpack.js
+<w>  at file /Users/joy/Desktop/figma_local/ShadowME - AI Voice Cloning Language Learning App/shadowme-nextjs/node_modules/next/dist/compiled/webpack/webpack.js
+<w>  at file dependencies /Users/joy/Desktop/figma_local/ShadowME - AI Voice Cloning Language Learning App/shadowme-nextjs/node_modules/next/dist/build/webpack/plugins/define-env-plugin.js
+<w>  at file /Users/joy/Desktop/figma_local/ShadowME - AI Voice Cloning Language Learning App/shadowme-nextjs/node_modules/next/dist/build/webpack/plugins/define-env-plugin.js
+<w>  at file dependencies /Users/joy/Desktop/figma_local/ShadowME - AI Voice Cloning Language Learning App/shadowme-nextjs/node_modules/next/dist/build/swc/index.js
+<w>  at file /Users/joy/Desktop/figma_local/ShadowME - AI Voice Cloning Language Learning App/shadowme-nextjs/node_modules/next/dist/build/swc/index.js
+<w>  at file dependencies /Users/joy/Desktop/figma_local/ShadowME - AI Voice Cloning Language Learning App/shadowme-nextjs/node_modules/next/dist/build/webpack/loaders/next-barrel-loader.js
+<w>  at file /Users/joy/Desktop/figma_local/ShadowME - AI Voice Cloning Language Learning App/shadowme-nextjs/node_modules/next/dist/build/webpack/loaders/next-barrel-loader.js
+<w>  at resolve commonjs /Users/joy/Desktop/figma_local/ShadowME - AI Voice Cloning Language Learning App/shadowme-nextjs/node_modules/next/dist/build/webpack/loaders/next-barrel-loader.js
+<w> [webpack.cache.PackFileCacheStrategy/webpack.FileSystemInfo] Resolving './vendor-chunks/clsx' in /Users/joy/Desktop/figma_local/ShadowME - AI Voice Cloning Language Learning App/shadowme-nextjs/.next/server for build dependencies doesn't lead to expected result '/Users/joy/Desktop/figma_local/ShadowME - AI Voice Cloning Language Learning App/shadowme-nextjs/.next/server/vendor-chunks/clsx.js', but to 'Error: Can't resolve './vendor-chunks/clsx' in '/Users/joy/Desktop/figma_local/ShadowME - AI Voice Cloning Language Learning App/shadowme-nextjs/.next/server'' instead. Resolving dependencies are ignored for this path.
+<w>  at resolve commonjs file ./vendor-chunks/clsx (expected /Users/joy/Desktop/figma_local/ShadowME - AI Voice Cloning Language Learning App/shadowme-nextjs/.next/server/vendor-chunks/clsx.js)
+<w>  at file dependencies /Users/joy/Desktop/figma_local/ShadowME - AI Voice Cloning Language Learning App/shadowme-nextjs/.next/server/webpack-runtime.js
+<w>  at file /Users/joy/Desktop/figma_local/ShadowME - AI Voice Cloning Language Learning App/shadowme-nextjs/.next/server/webpack-runtime.js
+<w>  at file dependencies /Users/joy/Desktop/figma_local/ShadowME - AI Voice Cloning Language Learning App/shadowme-nextjs/.next/server/app/page.js
+<w>  at file /Users/joy/Desktop/figma_local/ShadowME - AI Voice Cloning Language Learning App/shadowme-nextjs/.next/server/app/page.js
+<w>  at file dependencies /Users/joy/Desktop/figma_local/ShadowME - AI Voice Cloning Language Learning App/shadowme-nextjs/node_modules/next/dist/server/require.js
+<w>  at file /Users/joy/Desktop/figma_local/ShadowME - AI Voice Cloning Language Learning App/shadowme-nextjs/node_modules/next/dist/server/require.js
+<w>  at file dependencies /Users/joy/Desktop/figma_local/ShadowME - AI Voice Cloning Language Learning App/shadowme-nextjs/node_modules/next/dist/server/load-components.js
+<w>  at file /Users/joy/Desktop/figma_local/ShadowME - AI Voice Cloning Language Learning App/shadowme-nextjs/node_modules/next/dist/server/load-components.js
+<w>  at file dependencies /Users/joy/Desktop/figma_local/ShadowME - AI Voice Cloning Language Learning App/shadowme-nextjs/node_modules/next/dist/build/utils.js
+<w>  at file /Users/joy/Desktop/figma_local/ShadowME - AI Voice Cloning Language Learning App/shadowme-nextjs/node_modules/next/dist/build/utils.js
+<w>  at file dependencies /Users/joy/Desktop/figma_local/ShadowME - AI Voice Cloning Language Learning App/shadowme-nextjs/node_modules/next/dist/build/webpack/loaders/next-route-loader/index.js
+<w>  at file /Users/joy/Desktop/figma_local/ShadowME - AI Voice Cloning Language Learning App/shadowme-nextjs/node_modules/next/dist/build/webpack/loaders/next-route-loader/index.js
+<w>  at file dependencies /Users/joy/Desktop/figma_local/ShadowME - AI Voice Cloning Language Learning App/shadowme-nextjs/node_modules/next/dist/compiled/loader-runner/LoaderRunner.js
+<w>  at file /Users/joy/Desktop/figma_local/ShadowME - AI Voice Cloning Language Learning App/shadowme-nextjs/node_modules/next/dist/compiled/loader-runner/LoaderRunner.js
+<w>  at file dependencies /Users/joy/Desktop/figma_local/ShadowME - AI Voice Cloning Language Learning App/shadowme-nextjs/node_modules/next/dist/compiled/webpack/bundle5.js
+<w>  at file /Users/joy/Desktop/figma_local/ShadowME - AI Voice Cloning Language Learning App/shadowme-nextjs/node_modules/next/dist/compiled/webpack/bundle5.js
+<w>  at file dependencies /Users/joy/Desktop/figma_local/ShadowME - AI Voice Cloning Language Learning App/shadowme-nextjs/node_modules/next/dist/compiled/webpack/webpack.js
+<w>  at file /Users/joy/Desktop/figma_local/ShadowME - AI Voice Cloning Language Learning App/shadowme-nextjs/node_modules/next/dist/compiled/webpack/webpack.js
+<w>  at file dependencies /Users/joy/Desktop/figma_local/ShadowME - AI Voice Cloning Language Learning App/shadowme-nextjs/node_modules/next/dist/build/webpack/plugins/define-env-plugin.js
+<w>  at file /Users/joy/Desktop/figma_local/ShadowME - AI Voice Cloning Language Learning App/shadowme-nextjs/node_modules/next/dist/build/webpack/plugins/define-env-plugin.js
+<w>  at file dependencies /Users/joy/Desktop/figma_local/ShadowME - AI Voice Cloning Language Learning App/shadowme-nextjs/node_modules/next/dist/build/swc/index.js
+<w>  at file /Users/joy/Desktop/figma_local/ShadowME - AI Voice Cloning Language Learning App/shadowme-nextjs/node_modules/next/dist/build/swc/index.js
+<w>  at file dependencies /Users/joy/Desktop/figma_local/ShadowME - AI Voice Cloning Language Learning App/shadowme-nextjs/node_modules/next/dist/build/webpack/loaders/next-barrel-loader.js
+<w>  at file /Users/joy/Desktop/figma_local/ShadowME - AI Voice Cloning Language Learning App/shadowme-nextjs/node_modules/next/dist/build/webpack/loaders/next-barrel-loader.js
+<w>  at resolve commonjs /Users/joy/Desktop/figma_local/ShadowME - AI Voice Cloning Language Learning App/shadowme-nextjs/node_modules/next/dist/build/webpack/loaders/next-barrel-loader.js
+ GET / 200 in 18ms
+ GET /_next/static/css/app/layout.css?v=1753618170642 404 in 11ms
+ GET /_next/static/chunks/main-app.js?v=1753618170642 404 in 14ms
+ GET /_next/static/chunks/app-pages-internals.js 404 in 14ms
+ GET / 200 in 19ms
+ GET /_next/static/css/app/layout.css?v=1753618172743 404 in 11ms
+ GET /_next/static/chunks/main-app.js?v=1753618172743 404 in 12ms
+ GET / 200 in 13ms
+ GET /_next/static/css/app/layout.css?v=1753618173844 404 in 14ms
+ GET /_next/static/chunks/main-app.js?v=1753618173844 404 in 10ms
+ GET / 200 in 17ms
+ GET /_next/static/chunks/main-app.js?v=1753618179081 404 in 9ms
+ GET /_next/static/css/app/layout.css?v=1753618179081 404 in 10ms
+ GET /_next/static/chunks/app-pages-internals.js 404 in 9ms
+ GET / 200 in 12ms
+ GET /_next/static/chunks/main-app.js?v=1753618188765 404 in 10ms
+ GET /_next/static/chunks/app-pages-internals.js 404 in 10ms
+ GET /_next/static/css/app/layout.css?v=1753618188765 404 in 19ms
+ ✓ Compiled in 634ms (609 modules)
+ ✓ Compiled /_error in 146ms (1089 modules)
+ ⨯ Error: Cannot find module '/Users/joy/Desktop/figma_local/ShadowME - AI Voice Cloning Language Learning App/shadowme-nextjs/.next/server/pages/_document.js'
+Require stack:
+- /Users/joy/Desktop/figma_local/ShadowME - AI Voice Cloning Language Learning App/shadowme-nextjs/node_modules/next/dist/server/require.js
+- /Users/joy/Desktop/figma_local/ShadowME - AI Voice Cloning Language Learning App/shadowme-nextjs/node_modules/next/dist/server/load-components.js
+- /Users/joy/Desktop/figma_local/ShadowME - AI Voice Cloning Language Learning App/shadowme-nextjs/node_modules/next/dist/build/utils.js
+- /Users/joy/Desktop/figma_local/ShadowME - AI Voice Cloning Language Learning App/shadowme-nextjs/node_modules/next/dist/build/swc/options.js
+- /Users/joy/Desktop/figma_local/ShadowME - AI Voice Cloning Language Learning App/shadowme-nextjs/node_modules/next/dist/build/swc/index.js
+- /Users/joy/Desktop/figma_local/ShadowME - AI Voice Cloning Language Learning App/shadowme-nextjs/node_modules/next/dist/build/analysis/parse-module.js
+- /Users/joy/Desktop/figma_local/ShadowME - AI Voice Cloning Language Learning App/shadowme-nextjs/node_modules/next/dist/build/analysis/get-page-static-info.js
+- /Users/joy/Desktop/figma_local/ShadowME - AI Voice Cloning Language Learning App/shadowme-nextjs/node_modules/next/dist/server/lib/router-utils/setup-dev-bundler.js
+- /Users/joy/Desktop/figma_local/ShadowME - AI Voice Cloning Language Learning App/shadowme-nextjs/node_modules/next/dist/server/lib/router-server.js
+- /Users/joy/Desktop/figma_local/ShadowME - AI Voice Cloning Language Learning App/shadowme-nextjs/node_modules/next/dist/server/lib/start-server.js
+    at call (node_modules/next/src/server/require-hook.ts:51:33)
+    at call (node_modules/next/src/server/require-hook.ts:70:25)
+    at require (node_modules/next/src/server/require.ts:121:8)
+    at loadComponentsImpl (node_modules/next/src/server/load-components.ts:138:18)
+    at DevServer.findPageComponentsImpl (node_modules/next/src/server/next-server.ts:779:48)
+    at findPageComponentsImpl (node_modules/next/src/server/next-server.ts:738:13)
+    at fn (node_modules/next/src/server/lib/trace/tracer.ts:351:27) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+ GET / 500 in 1259ms
+[Error: ENOENT: no such file or directory, stat '/Users/joy/Desktop/figma_local/ShadowME - AI Voice Cloning Language Learning App/shadowme-nextjs/.next/cache/webpack/client-development/1.pack.gz'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'stat',
+  path: '/Users/joy/Desktop/figma_local/ShadowME - AI Voice Cloning Language Learning App/shadowme-nextjs/.next/cache/webpack/client-development/1.pack.gz'
+}
+ ⨯ unhandledRejection: [Error: ENOENT: no such file or directory, stat '/Users/joy/Desktop/figma_local/ShadowME - AI Voice Cloning Language Learning App/shadowme-nextjs/.next/cache/webpack/client-development/1.pack.gz'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'stat',
+  path: '/Users/joy/Desktop/figma_local/ShadowME - AI Voice Cloning Language Learning App/shadowme-nextjs/.next/cache/webpack/client-development/1.pack.gz'
+}
+ ⨯ unhandledRejection: [Error: ENOENT: no such file or directory, stat '/Users/joy/Desktop/figma_local/ShadowME - AI Voice Cloning Language Learning App/shadowme-nextjs/.next/cache/webpack/client-development/1.pack.gz'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'stat',
+  path: '/Users/joy/Desktop/figma_local/ShadowME - AI Voice Cloning Language Learning App/shadowme-nextjs/.next/cache/webpack/client-development/1.pack.gz'
+}
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, stat '/Users/joy/Desktop/figma_local/ShadowME - AI Voice Cloning Language Learning App/shadowme-nextjs/.next/cache/webpack/client-development/1.pack.gz'
+[Error: ENOENT: no such file or directory, stat '/Users/joy/Desktop/figma_local/ShadowME - AI Voice Cloning Language Learning App/shadowme-nextjs/.next/cache/webpack/server-development/3.pack.gz'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'stat',
+  path: '/Users/joy/Desktop/figma_local/ShadowME - AI Voice Cloning Language Learning App/shadowme-nextjs/.next/cache/webpack/server-development/3.pack.gz'
+}
+ ⨯ unhandledRejection: [Error: ENOENT: no such file or directory, stat '/Users/joy/Desktop/figma_local/ShadowME - AI Voice Cloning Language Learning App/shadowme-nextjs/.next/cache/webpack/server-development/3.pack.gz'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'stat',
+  path: '/Users/joy/Desktop/figma_local/ShadowME - AI Voice Cloning Language Learning App/shadowme-nextjs/.next/cache/webpack/server-development/3.pack.gz'
+}
+ ⨯ unhandledRejection: [Error: ENOENT: no such file or directory, stat '/Users/joy/Desktop/figma_local/ShadowME - AI Voice Cloning Language Learning App/shadowme-nextjs/.next/cache/webpack/server-development/3.pack.gz'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'stat',
+  path: '/Users/joy/Desktop/figma_local/ShadowME - AI Voice Cloning Language Learning App/shadowme-nextjs/.next/cache/webpack/server-development/3.pack.gz'
+}
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, stat '/Users/joy/Desktop/figma_local/ShadowME - AI Voice Cloning Language Learning App/shadowme-nextjs/.next/cache/webpack/server-development/3.pack.gz'
+[?25h

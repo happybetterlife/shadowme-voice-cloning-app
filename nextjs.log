@@ -1,0 +1,75 @@
+
+> shadowme-nextjs@1.0.0 dev
+> next dev
+
+   ▲ Next.js 15.0.3
+   - Local:        http://localhost:3000
+
+ ✓ Starting...
+ ⚠ Invalid next.config.js options detected: 
+ ⚠     Unrecognized key(s) in object: 'serverComponentsExternalPackages' at "experimental"
+ ⚠ See more info here: https://nextjs.org/docs/messages/invalid-next-config
+ ⚠ `experimental.serverComponentsExternalPackages` has been moved to `serverExternalPackages`. Please update your next.config.js file accordingly.
+Attention: Next.js now collects completely anonymous telemetry regarding usage.
+This information is used to shape Next.js' roadmap and prioritize features.
+You can learn more, including how to opt-out if you'd not like to participate in this anonymous program, by visiting the following URL:
+https://nextjs.org/telemetry
+
+
+   We detected TypeScript in your project and created a tsconfig.json file for you.
+ ✓ Ready in 2.3s
+ ○ Compiling / ...
+ ✓ Compiled / in 1867ms (582 modules)
+ GET / 200 in 1983ms
+   Reload env: .env.local
+ ✓ Compiled in 148ms (573 modules)
+ GET / 200 in 68ms
+ ✓ Compiled in 220ms (286 modules)
+ ✓ Compiled in 47ms (286 modules)
+ GET / 200 in 11ms
+ GET / 200 in 3ms
+ ⨯ ./app/globals.css:1:1
+Syntax error: /Users/joy/Desktop/figma_local/ShadowME - AI Voice Cloning Language Learning App/shadowme-nextjs/app/globals.css The `border-border` class does not exist. If `border-border` is a custom class, make sure it is defined within a `@layer` directive.
+
+> 1 | @tailwind base;
+    | ^
+  2 | @tailwind components;
+  3 | @tailwind utilities;
+ ⨯ ./app/globals.css:1:1
+Syntax error: /Users/joy/Desktop/figma_local/ShadowME - AI Voice Cloning Language Learning App/shadowme-nextjs/app/globals.css The `border-border` class does not exist. If `border-border` is a custom class, make sure it is defined within a `@layer` directive.
+
+> 1 | @tailwind base;
+    | ^
+  2 | @tailwind components;
+  3 | @tailwind utilities;
+ ○ Compiling /_error ...
+ GET / 500 in 924ms
+ GET / 500 in 2ms
+ GET / 500 in 2ms
+ GET / 500 in 1ms
+ ⨯ ./app/globals.css:1:1
+Syntax error: /Users/joy/Desktop/figma_local/ShadowME - AI Voice Cloning Language Learning App/shadowme-nextjs/app/globals.css The `border-border` class does not exist. If `border-border` is a custom class, make sure it is defined within a `@layer` directive.
+
+> 1 | @tailwind base;
+    | ^
+  2 | @tailwind components;
+  3 | @tailwind utilities;
+<w> [webpack.cache.PackFileCacheStrategy] Skipped not serializable cache item 'Compilation/modules|/Users/joy/Desktop/figma_local/ShadowME - AI Voice Cloning Language Learning App/shadowme-nextjs/node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[10].use[2]!/Users/joy/Desktop/figma_local/ShadowME - AI Voice Cloning Language Learning App/shadowme-nextjs/node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[10].use[3]!/Users/joy/Desktop/figma_local/ShadowME - AI Voice Cloning Language Learning App/shadowme-nextjs/app/globals.css': No serializer registered for PostCSSSyntaxError
+<w> while serializing webpack/lib/cache/PackFileCacheStrategy.PackContentItems -> webpack/lib/NormalModule -> webpack/lib/ModuleBuildError -> PostCSSSyntaxError
+ ⨯ ./app/globals.css:1:1
+Syntax error: /Users/joy/Desktop/figma_local/ShadowME - AI Voice Cloning Language Learning App/shadowme-nextjs/app/globals.css The `border-border` class does not exist. If `border-border` is a custom class, make sure it is defined within a `@layer` directive.
+
+> 1 | @tailwind base;
+    | ^
+  2 | @tailwind components;
+  3 | @tailwind utilities;
+ ⨯ ./app/globals.css:1:1
+Syntax error: /Users/joy/Desktop/figma_local/ShadowME - AI Voice Cloning Language Learning App/shadowme-nextjs/app/globals.css The `border-border` class does not exist. If `border-border` is a custom class, make sure it is defined within a `@layer` directive.
+
+> 1 | @tailwind base;
+    | ^
+  2 | @tailwind components;
+  3 | @tailwind utilities;
+<w> [webpack.cache.PackFileCacheStrategy] Skipped not serializable cache item 'Compilation/modules|/Users/joy/Desktop/figma_local/ShadowME - AI Voice Cloning Language Learning App/shadowme-nextjs/node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[10].use[2]!/Users/joy/Desktop/figma_local/ShadowME - AI Voice Cloning Language Learning App/shadowme-nextjs/node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[10].use[3]!/Users/joy/Desktop/figma_local/ShadowME - AI Voice Cloning Language Learning App/shadowme-nextjs/app/globals.css': No serializer registered for PostCSSSyntaxError
+<w> while serializing webpack/lib/cache/PackFileCacheStrategy.PackContentItems -> webpack/lib/NormalModule -> webpack/lib/ModuleBuildError -> PostCSSSyntaxError
+[?25h

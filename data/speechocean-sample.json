@@ -1,0 +1,146 @@
+{
+  "beginner": {
+    "conversation": [
+      {
+        "id": "so762_001",
+        "text": "We call it bear.",
+        "level": "beginner",
+        "purpose": "conversation",
+        "targetAccuracy": 0.85,
+        "targetFluency": 0.80,
+        "source": "speechocean762"
+      },
+      {
+        "id": "so762_002", 
+        "text": "It is a nice day.",
+        "level": "beginner",
+        "purpose": "conversation",
+        "targetAccuracy": 0.88,
+        "targetFluency": 0.82,
+        "source": "speechocean762"
+      },
+      {
+        "id": "so762_003",
+        "text": "I like to read books.",
+        "level": "beginner", 
+        "purpose": "conversation",
+        "targetAccuracy": 0.80,
+        "targetFluency": 0.75,
+        "source": "speechocean762"
+      },
+      {
+        "id": "so762_004",
+        "text": "She has a red car.",
+        "level": "beginner",
+        "purpose": "conversation", 
+        "targetAccuracy": 0.83,
+        "targetFluency": 0.78,
+        "source": "speechocean762"
+      },
+      {
+        "id": "so762_005",
+        "text": "The cat is sleeping.",
+        "level": "beginner",
+        "purpose": "conversation",
+        "targetAccuracy": 0.87,
+        "targetFluency": 0.81,
+        "source": "speechocean762"
+      }
+    ],
+    "business": [
+      {
+        "id": "so762_b001",
+        "text": "Good morning everyone.",
+        "level": "beginner",
+        "purpose": "business",
+        "targetAccuracy": 0.90,
+        "targetFluency": 0.85,
+        "source": "speechocean762"
+      },
+      {
+        "id": "so762_b002",
+        "text": "Thank you for coming.",
+        "level": "beginner", 
+        "purpose": "business",
+        "targetAccuracy": 0.85,
+        "targetFluency": 0.80,
+        "source": "speechocean762"
+      }
+    ]
+  },
+  "intermediate": {
+    "conversation": [
+      {
+        "id": "so762_i001",
+        "text": "I would like to discuss this matter with you.",
+        "level": "intermediate",
+        "purpose": "conversation",
+        "targetAccuracy": 0.75,
+        "targetFluency": 0.70,
+        "source": "speechocean762"
+      },
+      {
+        "id": "so762_i002",
+        "text": "The weather has been quite unpredictable lately.",
+        "level": "intermediate",
+        "purpose": "conversation", 
+        "targetAccuracy": 0.72,
+        "targetFluency": 0.68,
+        "source": "speechocean762"
+      },
+      {
+        "id": "so762_i003",
+        "text": "Could you please explain the procedure to me?",
+        "level": "intermediate",
+        "purpose": "conversation",
+        "targetAccuracy": 0.78,
+        "targetFluency": 0.73,
+        "source": "speechocean762"
+      }
+    ],
+    "business": [
+      {
+        "id": "so762_ib001",
+        "text": "I'd like to schedule a meeting for next week.",
+        "level": "intermediate",
+        "purpose": "business",
+        "targetAccuracy": 0.80,
+        "targetFluency": 0.75,
+        "source": "speechocean762"
+      }
+    ]
+  },
+  "advanced": {
+    "conversation": [
+      {
+        "id": "so762_a001",
+        "text": "The implementation of this strategy requires careful consideration of multiple factors.",
+        "level": "advanced",
+        "purpose": "conversation",
+        "targetAccuracy": 0.65,
+        "targetFluency": 0.60,
+        "source": "speechocean762"
+      },
+      {
+        "id": "so762_a002",
+        "text": "Contemporary literature often reflects the complexities of modern society.",
+        "level": "advanced", 
+        "purpose": "conversation",
+        "targetAccuracy": 0.68,
+        "targetFluency": 0.63,
+        "source": "speechocean762"
+      }
+    ],
+    "business": [
+      {
+        "id": "so762_ab001",
+        "text": "We need to leverage synergistic opportunities to optimize our competitive advantage.",
+        "level": "advanced",
+        "purpose": "business",
+        "targetAccuracy": 0.70,
+        "targetFluency": 0.65,
+        "source": "speechocean762"
+      }
+    ]
+  }
+}

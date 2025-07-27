@@ -1,0 +1,364 @@
+
+> shadowme-nextjs@1.0.0 dev
+> next dev
+
+   ▲ Next.js 15.0.3
+   - Local:        http://localhost:3000
+   - Environments: .env.local
+
+ ✓ Starting...
+ ✓ Ready in 1437ms
+ ○ Compiling / ...
+ ✓ Compiled / in 3.3s (868 modules)
+ HEAD / 200 in 3473ms
+ GET / 200 in 17ms
+ ✓ Compiled /api/clone-voice in 228ms (507 modules)
+🎤 Voice cloning request received...
+📝 Request body keys: [ 'text', 'audioData', 'sessionId' ]
+📝 Text received: Hello, my name is Sarah and I love learning English.
+🎵 Audio data present: true
+🎵 Audio data type: string
+🆔 Session ID: tutorial_1753628447726_5zmoo88dp
+📁 Audio data received, size: 101448
+🧬 Creating voice clone with ElevenLabs...
+✅ Voice cloned successfully! Voice ID: ByY8mekVlxvRZDlNf7US
+💾 세션 음성 캐시에 저장: tutorial_1753628447726_5zmoo88dp -> ByY8mekVlxvRZDlNf7US
+📊 현재 캐시된 세션들: [ 'tutorial_1753628447726_5zmoo88dp' ]
+💾 Cached voice clone for session tutorial_1753628447726_5zmoo88dp: ByY8mekVlxvRZDlNf7US
+🗣️ Generating speech with cloned voice...
+🎉 Voice cloning completed successfully!
+💾 음성 캐시에 보관됨 (30분 후 자동 정리)
+ POST /api/clone-voice 200 in 4871ms
+🎤 Voice cloning request received...
+📝 Request body keys: [ 'text', 'audioData', 'sessionId' ]
+📝 Text received: We call it bear.
+🎵 Audio data present: true
+🎵 Audio data type: string
+🆔 Session ID: tutorial_1753628447726_5zmoo88dp
+⚡ 캐시된 음성 발견! 즉시 TTS 생성: ByY8mekVlxvRZDlNf7US
+✅ 캐시된 음성으로 TTS 완료 (초고속)
+ POST /api/clone-voice 200 in 1169ms
+🎤 Voice cloning request received...
+📝 Request body keys: [ 'text', 'audioData', 'sessionId' ]
+📝 Text received: It is a nice day.
+🎵 Audio data present: true
+🎵 Audio data type: string
+🆔 Session ID: tutorial_1753628447726_5zmoo88dp
+⚡ 캐시된 음성 발견! 즉시 TTS 생성: ByY8mekVlxvRZDlNf7US
+✅ 캐시된 음성으로 TTS 완료 (초고속)
+ POST /api/clone-voice 200 in 1339ms
+🎤 Voice cloning request received...
+📝 Request body keys: [ 'text', 'audioData', 'sessionId' ]
+📝 Text received: I like to read books.
+🎵 Audio data present: true
+🎵 Audio data type: string
+🆔 Session ID: tutorial_1753628447726_5zmoo88dp
+⚡ 캐시된 음성 발견! 즉시 TTS 생성: ByY8mekVlxvRZDlNf7US
+✅ 캐시된 음성으로 TTS 완료 (초고속)
+ POST /api/clone-voice 200 in 1484ms
+🎤 Voice cloning request received...
+📝 Request body keys: [ 'text', 'audioData', 'sessionId' ]
+📝 Text received: She has a red car.
+🎵 Audio data present: true
+🎵 Audio data type: string
+🆔 Session ID: tutorial_1753628447726_5zmoo88dp
+⚡ 캐시된 음성 발견! 즉시 TTS 생성: ByY8mekVlxvRZDlNf7US
+✅ 캐시된 음성으로 TTS 완료 (초고속)
+ POST /api/clone-voice 200 in 1353ms
+🎤 Voice cloning request received...
+📝 Request body keys: [ 'text', 'audioData', 'sessionId' ]
+📝 Text received: The cat is sleeping.
+🎵 Audio data present: true
+🎵 Audio data type: string
+🆔 Session ID: tutorial_1753628447726_5zmoo88dp
+⚡ 캐시된 음성 발견! 즉시 TTS 생성: ByY8mekVlxvRZDlNf7US
+✅ 캐시된 음성으로 TTS 완료 (초고속)
+ POST /api/clone-voice 200 in 2597ms
+ ✓ Compiled in 737ms (1095 modules)
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ GET / 200 in 114ms
+ GET / 200 in 38ms
+ ✓ Compiled /api/clone-voice in 154ms (507 modules)
+🎤 Voice cloning request received...
+📝 Request body keys: [ 'text', 'audioData', 'sessionId' ]
+📝 Text received: Hello, my name is Sarah and I love learning English.
+🎵 Audio data present: true
+🎵 Audio data type: string
+🆔 Session ID: tutorial_1753628921510_if6d61my6
+📁 Audio data received, size: 88807
+🧬 Creating voice clone with ElevenLabs...
+✅ Voice cloned successfully! Voice ID: VGspg9uMQIKnxaUB30YQ
+💾 세션 음성 캐시에 저장: tutorial_1753628921510_if6d61my6 -> VGspg9uMQIKnxaUB30YQ
+📊 현재 캐시된 세션들: [ 'tutorial_1753628921510_if6d61my6' ]
+💾 Cached voice clone for session tutorial_1753628921510_if6d61my6: VGspg9uMQIKnxaUB30YQ
+🗣️ Generating speech with cloned voice...
+🎉 Voice cloning completed successfully!
+💾 음성 캐시에 보관됨 (30분 후 자동 정리)
+ POST /api/clone-voice 200 in 4925ms
+🎤 Voice cloning request received...
+📝 Request body keys: [ 'text', 'audioData', 'sessionId' ]
+📝 Text received: We call it bear.
+🎵 Audio data present: true
+🎵 Audio data type: string
+🆔 Session ID: tutorial_1753628921510_if6d61my6
+⚡ 캐시된 음성 발견! 즉시 TTS 생성: VGspg9uMQIKnxaUB30YQ
+✅ 캐시된 음성으로 TTS 완료 (초고속)
+ POST /api/clone-voice 200 in 1566ms
+🎤 Voice cloning request received...
+📝 Request body keys: [ 'text', 'audioData', 'sessionId' ]
+📝 Text received: It is a nice day.
+🎵 Audio data present: true
+🎵 Audio data type: string
+🆔 Session ID: tutorial_1753628921510_if6d61my6
+⚡ 캐시된 음성 발견! 즉시 TTS 생성: VGspg9uMQIKnxaUB30YQ
+✅ 캐시된 음성으로 TTS 완료 (초고속)
+ POST /api/clone-voice 200 in 1413ms
+🎤 Voice cloning request received...
+📝 Request body keys: [ 'text', 'audioData', 'sessionId' ]
+📝 Text received: I like to read books.
+🎵 Audio data present: true
+🎵 Audio data type: string
+🆔 Session ID: tutorial_1753628921510_if6d61my6
+⚡ 캐시된 음성 발견! 즉시 TTS 생성: VGspg9uMQIKnxaUB30YQ
+✅ 캐시된 음성으로 TTS 완료 (초고속)
+ POST /api/clone-voice 200 in 1270ms
+🎤 Voice cloning request received...
+📝 Request body keys: [ 'text', 'audioData', 'sessionId' ]
+📝 Text received: She has a red car.
+🎵 Audio data present: true
+🎵 Audio data type: string
+🆔 Session ID: tutorial_1753628921510_if6d61my6
+⚡ 캐시된 음성 발견! 즉시 TTS 생성: VGspg9uMQIKnxaUB30YQ
+✅ 캐시된 음성으로 TTS 완료 (초고속)
+ POST /api/clone-voice 200 in 1187ms
+🎤 Voice cloning request received...
+📝 Request body keys: [ 'text', 'audioData', 'sessionId' ]
+📝 Text received: The cat is sleeping.
+🎵 Audio data present: true
+🎵 Audio data type: string
+🆔 Session ID: tutorial_1753628921510_if6d61my6
+⚡ 캐시된 음성 발견! 즉시 TTS 생성: VGspg9uMQIKnxaUB30YQ
+✅ 캐시된 음성으로 TTS 완료 (초고속)
+ POST /api/clone-voice 200 in 1285ms
+🎤 Voice cloning request received...
+📝 Request body keys: [ 'text', 'audioData', 'sessionId' ]
+📝 Text received: We call it bear.
+🎵 Audio data present: true
+🎵 Audio data type: string
+🆔 Session ID: tutorial_1753628921510_if6d61my6
+⚡ 캐시된 음성 발견! 즉시 TTS 생성: VGspg9uMQIKnxaUB30YQ
+🎤 Voice cloning request received...
+📝 Request body keys: [ 'text', 'audioData', 'sessionId' ]
+📝 Text received: We call it bear.
+🎵 Audio data present: true
+🎵 Audio data type: string
+🆔 Session ID: tutorial_1753628921510_if6d61my6
+⚡ 캐시된 음성 발견! 즉시 TTS 생성: VGspg9uMQIKnxaUB30YQ
+✅ 캐시된 음성으로 TTS 완료 (초고속)
+ POST /api/clone-voice 200 in 1252ms
+✅ 캐시된 음성으로 TTS 완료 (초고속)
+ POST /api/clone-voice 200 in 1256ms
+ ✓ Compiled /api/analyze-voice in 154ms (509 modules)
+ POST /api/analyze-voice 200 in 162ms
+ ✓ Compiled /_not-found in 237ms (1084 modules)
+ GET /apple-touch-icon.png 404 in 295ms
+ GET /apple-touch-icon-precomposed.png 404 in 300ms
+ ✓ Compiled /api/analyze-voice in 64ms (507 modules)
+ POST /api/analyze-voice 200 in 107ms
+ ✓ Compiled in 473ms (1095 modules)
+ GET / 200 in 66ms
+ ✓ Compiled in 336ms (1095 modules)
+ GET / 200 in 53ms
+ ✓ Compiled in 85ms (605 modules)
+ GET / 200 in 5ms
+ ✓ Compiled in 268ms (1081 modules)
+ ✓ Compiled in 106ms (605 modules)
+ GET / 200 in 38ms
+ GET / 200 in 98ms
+ ✓ Compiled /api/clone-voice in 145ms (507 modules)
+🎤 Voice cloning request received...
+📝 Request body keys: [ 'text', 'audioData', 'sessionId' ]
+📝 Text received: Hello, my name is Sarah and I love learning English.
+🎵 Audio data present: true
+🎵 Audio data type: string
+🆔 Session ID: tutorial_1753629937436_897w2oi4n
+📁 Audio data received, size: 81278
+🧬 Creating voice clone with ElevenLabs...
+✅ Voice cloned successfully! Voice ID: ZGO5ejBLiBrXE9LfnJNz
+💾 세션 음성 캐시에 저장: tutorial_1753629937436_897w2oi4n -> ZGO5ejBLiBrXE9LfnJNz
+📊 현재 캐시된 세션들: [ 'tutorial_1753629937436_897w2oi4n' ]
+💾 Cached voice clone for session tutorial_1753629937436_897w2oi4n: ZGO5ejBLiBrXE9LfnJNz
+🗣️ Generating speech with cloned voice...
+🎉 Voice cloning completed successfully!
+💾 음성 캐시에 보관됨 (30분 후 자동 정리)
+ POST /api/clone-voice 200 in 4215ms
+🎤 Voice cloning request received...
+📝 Request body keys: [ 'text', 'audioData', 'sessionId' ]
+📝 Text received: We call it bear.
+🎵 Audio data present: true
+🎵 Audio data type: string
+🆔 Session ID: tutorial_1753629937436_897w2oi4n
+⚡ 캐시된 음성 발견! 즉시 TTS 생성: ZGO5ejBLiBrXE9LfnJNz
+✅ 캐시된 음성으로 TTS 완료 (초고속)
+ POST /api/clone-voice 200 in 1384ms
+🎤 Voice cloning request received...
+📝 Request body keys: [ 'text', 'audioData', 'sessionId' ]
+📝 Text received: It is a nice day.
+🎵 Audio data present: true
+🎵 Audio data type: string
+🆔 Session ID: tutorial_1753629937436_897w2oi4n
+⚡ 캐시된 음성 발견! 즉시 TTS 생성: ZGO5ejBLiBrXE9LfnJNz
+✅ 캐시된 음성으로 TTS 완료 (초고속)
+ POST /api/clone-voice 200 in 1254ms
+🎤 Voice cloning request received...
+📝 Request body keys: [ 'text', 'audioData', 'sessionId' ]
+📝 Text received: I like to read books.
+🎵 Audio data present: true
+🎵 Audio data type: string
+🆔 Session ID: tutorial_1753629937436_897w2oi4n
+⚡ 캐시된 음성 발견! 즉시 TTS 생성: ZGO5ejBLiBrXE9LfnJNz
+✅ 캐시된 음성으로 TTS 완료 (초고속)
+ POST /api/clone-voice 200 in 1306ms
+🎤 Voice cloning request received...
+📝 Request body keys: [ 'text', 'audioData', 'sessionId' ]
+📝 Text received: She has a red car.
+🎵 Audio data present: true
+🎵 Audio data type: string
+🆔 Session ID: tutorial_1753629937436_897w2oi4n
+⚡ 캐시된 음성 발견! 즉시 TTS 생성: ZGO5ejBLiBrXE9LfnJNz
+✅ 캐시된 음성으로 TTS 완료 (초고속)
+ POST /api/clone-voice 200 in 1595ms
+🎤 Voice cloning request received...
+📝 Request body keys: [ 'text', 'audioData', 'sessionId' ]
+📝 Text received: The cat is sleeping.
+🎵 Audio data present: true
+🎵 Audio data type: string
+🆔 Session ID: tutorial_1753629937436_897w2oi4n
+⚡ 캐시된 음성 발견! 즉시 TTS 생성: ZGO5ejBLiBrXE9LfnJNz
+✅ 캐시된 음성으로 TTS 완료 (초고속)
+ POST /api/clone-voice 200 in 1370ms
+🎤 Voice cloning request received...
+📝 Request body keys: [ 'text', 'audioData', 'sessionId' ]
+📝 Text received: We call it bear.
+🎵 Audio data present: true
+🎵 Audio data type: string
+🆔 Session ID: tutorial_1753629937436_897w2oi4n
+⚡ 캐시된 음성 발견! 즉시 TTS 생성: ZGO5ejBLiBrXE9LfnJNz
+🎤 Voice cloning request received...
+📝 Request body keys: [ 'text', 'audioData', 'sessionId' ]
+📝 Text received: We call it bear.
+🎵 Audio data present: true
+🎵 Audio data type: string
+🆔 Session ID: tutorial_1753629937436_897w2oi4n
+⚡ 캐시된 음성 발견! 즉시 TTS 생성: ZGO5ejBLiBrXE9LfnJNz
+✅ 캐시된 음성으로 TTS 완료 (초고속)
+ POST /api/clone-voice 200 in 1295ms
+✅ 캐시된 음성으로 TTS 완료 (초고속)
+ POST /api/clone-voice 200 in 1303ms
+ ✓ Compiled /api/analyze-voice in 127ms (509 modules)
+ POST /api/analyze-voice 200 in 134ms
+🎤 Voice cloning request received...
+📝 Request body keys: [ 'text', 'audioData', 'sessionId' ]
+📝 Text received: It is a nice day.
+🎵 Audio data present: true
+🎵 Audio data type: string
+🆔 Session ID: tutorial_1753629937436_897w2oi4n
+📁 Audio data received, size: 81278
+🧬 Creating voice clone with ElevenLabs...
+✅ Voice cloned successfully! Voice ID: dutotVSLOmB9RIfEVd4K
+💾 세션 음성 캐시에 저장: tutorial_1753629937436_897w2oi4n -> dutotVSLOmB9RIfEVd4K
+📊 현재 캐시된 세션들: [ 'tutorial_1753629937436_897w2oi4n' ]
+💾 Cached voice clone for session tutorial_1753629937436_897w2oi4n: dutotVSLOmB9RIfEVd4K
+🗣️ Generating speech with cloned voice...
+🎉 Voice cloning completed successfully!
+💾 음성 캐시에 보관됨 (30분 후 자동 정리)
+ POST /api/clone-voice 200 in 3434ms
+ POST /api/analyze-voice 200 in 3ms
+🎤 Voice cloning request received...
+📝 Request body keys: [ 'text', 'audioData', 'sessionId' ]
+📝 Text received: I like to read books.
+🎵 Audio data present: true
+🎵 Audio data type: string
+🆔 Session ID: tutorial_1753629937436_897w2oi4n
+⚡ 캐시된 음성 발견! 즉시 TTS 생성: dutotVSLOmB9RIfEVd4K
+✅ 캐시된 음성으로 TTS 완료 (초고속)
+ POST /api/clone-voice 200 in 1448ms
+ POST /api/analyze-voice 200 in 3ms
+🎤 Voice cloning request received...
+📝 Request body keys: [ 'text', 'audioData', 'sessionId' ]
+📝 Text received: She has a red car.
+🎵 Audio data present: true
+🎵 Audio data type: string
+🆔 Session ID: tutorial_1753629937436_897w2oi4n
+⚡ 캐시된 음성 발견! 즉시 TTS 생성: dutotVSLOmB9RIfEVd4K
+✅ 캐시된 음성으로 TTS 완료 (초고속)
+ POST /api/clone-voice 200 in 1400ms
+ POST /api/analyze-voice 200 in 3ms
+🎤 Voice cloning request received...
+📝 Request body keys: [ 'text', 'audioData', 'sessionId' ]
+📝 Text received: The cat is sleeping.
+🎵 Audio data present: true
+🎵 Audio data type: string
+🆔 Session ID: tutorial_1753629937436_897w2oi4n
+⚡ 캐시된 음성 발견! 즉시 TTS 생성: dutotVSLOmB9RIfEVd4K
+✅ 캐시된 음성으로 TTS 완료 (초고속)
+ POST /api/clone-voice 200 in 1250ms
+ POST /api/analyze-voice 200 in 5ms
+🎤 Voice cloning request received...
+📝 Request body keys: [ 'text', 'audioData', 'sessionId' ]
+📝 Text received: I have a brother and sister.
+🎵 Audio data present: true
+🎵 Audio data type: string
+🆔 Session ID: tutorial_1753629937436_897w2oi4n
+⚡ 캐시된 음성 발견! 즉시 TTS 생성: dutotVSLOmB9RIfEVd4K
+✅ 캐시된 음성으로 TTS 완료 (초고속)
+ POST /api/clone-voice 200 in 1436ms
+ POST /api/analyze-voice 200 in 5ms
+🎤 Voice cloning request received...
+📝 Request body keys: [ 'text', 'audioData', 'sessionId' ]
+📝 Text received: We call it bear.
+🎵 Audio data present: true
+🎵 Audio data type: string
+🆔 Session ID: tutorial_1753629937436_897w2oi4n
+⚡ 캐시된 음성 발견! 즉시 TTS 생성: dutotVSLOmB9RIfEVd4K
+🎤 Voice cloning request received...
+📝 Request body keys: [ 'text', 'audioData', 'sessionId' ]
+📝 Text received: We call it bear.
+🎵 Audio data present: true
+🎵 Audio data type: string
+🆔 Session ID: tutorial_1753629937436_897w2oi4n
+⚡ 캐시된 음성 발견! 즉시 TTS 생성: dutotVSLOmB9RIfEVd4K
+✅ 캐시된 음성으로 TTS 완료 (초고속)
+ POST /api/clone-voice 200 in 1490ms
+✅ 캐시된 음성으로 TTS 완료 (초고속)
+ POST /api/clone-voice 200 in 1525ms
+🎤 Voice cloning request received...
+📝 Request body keys: [ 'text', 'audioData', 'sessionId' ]
+📝 Text received: We call it bear.
+🎵 Audio data present: true
+🎵 Audio data type: string
+🆔 Session ID: tutorial_1753629937436_897w2oi4n
+⚡ 캐시된 음성 발견! 즉시 TTS 생성: dutotVSLOmB9RIfEVd4K
+🎤 Voice cloning request received...
+📝 Request body keys: [ 'text', 'audioData', 'sessionId' ]
+📝 Text received: We call it bear.
+🎵 Audio data present: true
+🎵 Audio data type: string
+🆔 Session ID: tutorial_1753629937436_897w2oi4n
+⚡ 캐시된 음성 발견! 즉시 TTS 생성: dutotVSLOmB9RIfEVd4K
+✅ 캐시된 음성으로 TTS 완료 (초고속)
+ POST /api/clone-voice 200 in 1458ms
+✅ 캐시된 음성으로 TTS 완료 (초고속)
+ POST /api/clone-voice 200 in 1464ms
+🗑️ 만료된 세션 정리: tutorial_1753628447726_5zmoo88dp
+✅ 1개 만료된 세션 정리 완료
+ ✓ Compiled in 341ms (1112 modules)
+ GET / 200 in 57ms
+ ✓ Compiled in 275ms (1095 modules)
+ GET / 200 in 69ms
+ ✓ Compiled in 167ms (1095 modules)
+ GET / 200 in 39ms
+ ✓ Compiled in 288ms (1095 modules)
+ GET / 200 in 30ms
+🗑️ 만료된 세션 정리: tutorial_1753628921510_if6d61my6
+✅ 1개 만료된 세션 정리 완료
