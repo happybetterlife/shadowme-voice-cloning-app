@@ -108,9 +108,27 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     formData.append('name', `user_voice_${Date.now()}`);
     formData.append('description', 'User voice for pronunciation learning');
     
-    // Create blob from buffer - try mp3 format for better compatibility
-    const audioBlob = new Blob([audioBuffer], { type: 'audio/mp3' });
-    formData.append('files', audioBlob, 'recording.mp3');
+    // 오디오 데이터의 실제 형식 감지
+    let fileExtension = 'mp3';
+    let mimeType = 'audio/mp3';
+    
+    // Base64 헤더에서 MIME 타입 추출
+    const base64Header = audioData.split(',')[0];
+    if (base64Header.includes('audio/webm')) {
+      fileExtension = 'webm';
+      mimeType = 'audio/webm';
+    } else if (base64Header.includes('audio/mp4')) {
+      fileExtension = 'mp4';
+      mimeType = 'audio/mp4';
+    } else if (base64Header.includes('audio/aac')) {
+      fileExtension = 'aac';
+      mimeType = 'audio/aac';
+    }
+    
+    console.log('🎵 Detected audio format:', { mimeType, fileExtension });
+    
+    const audioBlob = new Blob([audioBuffer], { type: mimeType });
+    formData.append('files', audioBlob, `recording.${fileExtension}`);
 
     const cloneResponse = await fetch('https://api.elevenlabs.io/v1/voices/add', {
       method: 'POST',

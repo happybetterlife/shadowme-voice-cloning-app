@@ -10,7 +10,29 @@ export function useRecorder() {
   const startRecording = async () => {
     try {
       const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
-      const mediaRecorder = new MediaRecorder(stream);
+      
+      // Safari 호환성을 위한 오디오 형식 결정
+      let options: MediaRecorderOptions = {};
+      const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+      
+      if (isSafari) {
+        // Safari에서는 audio/mp4를 사용
+        if (MediaRecorder.isTypeSupported('audio/mp4')) {
+          options = { mimeType: 'audio/mp4' };
+        } else if (MediaRecorder.isTypeSupported('audio/aac')) {
+          options = { mimeType: 'audio/aac' };
+        }
+      } else {
+        // Chrome/Firefox에서는 webm 사용
+        if (MediaRecorder.isTypeSupported('audio/webm;codecs=opus')) {
+          options = { mimeType: 'audio/webm;codecs=opus' };
+        } else if (MediaRecorder.isTypeSupported('audio/webm')) {
+          options = { mimeType: 'audio/webm' };
+        }
+      }
+      
+      console.log('🎤 Recording with options:', options);
+      const mediaRecorder = new MediaRecorder(stream, options);
       mediaRecorderRef.current = mediaRecorder;
       chunksRef.current = [];
 
@@ -19,8 +41,6 @@ export function useRecorder() {
           chunksRef.current.push(event.data);
         }
       };
-
-      // onstop은 stopRecording에서 처리하므로 여기서는 제거
 
       mediaRecorder.start();
       setIsRecording(true);
@@ -36,7 +56,10 @@ export function useRecorder() {
         const mediaRecorder = mediaRecorderRef.current;
         
         mediaRecorder.onstop = () => {
-          const blob = new Blob(chunksRef.current, { type: 'audio/webm' });
+          // 실제 녹음된 형식을 사용
+          const mimeType = mediaRecorder.mimeType || 'audio/webm';
+          const blob = new Blob(chunksRef.current, { type: mimeType });
+          console.log('🎵 Created audio blob:', { size: blob.size, type: blob.type });
           setAudioBlob(blob);
           const url = URL.createObjectURL(blob);
           setAudioUrl(url);
