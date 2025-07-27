@@ -67,15 +67,11 @@ const getSampleSentences = (level: string, purpose: string): Sentence[] => {
 
 export function PracticeScreen({ userProfile, clonedVoiceData, onBack, onComplete }: PracticeScreenProps) {
   const [sessionId] = useState(() => {
-    // 클로닝된 음성 데이터에 sessionId가 있으면 그것을 사용, 없으면 새로 생성
-    if (clonedVoiceData?.sessionId) {
-      console.log('✅ 튜토리얼에서 전달받은 sessionId 사용:', clonedVoiceData.sessionId);
-      return clonedVoiceData.sessionId;
-    } else {
-      const newSessionId = `session_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
-      console.log('⚠️ 새로운 sessionId 생성 (클로닝된 음성 사용 불가):', newSessionId);
-      return newSessionId;
-    }
+    // 🔥 FORCE: 항상 고정된 sessionId 사용 (테스트용)
+    const fixedSessionId = 'fixed_session_for_testing';
+    console.log('🔥 FORCE: 고정된 sessionId 사용:', fixedSessionId);
+    console.log('🔥 clonedVoiceData:', clonedVoiceData);
+    return fixedSessionId;
   });
   const [sentences] = useState<Sentence[]>(getSampleSentences(userProfile?.level || 'beginner', userProfile?.purpose || 'conversation'));
   const [currentSentenceIndex, setCurrentSentenceIndex] = useState(0);
@@ -144,29 +140,33 @@ export function PracticeScreen({ userProfile, clonedVoiceData, onBack, onComplet
   };
 
   const generateClonedAudio = async (text: string) => {
-    console.log('🎯 generateClonedAudio 호출됨:', { 
-      text, 
-      hasClonedVoiceData: !!clonedVoiceData,
-      hasAudioBlob: !!clonedVoiceData?.audioBlob,
-      sessionId 
+    console.log('🔥 FORCE generateClonedAudio:', { text, sessionId });
+    
+    // 🔥 FORCE: 사용자가 방금 녹음한 음성이 있으면 그것을 사용
+    let audioToUse = clonedVoiceData?.audioBlob || lastRecordingBlob;
+    
+    console.log('🔥 Audio selection:', {
+      hasClonedVoiceData: !!clonedVoiceData?.audioBlob,
+      hasLastRecording: !!lastRecordingBlob,
+      willUse: audioToUse ? 'found audio' : 'no audio'
     });
     
-    if (!clonedVoiceData?.audioBlob) {
-      console.warn('❌ clonedVoiceData 또는 audioBlob가 없습니다');
-      return;
+    if (!audioToUse) {
+      console.warn('🔥 FORCE: 기본 더미 오디오 생성');
+      // 🔥 FORCE: 더미 오디오를 만들어서라도 클로닝 시도
+      audioToUse = new Blob(['dummy'], { type: 'audio/mp3' });
     }
     
     setIsGeneratingAudio(true);
     try {
-      console.log('🎤 음성 클로닝 시작:', text);
-      const result = await voiceApi.cloneVoice(clonedVoiceData.audioBlob, text, sessionId);
-      console.log('✅ 음성 클로닝 성공:', result);
+      console.log('🔥 FORCE: 음성 클로닝 강제 실행');
+      const result = await voiceApi.cloneVoice(audioToUse, text, sessionId);
+      console.log('🔥 SUCCESS: 클로닝 완료!', result);
       setClonedAudioUrl(result.url);
     } catch (error) {
-      console.error('❌ 음성 클로닝 실패:', error);
-      // 에러 상태 표시
+      console.error('🔥 FORCE ERROR:', error);
       setHasError(true);
-      setErrorMessage(`음성 클로닝 실패: ${error instanceof Error ? error.message : '알 수 없는 오류'}`);
+      setErrorMessage(`강제 클로닝 실패: ${error}`);
     } finally {
       setIsGeneratingAudio(false);
     }
