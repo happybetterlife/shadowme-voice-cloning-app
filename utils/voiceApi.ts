@@ -24,6 +24,14 @@ export const voiceApi = {
       console.log('📝 Base64 audio length:', base64Audio.length);
       console.log('📝 Base64 starts with:', base64Audio.substring(0, 50));
       
+      console.log('🌐 Making API request to /api/clone-voice...');
+      console.log('📦 Request body keys:', ['text', 'audioData', 'sessionId']);
+      console.log('📦 Request body sizes:', {
+        text: (text || 'Hello, how are you today?').length,
+        audioData: base64Audio.length,
+        sessionId: sessionId?.length || 0
+      });
+      
       const response = await fetch('/api/clone-voice', {
         method: 'POST',
         headers: {
@@ -36,12 +44,22 @@ export const voiceApi = {
         }),
       });
       
+      console.log('📡 API Response status:', response.status);
+      console.log('📡 API Response statusText:', response.statusText);
+      console.log('📡 API Response headers:', Object.fromEntries(response.headers.entries()));
+      
       if (response.ok) {
+        console.log('✅ Response OK, creating blob from response...');
         const blob = await response.blob();
+        console.log('🎵 Response blob size:', blob.size);
+        console.log('🎵 Response blob type:', blob.type);
         const url = URL.createObjectURL(blob);
+        console.log('🔗 Created object URL:', url);
         return { url };
       } else {
-        throw new Error('Voice cloning failed');
+        const errorText = await response.text();
+        console.error('❌ API Error:', response.status, errorText);
+        throw new Error(`Voice cloning failed: ${response.status} ${errorText}`);
       }
     } catch (error) {
       console.error('Voice cloning error:', error);
