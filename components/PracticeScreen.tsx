@@ -94,9 +94,23 @@ export function PracticeScreen({ userProfile, clonedVoiceData, onBack, onComplet
   const { isRecording, startRecording, stopRecording, resetRecording } = useWavRecorder();
 
   useEffect(() => {
+    console.log('🚀 PracticeScreen 마운트됨:', {
+      hasClonedVoiceData: !!clonedVoiceData,
+      hasAudioBlob: !!clonedVoiceData?.audioBlob,
+      sessionId: clonedVoiceData?.sessionId,
+      sentencesLength: sentences.length,
+      firstSentence: sentences[0]?.text
+    });
+    
     // Generate cloned audio for the first sentence when component mounts
     if (clonedVoiceData?.audioBlob && sentences.length > 0) {
+      console.log('✅ 조건 만족 - 첫 번째 문장 음성 클로닝 시작');
       generateClonedAudio(sentences[0].text);
+    } else {
+      console.warn('❌ 조건 불만족 - 음성 클로닝 건너뜀:', {
+        hasAudioBlob: !!clonedVoiceData?.audioBlob,
+        hasFirstSentence: sentences.length > 0
+      });
     }
   }, [clonedVoiceData, sentences]);
 
@@ -130,14 +144,29 @@ export function PracticeScreen({ userProfile, clonedVoiceData, onBack, onComplet
   };
 
   const generateClonedAudio = async (text: string) => {
-    if (!clonedVoiceData?.audioBlob) return;
+    console.log('🎯 generateClonedAudio 호출됨:', { 
+      text, 
+      hasClonedVoiceData: !!clonedVoiceData,
+      hasAudioBlob: !!clonedVoiceData?.audioBlob,
+      sessionId 
+    });
+    
+    if (!clonedVoiceData?.audioBlob) {
+      console.warn('❌ clonedVoiceData 또는 audioBlob가 없습니다');
+      return;
+    }
     
     setIsGeneratingAudio(true);
     try {
+      console.log('🎤 음성 클로닝 시작:', text);
       const result = await voiceApi.cloneVoice(clonedVoiceData.audioBlob, text, sessionId);
+      console.log('✅ 음성 클로닝 성공:', result);
       setClonedAudioUrl(result.url);
     } catch (error) {
-      console.error('Failed to generate cloned audio:', error);
+      console.error('❌ 음성 클로닝 실패:', error);
+      // 에러 상태 표시
+      setHasError(true);
+      setErrorMessage(`음성 클로닝 실패: ${error instanceof Error ? error.message : '알 수 없는 오류'}`);
     } finally {
       setIsGeneratingAudio(false);
     }
