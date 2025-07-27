@@ -1,7 +1,0 @@
-{
-  "/api/analyze-voice/route": "app/api/analyze-voice/route.js",
-  "/_not-found/page": "app/_not-found/page.js",
-  "/api/clone-voice/route": "app/api/clone-voice/route.js",
-  "/api/generate-speech/route": "app/api/generate-speech/route.js",
-  "/page": "app/page.js"
-}
