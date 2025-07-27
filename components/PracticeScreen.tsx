@@ -140,33 +140,58 @@ export function PracticeScreen({ userProfile, clonedVoiceData, onBack, onComplet
   };
 
   const generateClonedAudio = async (text: string) => {
-    console.log('🔥 FORCE generateClonedAudio:', { text, sessionId });
-    
-    // 🔥 FORCE: 사용자가 방금 녹음한 음성이 있으면 그것을 사용
-    let audioToUse = clonedVoiceData?.audioBlob || lastRecordingBlob;
-    
-    console.log('🔥 Audio selection:', {
-      hasClonedVoiceData: !!clonedVoiceData?.audioBlob,
-      hasLastRecording: !!lastRecordingBlob,
-      willUse: audioToUse ? 'found audio' : 'no audio'
-    });
-    
-    if (!audioToUse) {
-      console.warn('🔥 FORCE: 기본 더미 오디오 생성');
-      // 🔥 FORCE: 더미 오디오를 만들어서라도 클로닝 시도
-      audioToUse = new Blob(['dummy'], { type: 'audio/mp3' });
-    }
+    console.log('🎯 음성 클로닝 시작:', { text, sessionId });
     
     setIsGeneratingAudio(true);
+    
     try {
-      console.log('🔥 FORCE: 음성 클로닝 강제 실행');
-      const result = await voiceApi.cloneVoice(audioToUse, text, sessionId);
-      console.log('🔥 SUCCESS: 클로닝 완료!', result);
-      setClonedAudioUrl(result.url);
+      // 1단계: 사용자가 방금 녹음한 음성을 최우선으로 사용
+      if (lastRecordingBlob) {
+        console.log('🎤 방금 녹음한 음성으로 클로닝 시도:', {
+          size: lastRecordingBlob.size,
+          type: lastRecordingBlob.type
+        });
+        
+        const result = await voiceApi.cloneVoice(lastRecordingBlob, text, sessionId);
+        setClonedAudioUrl(result.url);
+        console.log('✅ 방금 녹음 음성으로 클로닝 성공!');
+        return;
+      }
+      
+      // 2단계: 튜토리얼에서 가져온 음성 데이터 사용
+      if (clonedVoiceData?.audioBlob) {
+        console.log('📚 튜토리얼 음성으로 클로닝 시도:', {
+          size: clonedVoiceData.audioBlob.size,
+          type: clonedVoiceData.audioBlob.type
+        });
+        
+        const result = await voiceApi.cloneVoice(clonedVoiceData.audioBlob, text, sessionId);
+        setClonedAudioUrl(result.url);
+        console.log('✅ 튜토리얼 음성으로 클로닝 성공!');
+        return;
+      }
+      
+      // 3단계: 사용자 음성이 없으면 기본 TTS 사용
+      console.warn('⚠️ 사용자 음성 없음 - 기본 TTS 사용');
+      const response = await fetch('/api/generate-speech', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ text, voice: 'default' })
+      });
+      
+      if (response.ok) {
+        const blob = await response.blob();
+        const url = URL.createObjectURL(blob);
+        setClonedAudioUrl(url);
+        console.log('🔄 기본 TTS로 대체 완료');
+      } else {
+        throw new Error('TTS 생성 실패');
+      }
+      
     } catch (error) {
-      console.error('🔥 FORCE ERROR:', error);
+      console.error('❌ 모든 음성 생성 실패:', error);
       setHasError(true);
-      setErrorMessage(`강제 클로닝 실패: ${error}`);
+      setErrorMessage('음성 생성에 실패했습니다. 다시 시도해주세요.');
     } finally {
       setIsGeneratingAudio(false);
     }
@@ -236,23 +261,27 @@ export function PracticeScreen({ userProfile, clonedVoiceData, onBack, onComplet
       return;
     }
 
+    console.log('🎤 새로운 녹음 완료:', { size: audioBlob.size, type: audioBlob.type });
     setLastRecordingBlob(audioBlob);
     const recordingUrl = URL.createObjectURL(audioBlob);
     setOriginalRecordingUrl(recordingUrl);
 
+    // 🚀 즉시 이 녹음으로 다음 문장 클로닝 업데이트
+    console.log('🚀 녹음된 음성으로 즉시 클로닝 업데이트 시작');
+    
     setIsLoading(true);
     try {
+      // 발음 분석
       const result = await voiceApi.analyzeVoice(audioBlob, sentences[currentSentenceIndex].text);
       
-      // Use actual analysis results from API
       const words = result.word_analysis?.map((wordData: any) => ({
-        text: wordData.word.replace(/[.,!?]/g, ''), // Remove punctuation
+        text: wordData.word.replace(/[.,!?]/g, ''),
         accuracy: wordData.accuracy,
         startTime: wordData.start_time,
         endTime: wordData.end_time
       })) || sentences[currentSentenceIndex].text.split(' ').map((word, index) => ({
         text: word.replace(/[.,!?]/g, ''),
-        accuracy: 85, // Fallback accuracy
+        accuracy: 85,
         startTime: index * 0.5,
         endTime: (index + 1) * 0.5
       }));
@@ -260,6 +289,14 @@ export function PracticeScreen({ userProfile, clonedVoiceData, onBack, onComplet
       const newPronunciations = [...userPronunciations];
       newPronunciations[currentSentenceIndex] = words;
       setUserPronunciations(newPronunciations);
+      
+      // 🚀 다음 문장이 있으면 이 녹음으로 미리 클로닝
+      if (currentSentenceIndex < sentences.length - 1) {
+        const nextText = sentences[currentSentenceIndex + 1].text;
+        console.log('🚀 다음 문장 미리 클로닝:', nextText);
+        generateClonedAudio(nextText);
+      }
+      
       setHasError(false);
     } catch (error) {
       console.error('Pronunciation analysis failed:', error);
