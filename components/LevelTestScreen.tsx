@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Button } from './ui/button';
 import { GradientButton } from './GradientButton';
 import { Progress } from './ui/progress';
@@ -59,8 +59,45 @@ export function LevelTestScreen({ level, purpose, clonedVoiceData, onComplete }:
   const [wordAccuracies, setWordAccuracies] = useState<any[]>([]);
   const { isRecording, startRecording, stopRecording } = useRecorder();
 
-  // 테스트 문장들
-  const getTestSentences = () => {
+  // 테스트 문장들 (API에서 가져오기)
+  const [testSentences, setTestSentences] = useState<string[]>([]);
+  const [isLoadingSentences, setIsLoadingSentences] = useState(true);
+
+  // 컴포넌트 마운트 시 문장 로드
+  useEffect(() => {
+    const loadSentences = async () => {
+      try {
+        setIsLoadingSentences(true);
+        console.log('📚 레벨테스트 문장 로딩:', { level, purpose });
+        
+        const response = await fetch(`/api/sentences?level=${level}&purpose=${purpose}&limit=5&random=true`);
+        const data = await response.json();
+        
+        if (data.sentences && data.sentences.length > 0) {
+          const sentences = data.sentences.map((s: any) => s.text);
+          setTestSentences(sentences);
+          console.log('✅ API에서 문장 로딩 완료:', sentences.length);
+        } else {
+          // 폴백: 하드코딩된 문장 사용
+          const fallbackSentences = getFallbackSentences();
+          setTestSentences(fallbackSentences);
+          console.log('⚠️ API 실패, 하드코딩된 문장 사용:', fallbackSentences.length);
+        }
+      } catch (error) {
+        console.error('❌ 문장 로딩 실패:', error);
+        // 에러 시 하드코딩된 문장 사용
+        const fallbackSentences = getFallbackSentences();
+        setTestSentences(fallbackSentences);
+      } finally {
+        setIsLoadingSentences(false);
+      }
+    };
+
+    loadSentences();
+  }, [level, purpose]);
+
+  // 하드코딩된 문장들 (폴백용)
+  const getFallbackSentences = () => {
     const sentences = {
       beginner: {
         conversation: [
@@ -135,8 +172,6 @@ export function LevelTestScreen({ level, purpose, clonedVoiceData, onComplete }:
     
     return sentences[level as keyof typeof sentences][purpose as keyof typeof sentences.beginner] || sentences.beginner.conversation;
   };
-
-  const testSentences = getTestSentences();
   const progress = ((currentSentence + (currentResult !== null ? 1 : 0)) / testSentences.length) * 100;
 
   // 단어별 정확도와 함께 문장 렌더링

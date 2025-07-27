@@ -74,7 +74,8 @@ export function PracticeScreen({ userProfile, clonedVoiceData, onBack, onComplet
     console.log('🚨 clonedVoiceData 상태:', clonedVoiceData);
     return emergencySessionId;
   });
-  const [sentences] = useState<Sentence[]>(getSampleSentences(userProfile?.level || 'beginner', userProfile?.purpose || 'conversation'));
+  const [sentences, setSentences] = useState<Sentence[]>([]);
+  const [isLoadingSentences, setIsLoadingSentences] = useState(true);
   const [currentSentenceIndex, setCurrentSentenceIndex] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentAudio, setCurrentAudio] = useState<HTMLAudioElement | null>(null);
