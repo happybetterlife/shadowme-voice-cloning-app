@@ -362,3 +362,14 @@
  GET / 200 in 30ms
 🗑️ 만료된 세션 정리: tutorial_1753628921510_if6d61my6
 ✅ 1개 만료된 세션 정리 완료
+🗑️ 만료된 세션 정리: tutorial_1753629937436_897w2oi4n
+✅ 1개 만료된 세션 정리 완료
+🗑️ 만료된 세션 정리: tutorial_1753629937436_897w2oi4n
+✅ 1개 만료된 세션 정리 완료
+ ⚠ Found a change in next.config.js. Restarting the server to apply the changes...
+   ▲ Next.js 15.0.3
+   - Local:        http://localhost:3000
+   - Environments: .env.local
+
+ ✓ Starting...
+ ✓ Ready in 1445ms
