@@ -1,14 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { getCachedVoice, getCachedSessions } from '../../../utils/voice-cache';
 
 const ELEVENLABS_API_KEY = process.env.ELEVENLABS_API_KEY || "sk_a44152702031b3af9f1a87072171fc9993fdbfb477fba26c";
 const DEFAULT_VOICE_ID = "21m00Tcm4TlvDq8ikWAM"; // Rachel voice
-
-// 클로닝된 음성 세션 저장소 (실제 프로덕션에서는 데이터베이스 사용)
-const voiceCloneCache = new Map<string, {
-  voiceId: string;
-  createdAt: number;
-  sampleText: string;
-}>();
 
 export async function POST(request: NextRequest) {
   try {
@@ -25,16 +19,16 @@ export async function POST(request: NextRequest) {
     // 클로닝된 음성 사용 요청이고 세션 ID가 있는 경우
     if (useClonedVoice && sessionId) {
       console.log('🔍 캐시된 음성 찾는 중... sessionId:', sessionId);
-      console.log('📊 현재 캐시된 세션들:', Array.from(voiceCloneCache.keys()));
+      console.log('📊 현재 캐시된 세션들:', getCachedSessions());
       
-      const cachedVoice = voiceCloneCache.get(sessionId);
+      const cachedVoice = getCachedVoice(sessionId);
       if (cachedVoice) {
         voiceId = cachedVoice.voiceId;
         console.log('⚡ 캐시된 클로닝 음성 사용:', voiceId);
       } else {
         console.log('⚠️ 세션에 캐시된 음성 없음, 기본 음성 사용 (먼저 샘플 녹음 필요)');
         console.log('🔑 요청된 sessionId:', sessionId);
-        console.log('🗂️ 캐시에 있는 sessionId들:', Array.from(voiceCloneCache.keys()));
+        console.log('🗂️ 캐시에 있는 sessionId들:', getCachedSessions());
         // 기본 음성 사용 (사용자가 아직 샘플 녹음을 하지 않은 경우)
       }
     } else {
@@ -83,13 +77,3 @@ export async function POST(request: NextRequest) {
   }
 }
 
-// 클로닝된 음성 세션 저장 (내부 사용)
-export function cacheVoiceClone(sessionId: string, voiceId: string, sampleText: string) {
-  voiceCloneCache.set(sessionId, {
-    voiceId,
-    createdAt: Date.now(),
-    sampleText
-  });
-  
-  console.log(`💾 Cached voice clone for session ${sessionId}: ${voiceId}`);
-}

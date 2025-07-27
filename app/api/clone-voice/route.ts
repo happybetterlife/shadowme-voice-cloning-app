@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { cacheVoiceClone } from '../generate-speech/route';
+import { cacheVoiceClone } from '../../../utils/voice-cache';
 
 const ELEVENLABS_API_KEY = "sk_a44152702031b3af9f1a87072171fc9993fdbfb477fba26c";
 const DEFAULT_VOICE_ID = "21m00Tcm4TlvDq8ikWAM"; // Rachel voice
