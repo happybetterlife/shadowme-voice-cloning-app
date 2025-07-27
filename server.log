@@ -373,3 +373,24 @@
 
  ✓ Starting...
  ✓ Ready in 1445ms
+ ⚠ Duplicate page detected. pages/api/clone-voice.ts and app/api/clone-voice/route.ts resolve to /api/clone-voice
+ ⚠ Duplicate page detected. pages/api/clone-voice.ts and app/api/clone-voice/route.ts resolve to /api/clone-voice
+ ⚠ Duplicate page detected. pages/api/analyze-voice.ts and app/api/analyze-voice/route.ts resolve to /api/analyze-voice
+ ⚠ Duplicate page detected. pages/api/clone-voice.ts and app/api/clone-voice/route.ts resolve to /api/clone-voice
+ ⚠ Duplicate page detected. pages/api/analyze-voice.ts and app/api/analyze-voice/route.ts resolve to /api/analyze-voice
+ ⚠ Duplicate page detected. pages/api/clone-voice.ts and app/api/clone-voice/route.ts resolve to /api/clone-voice
+ ⚠ Duplicate page detected. pages/api/analyze-voice.ts and app/api/analyze-voice/route.ts resolve to /api/analyze-voice
+ ⚠ Duplicate page detected. pages/api/clone-voice.ts and app/api/clone-voice/route.ts resolve to /api/clone-voice
+ ⚠ Duplicate page detected. pages/api/generate-speech.ts and app/api/generate-speech/route.ts resolve to /api/generate-speech
+ ⚠ Duplicate page detected. pages/api/analyze-voice.ts and app/api/analyze-voice/route.ts resolve to /api/analyze-voice
+ ⚠ Duplicate page detected. pages/api/clone-voice.ts and app/api/clone-voice/route.ts resolve to /api/clone-voice
+ ⚠ Duplicate page detected. pages/api/generate-speech.ts and app/api/generate-speech/route.ts resolve to /api/generate-speech
+ ⚠ Duplicate page detected. pages/api/analyze-voice.ts and app/api/analyze-voice/route.ts resolve to /api/analyze-voice
+ ⚠ Duplicate page detected. pages/api/clone-voice.ts and app/api/clone-voice/route.ts resolve to /api/clone-voice
+ ⚠ Duplicate page detected. pages/api/generate-speech.ts and app/api/generate-speech/route.ts resolve to /api/generate-speech
+ ⚠ Duplicate page detected. pages/api/analyze-voice.ts and app/api/analyze-voice/route.ts resolve to /api/analyze-voice
+ ⚠ Duplicate page detected. pages/api/clone-voice.ts and app/api/clone-voice/route.ts resolve to /api/clone-voice
+ ⚠ Duplicate page detected. pages/api/generate-speech.ts and app/api/generate-speech/route.ts resolve to /api/generate-speech
+ ⚠ Duplicate page detected. pages/api/analyze-voice.ts and app/api/analyze-voice/route.ts resolve to /api/analyze-voice
+ ⚠ Duplicate page detected. pages/api/clone-voice.ts and app/api/clone-voice/route.ts resolve to /api/clone-voice
+ ⚠ Duplicate page detected. pages/api/generate-speech.ts and app/api/generate-speech/route.ts resolve to /api/generate-speech
