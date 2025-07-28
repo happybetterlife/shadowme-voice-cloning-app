@@ -29,6 +29,7 @@ export async function OPTIONS(request: NextRequest) {
 export async function POST(request: NextRequest) {
   let body: any;
   try {
+    const startTime = Date.now();
     console.log('🚨 CRITICAL: Voice cloning request received (App Router)...');
     console.log('🚨 Request method:', request.method);
     console.log('🚨 Deploy timestamp:', new Date().toISOString());
@@ -37,6 +38,7 @@ export async function POST(request: NextRequest) {
     console.log('  - ELEVENLABS_API_KEY length:', ELEVENLABS_API_KEY ? ELEVENLABS_API_KEY.length : 0);
     console.log('  - Current time:', new Date().toISOString());
     console.log('  - Vercel region:', process.env.VERCEL_REGION || 'unknown');
+    console.log('  - Function timeout limit: 10 seconds for Hobby plan');
     
     body = await request.json();
     console.log('🚨 Request body keys:', Object.keys(body));
@@ -63,8 +65,9 @@ export async function POST(request: NextRequest) {
     }
 
     if (!audioData || audioData.length < 100) {
-      console.log('❌ No valid audio data provided, using default voice');
+      console.log('❌ CRITICAL: No valid audio data provided, using default voice');
       console.log('🔍 Reason: audioData is', audioData ? `too short (${audioData.length} chars)` : 'missing');
+      console.log('🚨 FALLBACK: Using default Rachel voice instead of user voice');
       return await generateWithDefaultVoice(text);
     }
 
@@ -135,10 +138,23 @@ export async function POST(request: NextRequest) {
     console.log('  - Platform:', typeof process !== 'undefined' ? process.platform : 'Unknown');
     console.log('  - Memory usage:', typeof process !== 'undefined' && process.memoryUsage ? process.memoryUsage() : 'Unknown');
     
+    // 실행 시간 체크 - Vercel 함수 타임아웃 방지
+    const checkTimeout = () => {
+      const elapsed = Date.now() - startTime;
+      console.log(`⏱️ Elapsed time: ${elapsed}ms`);
+      if (elapsed > 8000) { // 8초 경과시 경고
+        console.warn('⚠️ Approaching Vercel timeout limit!');
+        return true;
+      }
+      return false;
+    };
+
     // Step 1: Create voice clone using IVC (Instant Voice Cloning) 
-    const formData = new FormData();
-    formData.append('name', `user_voice_${Date.now()}`);
-    formData.append('description', 'User voice for pronunciation learning');
+    console.log('🧬 Step 1: Creating voice clone...');
+    if (checkTimeout()) {
+      console.error('❌ Timeout risk - using fallback voice');
+      return await generateWithDefaultVoice(text);
+    }
     
     // 오디오 데이터의 실제 형식 감지
     let fileExtension = 'mp3';
@@ -158,10 +174,21 @@ export async function POST(request: NextRequest) {
     }
     
     console.log('🎵 Detected audio format:', { mimeType, fileExtension });
+    console.log('📦 Audio buffer size:', audioBuffer.length, 'bytes');
     
-    const audioBlob = new Blob([audioBuffer], { type: mimeType });
-    formData.append('files', audioBlob, `recording.${fileExtension}`);
+    // Vercel 환경에서 FormData 호환성을 위한 개선된 방식
+    const formData = new FormData();
+    formData.append('name', `user_voice_${Date.now()}`);
+    formData.append('description', 'User voice for pronunciation learning');
+    
+    // File 객체로 생성하여 호환성 향상
+    const audioFile = new File([audioBuffer], `recording.${fileExtension}`, { 
+      type: mimeType,
+      lastModified: Date.now()
+    });
+    formData.append('files', audioFile);
 
+    console.log('🌐 Making ElevenLabs voice clone request...');
     const cloneResponse = await fetch('https://api.elevenlabs.io/v1/voices/add', {
       method: 'POST',
       headers: {
@@ -169,6 +196,11 @@ export async function POST(request: NextRequest) {
       },
       body: formData,
     });
+    
+    if (checkTimeout()) {
+      console.error('❌ Timeout after voice clone request');
+      return await generateWithDefaultVoice(text);
+    }
 
     if (!cloneResponse.ok) {
       const errorText = await cloneResponse.text();
@@ -258,7 +290,12 @@ export async function POST(request: NextRequest) {
     }
 
     // Step 2: Generate speech with cloned voice
-    console.log('🗣️ Generating speech with cloned voice...');
+    console.log('🗣️ Step 2: Generating speech with cloned voice...');
+    if (checkTimeout()) {
+      console.error('❌ Timeout before TTS generation');
+      return await generateWithDefaultVoice(text);
+    }
+    
     const ttsResponse = await fetch(`https://api.elevenlabs.io/v1/text-to-speech/${clonedVoiceId}`, {
       method: 'POST',
       headers: {
@@ -294,7 +331,9 @@ export async function POST(request: NextRequest) {
 
     const finalAudioBuffer = await ttsResponse.arrayBuffer();
     
+    const totalTime = Date.now() - startTime;
     console.log('🎉 Voice cloning completed successfully!');
+    console.log(`⏱️ Total execution time: ${totalTime}ms`);
     
     // 주의: 음성을 즉시 삭제하지 않음 (캐시된 음성 재사용을 위해)
     // 30분 후 자동으로 정리되도록 설정됨

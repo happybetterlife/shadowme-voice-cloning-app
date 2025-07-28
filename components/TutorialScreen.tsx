@@ -238,18 +238,18 @@ export function TutorialScreen({ onComplete }: TutorialScreenProps) {
           {isRecording && (
             <div className="bg-white dark:bg-gray-800 rounded-xl p-4 shadow-lg border border-gray-100 dark:border-gray-700 text-center">
               <div className="w-3 h-3 bg-red-500 rounded-full mx-auto animate-pulse mb-2"></div>
-              <p className="text-sm text-gray-600 dark:text-gray-400">녹음 중...</p>
+              <p className="text-sm text-gray-600 dark:text-gray-400">{t('recordingNow')}</p>
             </div>
           )}
           
           {isProcessing && (
             <div className="bg-white dark:bg-gray-800 rounded-xl p-4 shadow-lg border border-gray-100 dark:border-gray-700">
               <p className="text-sm text-center text-gray-600 dark:text-gray-400 mb-3">
-                🎤 당신의 목소리를 원어민 발음으로 변환 중...
+                {t('processingVoiceToNative')}
               </p>
               <Progress value={processingProgress} className="w-full mb-2" />
               <p className="text-xs text-center text-gray-500 dark:text-gray-400">
-                {processingProgress}% 완료
+                {processingProgress}{t('percentComplete')}
               </p>
             </div>
           )}
@@ -264,10 +264,10 @@ export function TutorialScreen({ onComplete }: TutorialScreenProps) {
               </div>
               <div>
                 <p className="text-green-600 dark:text-green-400 font-semibold text-lg">
-                  원어민 발음 변환 완료!
+                  {t('nativeConversionComplete')}
                 </p>
                 <p className="text-gray-600 dark:text-gray-400 text-sm mt-1">
-                  🎵 당신의 목소리가 원어민처럼 들립니다
+                  {t('yourVoiceSoundsNative')}
                 </p>
               </div>
               
@@ -281,12 +281,12 @@ export function TutorialScreen({ onComplete }: TutorialScreenProps) {
                   {isPlaying ? (
                     <>
                       <Pause className="w-4 h-4 mr-2" />
-                      일시정지
+                      {t('pausePlayback')}
                     </>
                   ) : (
                     <>
                       <Play className="w-4 h-4 mr-2" />
-                      원어민 발음 듣기
+                      {t('listenNativePronunciation')}
                     </>
                   )}
                 </GradientButton>
@@ -307,7 +307,7 @@ export function TutorialScreen({ onComplete }: TutorialScreenProps) {
               {isRecording ? (
                 <>
                   <Square className="w-5 h-5 mr-2" />
-                  녹음 중지
+                  {t('stopRecording')}
                 </>
               ) : (
                 <>
@@ -332,7 +332,7 @@ export function TutorialScreen({ onComplete }: TutorialScreenProps) {
                 size="lg"
               >
                 <RotateCcw className="w-4 h-4 mr-2" />
-                다시 녹음
+                {t('reRecordTutorial')}
               </GradientButton>
             </div>
           )}
@@ -340,17 +340,17 @@ export function TutorialScreen({ onComplete }: TutorialScreenProps) {
         
         {/* 도움말 */}
         <div className="bg-white dark:bg-gray-800 rounded-xl p-4 shadow-lg border border-gray-100 dark:border-gray-700 mb-6">
-          <h4 className="font-semibold text-gray-800 dark:text-gray-200 mb-2">💡 녹음 팁:</h4>
+          <h4 className="font-semibold text-gray-800 dark:text-gray-200 mb-2">{t('recordingTips')}</h4>
           <ul className="text-sm text-gray-600 dark:text-gray-400 space-y-1">
-            <li>• 조용한 환경에서 녹음해주세요</li>
-            <li>• 마이크를 입에서 15-20cm 거리에 두세요</li>
-            <li>• 자연스럽고 편안하게 말해주세요</li>
+            <li>{t('tip1')}</li>
+            <li>{t('tip2')}</li>
+            <li>{t('tip3')}</li>
           </ul>
         </div>
         {/* Footer */}
         <div className="text-center">
           <p className="text-xs text-gray-500 dark:text-gray-400 px-4">
-            음성 데이터는 사용자 기기에만 저장되며 외부로 전송되지 않습니다
+            {t('privacyFooter')}
           </p>
         </div>
       </div>

@@ -2,6 +2,7 @@ import { Button } from './ui/button';
 import { Card } from './ui/card';
 import { Badge } from './ui/badge';
 import { TrendingUp, Trophy } from 'lucide-react';
+import { useTranslation } from '../hooks/useTranslation';
 
 interface TestResultScreenProps {
   results: any;
@@ -9,12 +10,13 @@ interface TestResultScreenProps {
 }
 
 export function TestResultScreen({ results, onComplete }: TestResultScreenProps) {
+  const { t } = useTranslation();
   // results가 없거나 잘못된 형태일 때 기본값 제공
   if (!results) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-cyan-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
         <div className="w-full px-4 py-8 flex flex-col items-center justify-center min-h-screen">
-          <p className="text-gray-600 dark:text-gray-300">결과를 불러오는 중...</p>
+          <p className="text-gray-600 dark:text-gray-300">{t('loadingResults')}</p>
         </div>
       </div>
     );
@@ -28,12 +30,12 @@ export function TestResultScreen({ results, onComplete }: TestResultScreenProps)
   } = results;
   
   const getLevelText = (level: string) => {
-    const levels = {
-      beginner: '초급',
-      intermediate: '중급', 
-      advanced: '고급'
-    };
-    return levels[level as keyof typeof levels] || level;
+    switch(level) {
+      case 'beginner': return t('level.beginner');
+      case 'intermediate': return t('level.intermediate');
+      case 'advanced': return t('level.advanced');
+      default: return level;
+    }
   };
 
   const getScoreColor = (score: number) => {
@@ -61,10 +63,10 @@ export function TestResultScreen({ results, onComplete }: TestResultScreenProps)
             <Trophy className="w-8 h-8 text-white" />
           </div>
           <h1 className="text-2xl font-bold text-gray-800 dark:text-gray-200 mb-2">
-            테스트 완료!
+            {t('testComplete')}
           </h1>
           <p className="text-gray-600 dark:text-gray-300">
-            분석 결과를 확인해보세요
+            {t('checkAnalysisResults')}
           </p>
         </div>
 
@@ -73,7 +75,7 @@ export function TestResultScreen({ results, onComplete }: TestResultScreenProps)
           {/* Overall Score */}
           <Card className="p-6 text-center bg-white dark:bg-gray-800 shadow-lg">
             <h3 className="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-4">
-              전체 평균 점수
+              {t('overallAverageScore')}
             </h3>
             
             <div className={`inline-flex items-center justify-center w-20 h-10 rounded-full text-lg font-bold ${getOverallColor(averageScore)} mb-4`}>
@@ -88,14 +90,14 @@ export function TestResultScreen({ results, onComplete }: TestResultScreenProps)
             </div>
             
             <p className="text-sm text-gray-500">
-              우수한 실력입니다!
+              {t('excellentSkills')}
             </p>
           </Card>
 
           {/* Individual Scores */}
           <Card className="p-6 bg-white dark:bg-gray-800 shadow-lg">
             <h3 className="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-4">
-              문장별 점수
+              {t('scoresBySentence')}
             </h3>
             
             <div className="flex justify-between items-center mb-2">
@@ -118,10 +120,10 @@ export function TestResultScreen({ results, onComplete }: TestResultScreenProps)
               </div>
               <div className="flex-1">
                 <h4 className="font-semibold text-gray-800 dark:text-gray-200 mb-1">
-                  레벨 조정
+                  {t('levelAdjustment')}
                 </h4>
                 <p className="text-sm text-gray-600 dark:text-gray-400">
-                  선택하신 {getLevelText(level)} 레벨이 적절합니다.
+                  {t('levelAppropriate')} {getLevelText(level)} {t('levelAppropriateSuffix')}
                 </p>
                 <div className="mt-2">
                   <Badge variant="secondary" className="text-xs">
@@ -138,20 +140,20 @@ export function TestResultScreen({ results, onComplete }: TestResultScreenProps)
               <TrendingUp className="w-6 h-6 text-blue-600 flex-shrink-0 mt-1" />
               <div className="flex-1">
                 <h4 className="font-semibold text-gray-800 dark:text-gray-200 mb-3">
-                  맞춤형 학습 계획
+                  {t('personalizedLearningPlan')}
                 </h4>
                 <div className="space-y-2 text-sm">
                   <div className="flex justify-between">
-                    <span className="text-gray-600 dark:text-gray-400">일일 목표:</span>
-                    <span className="font-medium">15분 연습</span>
+                    <span className="text-gray-600 dark:text-gray-400">{t('dailyGoal')}:</span>
+                    <span className="font-medium">{t('fifteenMinPractice')}</span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-gray-600 dark:text-gray-400">주간 목표:</span>
-                    <span className="font-medium">30개 문장</span>
+                    <span className="text-gray-600 dark:text-gray-400">{t('weeklyGoal')}:</span>
+                    <span className="font-medium">{t('thirtySentences')}</span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-gray-600 dark:text-gray-400">예상 향상 시간:</span>
-                    <span className="font-medium">2-3주</span>
+                    <span className="text-gray-600 dark:text-gray-400">{t('expectedImprovementTime')}:</span>
+                    <span className="font-medium">{t('twoToThreeWeeks')}</span>
                   </div>
                 </div>
               </div>
@@ -164,7 +166,7 @@ export function TestResultScreen({ results, onComplete }: TestResultScreenProps)
             className="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 text-lg font-medium"
             size="lg"
           >
-            학습 시작하기
+            {t('startLearning')}
           </Button>
         </div>
       </div>

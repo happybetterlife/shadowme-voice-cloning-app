@@ -41,7 +41,7 @@ export interface Translations {
   recordingComplete: string;
   processingVoice: string;
   startPractice: string;
-  reRecord: string;
+  reRecordTutorial: string;
   
   // 레벨 테스트
   levelTest: string;
@@ -87,6 +87,21 @@ export interface Translations {
   feedback: string;
   backToHome: string;
   continuePractice: string;
+  loadingResults: string;
+  checkAnalysisResults: string;
+  overallAverageScore: string;
+  excellentSkills: string;
+  scoresBySentence: string;
+  levelAdjustment: string;
+  levelAppropriate: string;
+  levelAppropriateSuffix: string;
+  personalizedLearningPlan: string;
+  dailyGoal: string;
+  fifteenMinPractice: string;
+  thirtySentences: string;
+  expectedImprovementTime: string;
+  twoToThreeWeeks: string;
+  startLearning: string;
   
   // 에러 메시지
   microphoneError: string;
@@ -220,6 +235,18 @@ export interface Translations {
   voiceNotReady: string;
   autoplayBlocked: string;
   playbackFailed: string;
+  recordingTips: string;
+  tip1: string;
+  tip2: string;
+  tip3: string;
+  privacyFooter: string;
+  nativeConversionComplete: string;
+  yourVoiceSoundsNative: string;
+  pausePlayback: string;
+  listenNativePronunciation: string;
+  reRecordVoice: string;
+  processingVoiceToNative: string;
+  percentComplete: string;
   
   // 대시보드
   dashboard: string;
@@ -304,7 +331,7 @@ export const translations: Record<Language, Translations> = {
     recordingComplete: '녹음 완료',
     processingVoice: '음성 처리 중...',
     startPractice: '연습 시작',
-    reRecord: '다시 녹음',
+    reRecordTutorial: '다시 녹음',
     
     // 레벨 테스트
     levelTest: '레벨 테스트',
@@ -350,6 +377,21 @@ export const translations: Record<Language, Translations> = {
     feedback: '피드백',
     backToHome: '홈으로',
     continuePractice: '연습 계속하기',
+    loadingResults: '결과를 불러오는 중...',
+    checkAnalysisResults: '분석 결과를 확인해보세요',
+    overallAverageScore: '전체 평균 점수',
+    excellentSkills: '우수한 실력입니다!',
+    scoresBySentence: '문장별 점수',
+    levelAdjustment: '레벨 조정',
+    levelAppropriate: '선택하신',
+    levelAppropriateSuffix: '레벨이 적절합니다.',
+    personalizedLearningPlan: '맞춤형 학습 계획',
+    dailyGoal: '일일 목표',
+    fifteenMinPractice: '15분 연습',
+    thirtySentences: '30개 문장',
+    expectedImprovementTime: '예상 향상 시간',
+    twoToThreeWeeks: '2-3주',
+    startLearning: '학습 시작하기',
     
     // 에러 메시지
     microphoneError: '마이크 권한이 필요합니다',
@@ -483,6 +525,18 @@ export const translations: Record<Language, Translations> = {
     voiceNotReady: '음성이 준비되지 않았습니다. 다시 녹음해주세요.',
     autoplayBlocked: '브라우저에서 자동재생이 차단되었습니다.\n브라우저 설정에서 localhost 자동재생을 허용해주세요.',
     playbackFailed: '음성 재생 실패',
+    recordingTips: '💡 녹음 팁:',
+    tip1: '• 조용한 환경에서 녹음해주세요',
+    tip2: '• 마이크를 입에서 15-20cm 거리에 두세요',
+    tip3: '• 자연스럽고 편안하게 말해주세요',
+    privacyFooter: '음성 데이터는 사용자 기기에만 저장되며 외부로 전송되지 않습니다',
+    nativeConversionComplete: '원어민 발음 변환 완료!',
+    yourVoiceSoundsNative: '🎵 당신의 목소리가 원어민처럼 들립니다',
+    pausePlayback: '일시정지',
+    listenNativePronunciation: '원어민 발음 듣기',
+    reRecordVoice: '다시 녹음',
+    processingVoiceToNative: '🎤 당신의 목소리를 원어민 발음으로 변환 중...',
+    percentComplete: '% 완료',
     
     // 대시보드
     dashboard: '대시보드',
@@ -565,7 +619,7 @@ export const translations: Record<Language, Translations> = {
     recordingComplete: 'Recording Complete',
     processingVoice: 'Processing voice...',
     startPractice: 'Start Practice',
-    reRecord: 'Re-record',
+    reRecordTutorial: 'Re-record',
     
     // 레벨 테스트
     levelTest: 'Level Test',
@@ -611,6 +665,21 @@ export const translations: Record<Language, Translations> = {
     feedback: 'Feedback',
     backToHome: 'Back to Home',
     continuePractice: 'Continue Practice',
+    loadingResults: 'Loading results...',
+    checkAnalysisResults: 'Check your analysis results',
+    overallAverageScore: 'Overall Average Score',
+    excellentSkills: 'Excellent skills!',
+    scoresBySentence: 'Scores by Sentence',
+    levelAdjustment: 'Level Adjustment',
+    levelAppropriate: 'Your selected',
+    levelAppropriateSuffix: 'level is appropriate.',
+    personalizedLearningPlan: 'Personalized Learning Plan',
+    dailyGoal: 'Daily Goal',
+    fifteenMinPractice: '15 min practice',
+    thirtySentences: '30 sentences',
+    expectedImprovementTime: 'Expected Improvement Time',
+    twoToThreeWeeks: '2-3 weeks',
+    startLearning: 'Start Learning',
     
     // 에러 메시지
     microphoneError: 'Microphone permission required',
@@ -744,6 +813,18 @@ export const translations: Record<Language, Translations> = {
     voiceNotReady: 'Voice is not ready. Please record again.',
     autoplayBlocked: 'Autoplay blocked by browser.\nPlease allow autoplay for localhost in browser settings.',
     playbackFailed: 'Audio playback failed',
+    recordingTips: '💡 Recording Tips:',
+    tip1: '• Record in a quiet environment',
+    tip2: '• Keep microphone 15-20cm from your mouth',
+    tip3: '• Speak naturally and comfortably',
+    privacyFooter: 'Voice data is stored only on your device and is not transmitted externally',
+    nativeConversionComplete: 'Native Pronunciation Conversion Complete!',
+    yourVoiceSoundsNative: '🎵 Your voice now sounds like a native speaker',
+    pausePlayback: 'Pause',
+    listenNativePronunciation: 'Listen to Native Pronunciation',
+    reRecordVoice: 'Re-record',
+    processingVoiceToNative: '🎤 Converting your voice to native pronunciation...',
+    percentComplete: '% complete',
     
     // 대시보드
     dashboard: 'Dashboard',
