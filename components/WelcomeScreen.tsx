@@ -1,6 +1,9 @@
 import { GradientButton } from './GradientButton';
 import { WaveformVisualizer } from './WaveformVisualizer';
-import { Mic, Volume2, Brain, Zap } from 'lucide-react';
+import { Mic, Volume2, Brain, Zap, Globe } from 'lucide-react';
+import { useTranslation } from '../hooks/useTranslation';
+import { Language } from '../utils/i18n';
+import { Button } from './ui/button';
 
 interface WelcomeScreenProps {
   onGetStarted: () => void;
@@ -8,9 +11,23 @@ interface WelcomeScreenProps {
 }
 
 export function WelcomeScreen({ onGetStarted, onLogin }: WelcomeScreenProps) {
+  const { t, language, changeLanguage } = useTranslation();
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-cyan-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
       <div className="w-full px-4 py-8 flex flex-col justify-center min-h-screen">
+        
+        {/* Language Switcher */}
+        <div className="absolute top-4 right-4 flex items-center gap-2">
+          <Globe className="w-5 h-5 text-gray-600" />
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={() => changeLanguage(language === 'ko' ? 'en' : 'ko')}
+            className="text-sm"
+          >
+            {language === 'ko' ? 'EN' : '한국어'}
+          </Button>
+        </div>
         
         {/* Logo and Brand */}
         <div className="text-center mb-8">
@@ -24,10 +41,10 @@ export function WelcomeScreen({ onGetStarted, onLogin }: WelcomeScreenProps) {
               </div>
             </div>
             <h1 className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent mb-2">
-              ShadowME
+              {t('appName')}
             </h1>
             <p className="text-lg text-gray-600 dark:text-gray-300 px-2">
-              AI로 복제된 내 목소리로 원어민 발음 마스터하기
+              {t('appDescription')}
             </p>
           </div>
           
@@ -46,10 +63,10 @@ export function WelcomeScreen({ onGetStarted, onLogin }: WelcomeScreenProps) {
               </div>
               <div className="flex-1">
                 <h3 className="font-semibold mb-1 text-gray-800 dark:text-gray-200">
-                  음성 복제 기술
+                  {t('voiceCloning')}
                 </h3>
                 <p className="text-gray-600 dark:text-gray-400 text-sm">
-                  AI가 내 목소리를 학습하여 원어민 발음으로 변환
+                  {t('voiceCloningDesc')}
                 </p>
               </div>
             </div>
@@ -62,10 +79,10 @@ export function WelcomeScreen({ onGetStarted, onLogin }: WelcomeScreenProps) {
               </div>
               <div className="flex-1">
                 <h3 className="font-semibold mb-1 text-gray-800 dark:text-gray-200">
-                  맞춤형 학습
+                  {t('personalizedLearning')}
                 </h3>
                 <p className="text-gray-600 dark:text-gray-400 text-sm">
-                  개인의 수준과 목적에 맞는 맞춤형 연습 문장 제공
+                  {t('personalizedLearningDesc')}
                 </p>
               </div>
             </div>
@@ -78,10 +95,10 @@ export function WelcomeScreen({ onGetStarted, onLogin }: WelcomeScreenProps) {
               </div>
               <div className="flex-1">
                 <h3 className="font-semibold mb-1 text-gray-800 dark:text-gray-200">
-                  실시간 피드백
+                  {t('realtimeFeedback')}
                 </h3>
                 <p className="text-gray-600 dark:text-gray-400 text-sm">
-                  단어별 정확도를 실시간으로 분석하여 즉각적인 피드백
+                  {t('realtimeFeedbackDesc')}
                 </p>
               </div>
             </div>
@@ -95,7 +112,7 @@ export function WelcomeScreen({ onGetStarted, onLogin }: WelcomeScreenProps) {
             onClick={onGetStarted}
             className="w-full min-h-[56px]"
           >
-            시작하기
+            {t('getStarted')}
           </GradientButton>
           <GradientButton 
             size="lg" 
@@ -103,7 +120,7 @@ export function WelcomeScreen({ onGetStarted, onLogin }: WelcomeScreenProps) {
             onClick={onLogin}
             className="w-full min-h-[56px]"
           >
-            로그인
+            {t('login')}
           </GradientButton>
         </div>
 

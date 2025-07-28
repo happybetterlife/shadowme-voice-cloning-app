@@ -14,6 +14,8 @@ import { ExplanationScreen } from '../components/ExplanationScreen';
 import { createClient } from '@supabase/supabase-js';
 import { projectId, publicAnonKey } from '../utils/supabase/info';
 import { apiClient } from '../utils/api';
+import { useTranslation } from '../hooks/useTranslation';
+import { Language } from '../utils/i18n';
 
 type Screen = 'welcome' | 'auth' | 'dashboard' | 'practice' | 'levelTest' | 'levelSelection' | 'testResult' | 'settings' | 'permission' | 'tutorial' | 'explanation';
 
@@ -27,6 +29,8 @@ export default function App() {
   const [selectedPurpose, setSelectedPurpose] = useState<string>('');
   const [testResults, setTestResults] = useState<any>(null);
   const [clonedVoiceData, setClonedVoiceData] = useState<{ url: string; sampleText: string; audioBlob?: Blob; sessionId?: string } | null>(null);
+  
+  const { t, language, changeLanguage } = useTranslation();
 
   const supabase = createClient(
     `https://${projectId}.supabase.co`,
