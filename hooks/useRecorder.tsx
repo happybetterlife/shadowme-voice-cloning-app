@@ -11,24 +11,28 @@ export function useRecorder() {
     try {
       const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
       
-      // Safari 호환성을 위한 오디오 형식 결정
+      // ElevenLabs 호환성을 위해 WebM을 우선적으로 사용
       let options: MediaRecorderOptions = {};
-      const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
       
-      if (isSafari) {
-        // Safari에서는 audio/mp4를 사용
-        if (MediaRecorder.isTypeSupported('audio/mp4')) {
-          options = { mimeType: 'audio/mp4' };
-        } else if (MediaRecorder.isTypeSupported('audio/aac')) {
-          options = { mimeType: 'audio/aac' };
-        }
-      } else {
-        // Chrome/Firefox에서는 webm 사용
-        if (MediaRecorder.isTypeSupported('audio/webm;codecs=opus')) {
-          options = { mimeType: 'audio/webm;codecs=opus' };
-        } else if (MediaRecorder.isTypeSupported('audio/webm')) {
-          options = { mimeType: 'audio/webm' };
-        }
+      // 1순위: WebM with Opus (가장 호환성 좋음)
+      if (MediaRecorder.isTypeSupported('audio/webm;codecs=opus')) {
+        options = { mimeType: 'audio/webm;codecs=opus' };
+        console.log('🎤 Using WebM with Opus codec for ElevenLabs compatibility');
+      } 
+      // 2순위: WebM 기본
+      else if (MediaRecorder.isTypeSupported('audio/webm')) {
+        options = { mimeType: 'audio/webm' };
+        console.log('🎤 Using WebM for ElevenLabs compatibility');
+      }
+      // 3순위: MP4 (Safari 등에서 WebM 지원 안 할 때만)
+      else if (MediaRecorder.isTypeSupported('audio/mp4')) {
+        options = { mimeType: 'audio/mp4' };
+        console.log('⚠️ Using MP4 - may have ElevenLabs compatibility issues');
+      }
+      // 마지막: AAC
+      else if (MediaRecorder.isTypeSupported('audio/aac')) {
+        options = { mimeType: 'audio/aac' };
+        console.log('⚠️ Using AAC - may have ElevenLabs compatibility issues');
       }
       
       console.log('🎤 Recording with options:', options);
