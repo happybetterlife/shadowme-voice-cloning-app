@@ -3,6 +3,7 @@ import { Button } from './ui/button';
 import { Badge } from './ui/badge';
 import { GradientButton } from './GradientButton';
 import { WaveformVisualizer } from './WaveformVisualizer';
+import { useTranslation } from '../hooks/useTranslation';
 
 interface LevelSelectionScreenProps {
   onNext: (level: string, purpose: string) => void;
@@ -10,6 +11,7 @@ interface LevelSelectionScreenProps {
 }
 
 export function LevelSelectionScreen({ onNext, onBack }: LevelSelectionScreenProps) {
+  const { t } = useTranslation();
   const [selectedLevel, setSelectedLevel] = useState<string>('');
   const [selectedPurpose, setSelectedPurpose] = useState<string>('');
 

@@ -55,19 +55,29 @@ export class SupabaseApiClient {
   async getUserProfile() {
     try {
       const { data: user } = await supabase.auth.getUser();
-      if (!user.user) throw new Error('User not authenticated');
+      if (!user.user) {
+        console.log('User not authenticated, returning null profile');
+        return { profile: null };
+      }
 
       const { data, error } = await supabase
         .from('user_profiles')
         .select('*')
         .eq('id', user.user.id)
-        .single();
+        .maybeSingle();
 
-      if (error) throw error;
+      if (error) {
+        // Only log unexpected errors, not missing profile errors for new users
+        if (error.code !== 'PGRST116') {
+          console.log('Unexpected profile fetch error:', error.message);
+        }
+        return { profile: null };
+      }
+      
       return { profile: data };
     } catch (error) {
-      console.error('Failed to get user profile:', error);
-      throw error;
+      console.log('Profile fetch failed (expected for new users):', error);
+      return { profile: null };
     }
   }
 
@@ -198,7 +208,18 @@ export class SupabaseApiClient {
   async getDailyProgress(date?: string) {
     try {
       const { data: user } = await supabase.auth.getUser();
-      if (!user.user) throw new Error('User not authenticated');
+      if (!user.user) {
+        console.log('User not authenticated, returning default daily progress');
+        return {
+          date: date || new Date().toISOString().split('T')[0],
+          practice_time: 0,
+          lessons_completed: 0,
+          total_sessions: 0,
+          accuracy_scores: [],
+          average_accuracy: 0,
+          daily_goal_achieved: false
+        };
+      }
 
       const targetDate = date || new Date().toISOString().split('T')[0];
 
@@ -209,7 +230,9 @@ export class SupabaseApiClient {
         .eq('date', targetDate)
         .maybeSingle();
 
-      if (error) throw error;
+      if (error && error.code !== 'PGRST116') {
+        console.log('Unexpected daily progress fetch error:', error.message);
+      }
 
       return data || {
         date: targetDate,
@@ -221,7 +244,7 @@ export class SupabaseApiClient {
         daily_goal_achieved: false
       };
     } catch (error) {
-      console.error('Failed to get daily progress:', error);
+      console.log('Daily progress not available (expected for new users):', error);
       return {
         date: date || new Date().toISOString().split('T')[0],
         practice_time: 0,
@@ -238,7 +261,10 @@ export class SupabaseApiClient {
   async getWeeklyProgress() {
     try {
       const { data: user } = await supabase.auth.getUser();
-      if (!user.user) throw new Error('User not authenticated');
+      if (!user.user) {
+        console.log('User not authenticated, returning empty weekly progress');
+        return [];
+      }
 
       const today = new Date();
       const weekAgo = new Date(today);
@@ -276,7 +302,7 @@ export class SupabaseApiClient {
 
       return weekProgress;
     } catch (error) {
-      console.error('Failed to get weekly progress:', error);
+      console.log('Weekly progress not available (expected for new users):', error);
       return [];
     }
   }

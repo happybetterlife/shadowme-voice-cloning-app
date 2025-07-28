@@ -11,6 +11,7 @@ import { apiClient } from '../utils/api';
 import { voiceApi } from '../utils/voiceApi';
 import { useWavRecorder } from '../hooks/useWavRecorder';
 import { speechOceanSentences, calculateRealisticScore } from '../data/speechocean-sentences';
+import { useTranslation } from '../hooks/useTranslation';
 
 // 마이크 상태 확인 함수
 const getMicrophonePermissionStatus = async (): Promise<string> => {
@@ -66,6 +67,7 @@ const getSampleSentences = (level: string, purpose: string): Sentence[] => {
 };
 
 export function PracticeScreen({ userProfile, clonedVoiceData, onBack, onComplete }: PracticeScreenProps) {
+  const { t } = useTranslation();
   const [sessionId] = useState(() => {
     // 🚨 BYPASS: 프로필 문제 우회하고 세션 생성
     const emergencySessionId = 'emergency_voice_session';
@@ -129,7 +131,7 @@ export function PracticeScreen({ userProfile, clonedVoiceData, onBack, onComplet
       // 권한이 거부된 경우에만 에러 표시
       if (status === 'denied') {
         setHasError(true);
-        setErrorMessage('마이크 권한이 필요합니다. 브라우저 설정에서 마이크 권한을 허용해주세요.');
+        setErrorMessage(t('microphoneError'));
         setIsLoading(false);
         return false;
       }
@@ -199,7 +201,7 @@ export function PracticeScreen({ userProfile, clonedVoiceData, onBack, onComplet
     } catch (error) {
       console.error('❌ 모든 음성 생성 실패:', error);
       setHasError(true);
-      setErrorMessage('음성 생성에 실패했습니다. 다시 시도해주세요.');
+      setErrorMessage(t('processingError'));
     } finally {
       setIsGeneratingAudio(false);
     }
@@ -237,14 +239,14 @@ export function PracticeScreen({ userProfile, clonedVoiceData, onBack, onComplet
         console.error('Audio playback error:', e);
         setIsPlaying(false);
         setHasError(true);
-        setErrorMessage('오디오 재생에 실패했습니다.');
+        setErrorMessage(t('playbackFailed'));
       };
 
       await audio.play();
     } catch (error) {
       console.error('Audio generation/playback failed:', error);
       setHasError(true);
-      setErrorMessage('음성 생성에 실패했습니다.');
+      setErrorMessage(t('processingError'));
     } finally {
       setIsLoading(false);
     }
@@ -257,7 +259,7 @@ export function PracticeScreen({ userProfile, clonedVoiceData, onBack, onComplet
     const success = await startRecording();
     if (!success) {
       setHasError(true);
-      setErrorMessage('녹음을 시작할 수 없습니다. 마이크 연결을 확인해주세요.');
+      setErrorMessage(t('microphoneError'));
     }
   };
 
@@ -265,7 +267,7 @@ export function PracticeScreen({ userProfile, clonedVoiceData, onBack, onComplet
     const audioBlob = await stopRecording();
     if (!audioBlob) {
       setHasError(true);
-      setErrorMessage('녹음 데이터를 가져올 수 없습니다.');
+      setErrorMessage(t('processingError'));
       return;
     }
 
@@ -309,7 +311,7 @@ export function PracticeScreen({ userProfile, clonedVoiceData, onBack, onComplet
     } catch (error) {
       console.error('Pronunciation analysis failed:', error);
       setHasError(true);
-      setErrorMessage('발음 분석에 실패했습니다.');
+      setErrorMessage(t('processingError'));
     } finally {
       setIsLoading(false);
     }
@@ -431,7 +433,7 @@ export function PracticeScreen({ userProfile, clonedVoiceData, onBack, onComplet
             <ArrowLeft className="h-5 w-5" />
           </Button>
           <div className="flex items-center space-x-4">
-            <h1 className="text-xl font-bold text-gray-800 dark:text-gray-200">발음 연습</h1>
+            <h1 className="text-xl font-bold text-gray-800 dark:text-gray-200">{t('pronunciationPractice')}</h1>
             <Button variant="ghost" onClick={onBack} className="p-2">
               <Home className="h-5 w-5" />
             </Button>
@@ -441,7 +443,7 @@ export function PracticeScreen({ userProfile, clonedVoiceData, onBack, onComplet
         {/* Progress */}
         <div className="mb-6">
           <div className="flex justify-between text-sm text-gray-600 dark:text-gray-400 mb-2">
-            <span>진행률</span>
+            <span>{t('progress')}</span>
             <span>{currentSentenceIndex + 1} / {sentences.length}</span>
           </div>
           <Progress value={(currentSentenceIndex + 1) / sentences.length * 100} className="h-2" />
@@ -506,7 +508,7 @@ export function PracticeScreen({ userProfile, clonedVoiceData, onBack, onComplet
               className="bg-blue-500 hover:bg-blue-600 text-white"
             >
               {isPlaying ? <Pause className="h-4 w-4" /> : <Play className="h-4 w-4" />}
-              {isGeneratingAudio ? '생성 중...' : isPlaying ? '일시정지' : '듣기'}
+              {isGeneratingAudio ? t('processingAudio') : isPlaying ? '일시정지' : t('listen')}
             </Button>
           </div>
 
@@ -516,13 +518,13 @@ export function PracticeScreen({ userProfile, clonedVoiceData, onBack, onComplet
               <div className="inline-flex items-center justify-center w-16 h-16 bg-blue-500 text-white rounded-full text-xl font-bold">
                 {Math.round(currentPronunciation.reduce((sum, word) => sum + word.accuracy, 0) / currentPronunciation.length)}%
               </div>
-              <p className="text-sm text-gray-600 mt-2">발음 정확도</p>
-              <p className="text-xs text-gray-500">좋아해요!</p>
+              <p className="text-sm text-gray-600 mt-2">{t('accuracy')}</p>
+              <p className="text-xs text-gray-500">{t('good')}</p>
               <p className="text-xs text-gray-400 mt-1">시도 횟수: {currentSentenceIndex + 1}/5</p>
               
               {/* 색상 가이드 */}
               <div className="mt-4 p-3 bg-white bg-opacity-70 rounded-lg">
-                <p className="text-xs text-gray-600 mb-2">발음 정확도 가이드</p>
+                <p className="text-xs text-gray-600 mb-2">{t('accuracyGuide')}</p>
                 <div className="flex justify-center space-x-4 text-xs">
                   <div className="flex items-center">
                     <div className="w-3 h-3 bg-green-200 rounded mr-1"></div>
@@ -554,7 +556,7 @@ export function PracticeScreen({ userProfile, clonedVoiceData, onBack, onComplet
             className="w-full"
           >
             {isRecording ? <MicOff className="h-4 w-4 mr-2" /> : <Mic className="h-4 w-4 mr-2" />}
-            {isRecording ? '녹음 중지' : '발음 녹음'}
+            {isRecording ? t('stopRecording') : t('startRecordingButton')}
           </GradientButton>
 
           {currentPronunciation && (
@@ -564,7 +566,7 @@ export function PracticeScreen({ userProfile, clonedVoiceData, onBack, onComplet
               className="w-full"
             >
               <RotateCcw className="h-4 w-4 mr-2" />
-              다시 시도
+              {t('retry')}
             </Button>
           )}
         </div>
@@ -587,7 +589,7 @@ export function PracticeScreen({ userProfile, clonedVoiceData, onBack, onComplet
             variant="outline"
             className="flex-1"
           >
-            이전
+            {t('back')}
           </Button>
           
           {currentSentenceIndex === sentences.length - 1 ? (
@@ -595,7 +597,7 @@ export function PracticeScreen({ userProfile, clonedVoiceData, onBack, onComplet
               onClick={completePractice}
               className="flex-1"
             >
-              연습 완료
+              {t('practiceComplete')}
             </GradientButton>
           ) : (
             <Button
@@ -603,7 +605,7 @@ export function PracticeScreen({ userProfile, clonedVoiceData, onBack, onComplet
               disabled={!canGoNext}
               className="flex-1 bg-blue-500 hover:bg-blue-600 text-white"
             >
-              다음 문장
+              {t('nextSentence')}
               <SkipForward className="h-4 w-4 ml-2" />
             </Button>
           )}

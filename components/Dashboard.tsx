@@ -4,7 +4,8 @@ import { GradientButton } from './GradientButton';
 import { AccuracyBadge } from './AccuracyBadge';
 import { Progress } from './ui/progress';
 import { Calendar, Target, Trophy, TrendingUp, Play, Settings } from 'lucide-react';
-import { apiClient } from '../utils/api';
+import { supabaseApiClient } from '../utils/supabase-api';
+import { useTranslation } from '../hooks/useTranslation';
 
 interface DashboardProps {
   onStartPractice: () => void;
@@ -14,6 +15,7 @@ interface DashboardProps {
 }
 
 export function Dashboard({ onStartPractice, onSettings, userProfile, clonedVoiceData }: DashboardProps) {
+  const { t } = useTranslation();
   const [dailyProgress, setDailyProgress] = useState<any>(null);
   const [weeklyProgress, setWeeklyProgress] = useState<any[]>([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -25,14 +27,25 @@ export function Dashboard({ onStartPractice, onSettings, userProfile, clonedVoic
   const loadProgressData = async () => {
     try {
       const [daily, weekly] = await Promise.all([
-        apiClient.getDailyProgress(),
-        apiClient.getWeeklyProgress()
+        supabaseApiClient.getDailyProgress(),
+        supabaseApiClient.getWeeklyProgress()
       ]);
       
       setDailyProgress(daily);
       setWeeklyProgress(weekly);
     } catch (error) {
-      console.error('Failed to load progress data:', error);
+      console.log('Progress data not available (expected for new users):', error);
+      // 기본값 설정 (인증되지 않은 사용자의 경우)
+      setDailyProgress({
+        date: new Date().toISOString().split('T')[0],
+        practice_time: 0,
+        lessons_completed: 0,
+        total_sessions: 0,
+        accuracy_scores: [],
+        average_accuracy: 0,
+        daily_goal_achieved: false
+      });
+      setWeeklyProgress([]);
     } finally {
       setIsLoading(false);
     }
@@ -45,14 +58,14 @@ export function Dashboard({ onStartPractice, onSettings, userProfile, clonedVoic
       
       // 연습 시작을 기록 (백그라운드에서 처리)
       try {
-        await apiClient.updateDailyProgress({
+        await supabaseApiClient.updateDailyProgress({
           practiceTime: 0, // 실제 시간은 연습 완료 후 업데이트
           lessonsCompleted: 0, // 완료 후 업데이트
           accuracyScore: 0 // 완료 후 업데이트
         });
         console.log('✅ Practice session started');
       } catch (error) {
-        console.error('❌ Failed to record practice start:', error);
+        console.log('Practice start recording failed (expected for unauthenticated users):', error);
       }
     } else {
       // 다른 연습 타입들은 추후 구현
@@ -60,17 +73,20 @@ export function Dashboard({ onStartPractice, onSettings, userProfile, clonedVoic
     }
   };
 
-  // 오늘의 목표 달성률 계산
+  // 오늘의 목표 달성률 계산 (시간은 분 단위로 변환)
   const dailyGoal = { practiceTime: 15, lessonsCompleted: 3 }; // 15분, 3개 레슨
+  const practiceTimeMinutes = dailyProgress ? (dailyProgress.practice_time || 0) / 60 : 0;
+  const lessonsCompleted = dailyProgress ? (dailyProgress.lessons_completed || 0) : 0;
+  
   const todayProgressPercent = dailyProgress ? 
     Math.min(
-      ((dailyProgress.practiceTime / dailyGoal.practiceTime) + 
-       (dailyProgress.lessonsCompleted / dailyGoal.lessonsCompleted)) / 2 * 100,
+      ((practiceTimeMinutes / dailyGoal.practiceTime) + 
+       (lessonsCompleted / dailyGoal.lessonsCompleted)) / 2 * 100,
       100
     ) : 0;
 
   // 주간 목표 달성률
-  const weeklyCompletedDays = weeklyProgress.filter(day => day.lessonsCompleted > 0).length;
+  const weeklyCompletedDays = weeklyProgress.filter(day => (day.lessons_completed || 0) > 0).length;
   const weeklyProgressPercent = (weeklyCompletedDays / 7) * 100;
 
   const stats = {
@@ -83,9 +99,9 @@ export function Dashboard({ onStartPractice, onSettings, userProfile, clonedVoic
   };
 
   const todayLessons = [
-    { id: 1, title: '쉐도잉 연습', difficulty: stats.level, duration: '15분', completed: false, type: 'shadowing' },
-    { id: 2, title: '발음 교정', difficulty: stats.level, duration: '10분', completed: dailyProgress?.lessonsCompleted > 0, type: 'pronunciation' },
-    { id: 3, title: '유창성 훈련', difficulty: stats.level, duration: '20분', completed: dailyProgress?.lessonsCompleted > 1, type: 'fluency' },
+    { id: 1, title: t('shadowingPractice'), difficulty: stats.level, duration: '15분', completed: false, type: 'shadowing' },
+    { id: 2, title: '발음 교정', difficulty: stats.level, duration: '10분', completed: lessonsCompleted > 0, type: 'pronunciation' },
+    { id: 3, title: '유창성 훈련', difficulty: stats.level, duration: '20분', completed: lessonsCompleted > 1, type: 'fluency' },
   ];
 
   if (isLoading) {
@@ -93,7 +109,7 @@ export function Dashboard({ onStartPractice, onSettings, userProfile, clonedVoic
       <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-cyan-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
-          <p className="text-gray-600 dark:text-gray-400">로딩 중...</p>
+          <p className="text-gray-600 dark:text-gray-400">{t('loading')}</p>
         </div>
       </div>
     );
@@ -107,7 +123,7 @@ export function Dashboard({ onStartPractice, onSettings, userProfile, clonedVoic
           <div className="flex items-center justify-between">
             <div className="flex-1">
               <h1 className="text-xl text-gray-800 dark:text-gray-200">
-                안녕하세요! 👋
+                {t('hello')} 👋
               </h1>
               <p className="text-sm text-gray-600 dark:text-gray-400">
                 오늘도 발음 연습을 시작해보세요

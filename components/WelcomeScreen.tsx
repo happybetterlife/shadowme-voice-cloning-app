@@ -127,7 +127,7 @@ export function WelcomeScreen({ onGetStarted, onLogin }: WelcomeScreenProps) {
         {/* Footer */}
         <div className="mt-8 text-center">
           <p className="text-xs text-gray-500 dark:text-gray-400 px-4">
-            개인정보는 사용자 기기에만 저장되며 외부로 전송되지 않습니다
+            {t('privacyNotice')}
           </p>
         </div>
       </div>

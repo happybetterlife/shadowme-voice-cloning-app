@@ -5,6 +5,7 @@ import { ArrowLeft, Mail, Lock, User } from 'lucide-react';
 import { createClient } from '@supabase/supabase-js';
 import { projectId, publicAnonKey } from '../utils/supabase/info';
 import { apiClient } from '../utils/api';
+import { useTranslation } from '../hooks/useTranslation';
 
 interface AuthScreenProps {
   onBack: () => void;
@@ -13,6 +14,7 @@ interface AuthScreenProps {
 }
 
 export function AuthScreen({ onBack, onAuthSuccess, mode }: AuthScreenProps) {
+  const { t } = useTranslation();
   const [isLogin, setIsLogin] = useState(mode === 'login');
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
@@ -110,18 +112,18 @@ export function AuthScreen({ onBack, onAuthSuccess, mode }: AuthScreenProps) {
           <div className="bg-white/80 backdrop-blur-md rounded-xl p-8 shadow-xl border border-gray-200">
             <div className="text-center mb-8">
               <h1 className="text-2xl font-bold mb-2 bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent">
-                {isLogin ? '로그인' : '회원가입'}
+                {isLogin ? t('loginTitle') : t('signupTitle')}
               </h1>
               <p className="text-gray-700 text-sm">
                 {isLogin ? (
                   <>
                     <span className="bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent font-semibold">ShadowME</span>
-                    <span className="text-gray-700">에 로그인하세요</span>
+                    <span className="text-gray-700">{t('loginTo')}</span>
                   </>
                 ) : (
                   <>
                     <span className="bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent font-semibold">ShadowME</span>
-                    <span className="text-gray-700"> 계정을 만들어보세요</span>
+                    <span className="text-gray-700">{t('createAccount')}</span>
                   </>
                 )}
               </p>
@@ -133,7 +135,7 @@ export function AuthScreen({ onBack, onAuthSuccess, mode }: AuthScreenProps) {
                     <User className="absolute left-3 top-3.5 w-4 h-4 text-gray-400" />
                     <Input
                       type="text"
-                      placeholder="이름"
+                      placeholder={t('namePlaceholder')}
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                       className="pl-10 min-h-[48px] bg-white border-gray-300 text-gray-700 placeholder:text-gray-400"
@@ -146,7 +148,7 @@ export function AuthScreen({ onBack, onAuthSuccess, mode }: AuthScreenProps) {
                   <Mail className="absolute left-3 top-3.5 w-4 h-4 text-gray-400" />
                   <Input
                     type="email"
-                    placeholder="이메일"
+                    placeholder={t('emailPlaceholder')}
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                     className="pl-10 min-h-[48px] bg-white border-gray-300 text-gray-700 placeholder:text-gray-400"
@@ -158,7 +160,7 @@ export function AuthScreen({ onBack, onAuthSuccess, mode }: AuthScreenProps) {
                   <Lock className="absolute left-3 top-3.5 w-4 h-4 text-gray-400" />
                   <Input
                     type="password"
-                    placeholder="비밀번호"
+                    placeholder={t('passwordPlaceholder')}
                     value={formData.password}
                     onChange={(e) => setFormData({ ...formData, password: e.target.value })}
                     className="pl-10 min-h-[48px] bg-white border-gray-300 text-gray-700 placeholder:text-gray-400"
@@ -172,7 +174,7 @@ export function AuthScreen({ onBack, onAuthSuccess, mode }: AuthScreenProps) {
                   className="w-full min-h-[56px] bg-white text-blue-600 hover:bg-white/90"
                   size="lg"
                 >
-                  {loading ? '처리 중...' : (isLogin ? '로그인' : '회원가입')}
+                  {loading ? t('processingAuth') : (isLogin ? t('loginTitle') : t('signupTitle'))}
                 </GradientButton>
               </form>
 
@@ -181,7 +183,7 @@ export function AuthScreen({ onBack, onAuthSuccess, mode }: AuthScreenProps) {
                   onClick={() => setIsLogin(!isLogin)}
                   className="text-blue-600 hover:text-blue-700 text-sm min-h-[44px] px-4 flex items-center justify-center mx-auto transition-colors"
                 >
-                  {isLogin ? '계정이 없으신가요? 회원가입' : '이미 계정이 있으신가요? 로그인'}
+                  {isLogin ? t('noAccount') : t('hasAccount')}
                 </button>
               </div>
             </div>

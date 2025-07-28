@@ -9,6 +9,7 @@ import { Card } from './ui/card';
 import { Mic, RotateCcw, Play, Pause } from 'lucide-react';
 import { useRecorder } from '../hooks/useRecorder';
 import { voiceApi } from '../utils/voiceApi';
+import { useTranslation } from '../hooks/useTranslation';
 
 interface LevelTestScreenProps {
   level: string;
@@ -51,6 +52,7 @@ const generateRealisticScore = (text: string, level: string): number => {
 };
 
 export function LevelTestScreen({ level, purpose, clonedVoiceData, onComplete }: LevelTestScreenProps) {
+  const { t } = useTranslation();
   const [currentSentence, setCurrentSentence] = useState(0);
   const [currentResult, setCurrentResult] = useState<number | null>(null);
   const [results, setResults] = useState<number[]>([]);
@@ -310,11 +312,11 @@ export function LevelTestScreen({ level, purpose, clonedVoiceData, onComplete }:
             <Mic className="w-8 h-8 text-white" />
           </div>
           <h2 className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent mb-2">
-            레벨 테스트
+            {t('levelTest')}
           </h2>
           <div className="space-y-3">
             <p className="text-sm text-gray-600 dark:text-gray-300">
-              문장 {currentSentence + 1} / {testSentences.length}
+              {t('sentence')} {currentSentence + 1} / {testSentences.length}
             </p>
             <Progress value={progress} className="w-full max-w-xs mx-auto" />
           </div>
@@ -330,7 +332,7 @@ export function LevelTestScreen({ level, purpose, clonedVoiceData, onComplete }:
           {clonedVoiceData?.audioBlob && (
             <div>
               <p className="text-sm text-gray-600 dark:text-gray-300">
-                샘플 녹음으로 클로닝된 당신의 목소리를 들어보세요
+                {t('listenClonedVoice')}
               </p>
               <GradientButton
                 onClick={playClonedVoice}
@@ -340,12 +342,12 @@ export function LevelTestScreen({ level, purpose, clonedVoiceData, onComplete }:
                 {isPlaying ? (
                   <>
                     <Pause className="w-4 h-4 mr-2" />
-                    재생 중...
+                    {t('playing')}
                   </>
                 ) : (
                   <>
                     <Play className="w-4 h-4 mr-2" />
-                    내 원어민 발음 듣기
+                    {t('listenMyNativePronunciation')}
                   </>
                 )}
               </GradientButton>
@@ -358,7 +360,7 @@ export function LevelTestScreen({ level, purpose, clonedVoiceData, onComplete }:
           <div className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg border border-gray-100 dark:border-gray-700 mb-6">
             <div className="text-center">
               <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500 mx-auto mb-4"></div>
-              <p className="text-gray-600 dark:text-gray-300">음성을 분석하고 있습니다...</p>
+              <p className="text-gray-600 dark:text-gray-300">{t('processingStatus')}</p>
             </div>
           </div>
         )}
@@ -372,11 +374,11 @@ export function LevelTestScreen({ level, purpose, clonedVoiceData, onComplete }:
                 <AccuracyBadge accuracy={currentResult} className="text-lg px-4 py-2" />
               </div>
               <p className="text-sm text-gray-600 dark:text-gray-300 text-center">
-                {currentResult >= 90 ? '완벽해요!' :
-                 currentResult >= 80 ? '잘했어요!' :
-                 currentResult >= 70 ? '좋아요!' :
-                 currentResult >= 60 ? '연습하면 더 좋아질 거예요!' :
-                 '다시 한번 해보세요!'}
+                {currentResult >= 90 ? t('perfect') :
+                 currentResult >= 80 ? t('good') :
+                 currentResult >= 70 ? t('nice') :
+                 currentResult >= 60 ? t('practiceMore') :
+                 t('tryAgain')}
               </p>
               
               {/* 색상 가이드 */}
@@ -390,7 +392,7 @@ export function LevelTestScreen({ level, purpose, clonedVoiceData, onComplete }:
           {currentResult === null ? (
             <div className="space-y-3">
               <p className="text-sm text-gray-600 dark:text-gray-300 text-center">
-                이제 같은 문장을 따라 말해보세요
+                {t('speakSameSentence')}
               </p>
               <GradientButton 
                 onClick={handleRecord}
@@ -401,12 +403,12 @@ export function LevelTestScreen({ level, purpose, clonedVoiceData, onComplete }:
                 {isRecording ? (
                   <>
                     <Mic className="w-5 h-5 mr-2" />
-                    녹음 중지
+                    {t('stopRecording')}
                   </>
                 ) : (
                   <>
                     <Mic className="w-5 h-5 mr-2" />
-                    녹음 시작
+                    {t('startRecordingAction')}
                   </>
                 )}
               </GradientButton>
@@ -418,7 +420,7 @@ export function LevelTestScreen({ level, purpose, clonedVoiceData, onComplete }:
                 className="w-full bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 text-white border-0 shadow-lg" 
                 size="lg"
               >
-                {currentSentence === testSentences.length - 1 ? '테스트 완료' : '다음 문장'}
+                {currentSentence === testSentences.length - 1 ? t('testComplete') : t('nextSentence')}
               </GradientButton>
               <GradientButton 
                 onClick={handleRetry} 
@@ -426,7 +428,7 @@ export function LevelTestScreen({ level, purpose, clonedVoiceData, onComplete }:
                 className="w-full shadow-lg"
               >
                 <RotateCcw className="w-4 h-4 mr-2" />
-                다시 시도
+                {t('retry')}
               </GradientButton>
             </div>
           )}
@@ -435,7 +437,7 @@ export function LevelTestScreen({ level, purpose, clonedVoiceData, onComplete }:
         {/* 지금까지의 점수 */}
         {results.length > 0 && (
           <Card className="p-4">
-            <h4 className="font-medium mb-3">지금까지의 점수</h4>
+            <h4 className="font-medium mb-3">{t('scoresUntilNow')}</h4>
             <div className="flex flex-wrap gap-2">
               {results.map((score, index) => (
                 <AccuracyBadge key={index} accuracy={score} className="text-xs" />

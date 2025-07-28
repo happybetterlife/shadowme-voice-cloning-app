@@ -1,24 +1,40 @@
 import { Button } from './ui/button';
 import { GradientButton } from './GradientButton';
 import { WaveformVisualizer } from './WaveformVisualizer';
-import { Play, User, Volume2, Brain, Zap, ArrowDown } from 'lucide-react';
+import { Play, User, Volume2, Brain, Zap, ArrowDown, Globe } from 'lucide-react';
+import { useTranslation } from '../hooks/useTranslation';
 
 interface ExplanationScreenProps {
   onNext: () => void;
 }
 
 export function ExplanationScreen({ onNext }: ExplanationScreenProps) {
+  const { t, language, changeLanguage } = useTranslation();
+  
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-cyan-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
       <div className="w-full px-4 py-8 flex flex-col justify-center min-h-screen">
         
+        {/* Language Switcher */}
+        <div className="flex justify-end mb-4">
+          <Button
+            onClick={() => changeLanguage(language === 'ko' ? 'en' : 'ko')}
+            variant="outline"
+            size="sm"
+            className="flex items-center gap-2"
+          >
+            <Globe className="w-4 h-4" />
+            {language === 'ko' ? 'EN' : '한국어'}
+          </Button>
+        </div>
+
         {/* Title */}
         <div className="text-center mb-8">
           <h1 className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent mb-2">
-            AI 음성 복제 기술
+            {t('voiceCloning')}
           </h1>
           <p className="text-lg text-gray-600 dark:text-gray-300 px-2">
-            당신의 목소리가 원어민이 되는 마법을 경험해보세요
+            {t('voiceCloningDesc')}
           </p>
           
           {/* Waveform Animation */}
@@ -36,10 +52,10 @@ export function ExplanationScreen({ onNext }: ExplanationScreenProps) {
               </div>
               <div className="flex-1">
                 <h3 className="font-semibold mb-1 text-gray-800 dark:text-gray-200">
-                  1. 당신의 목소리
+                  {t('step1Title')}
                 </h3>
                 <p className="text-gray-600 dark:text-gray-400 text-sm">
-                  한국어 억양이 있는 영어 발음
+                  {t('step1Desc')}
                 </p>
               </div>
               <WaveformVisualizer size="sm" />
@@ -57,10 +73,10 @@ export function ExplanationScreen({ onNext }: ExplanationScreenProps) {
               </div>
               <div className="flex-1">
                 <h3 className="font-semibold mb-1 text-gray-800 dark:text-gray-200">
-                  2. AI 음성 변환
+                  {t('step2Title')}
                 </h3>
                 <p className="text-gray-600 dark:text-gray-400 text-sm">
-                  원어민 발음으로 실시간 변환
+                  {t('step2Desc')}
                 </p>
               </div>
               <WaveformVisualizer isActive size="sm" />
@@ -78,15 +94,15 @@ export function ExplanationScreen({ onNext }: ExplanationScreenProps) {
               </div>
               <div className="flex-1">
                 <h3 className="font-semibold mb-1 text-gray-800 dark:text-gray-200">
-                  3. 완벽한 원어민 발음
+                  {t('step3Title')}
                 </h3>
                 <p className="text-gray-600 dark:text-gray-400 text-sm">
-                  당신의 목소리로 듣는 원어민 영어
+                  {t('step3Desc')}
                 </p>
               </div>
               <Button size="sm" variant="outline" className="border-green-500 text-green-600 hover:bg-green-50">
                 <Play className="w-4 h-4 mr-1" />
-                듣기
+                {t('listen')}
               </Button>
             </div>
           </div>
@@ -94,15 +110,15 @@ export function ExplanationScreen({ onNext }: ExplanationScreenProps) {
         
         {/* Benefits */}
         <div className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg border border-gray-100 dark:border-gray-700 mb-8">
-          <h4 className="font-semibold text-gray-800 dark:text-gray-200 mb-4 text-center">왜 효과적일까요?</h4>
+          <h4 className="font-semibold text-gray-800 dark:text-gray-200 mb-4 text-center">{t('whyEffective')}</h4>
           <div className="space-y-3">
             <div className="flex items-start gap-3">
               <div className="w-6 h-6 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
                 <Zap className="w-3 h-3 text-white" />
               </div>
               <div>
-                <p className="font-medium text-gray-800 dark:text-gray-200 text-sm">친숙함</p>
-                <p className="text-gray-600 dark:text-gray-400 text-xs">자신의 목소리로 듣기 때문에 집중도가 높아집니다</p>
+                <p className="font-medium text-gray-800 dark:text-gray-200 text-sm">{t('familiarity')}</p>
+                <p className="text-gray-600 dark:text-gray-400 text-xs">{t('familiarityDesc')}</p>
               </div>
             </div>
             <div className="flex items-start gap-3">
@@ -110,8 +126,8 @@ export function ExplanationScreen({ onNext }: ExplanationScreenProps) {
                 <Brain className="w-3 h-3 text-white" />
               </div>
               <div>
-                <p className="font-medium text-gray-800 dark:text-gray-200 text-sm">정확성</p>
-                <p className="text-gray-600 dark:text-gray-400 text-xs">원어민 수준의 정확한 발음을 학습할 수 있습니다</p>
+                <p className="font-medium text-gray-800 dark:text-gray-200 text-sm">{t('accuracyBenefit')}</p>
+                <p className="text-gray-600 dark:text-gray-400 text-xs">{t('accuracyBenefitDesc')}</p>
               </div>
             </div>
             <div className="flex items-start gap-3">
@@ -119,8 +135,8 @@ export function ExplanationScreen({ onNext }: ExplanationScreenProps) {
                 <Volume2 className="w-3 h-3 text-white" />
               </div>
               <div>
-                <p className="font-medium text-gray-800 dark:text-gray-200 text-sm">동기부여</p>
-                <p className="text-gray-600 dark:text-gray-400 text-xs">내 목소리가 원어민이 되는 신기한 경험</p>
+                <p className="font-medium text-gray-800 dark:text-gray-200 text-sm">{t('motivation')}</p>
+                <p className="text-gray-600 dark:text-gray-400 text-xs">{t('motivationDesc')}</p>
               </div>
             </div>
           </div>
@@ -129,7 +145,7 @@ export function ExplanationScreen({ onNext }: ExplanationScreenProps) {
         {/* Action Buttons */}
         <div className="space-y-4">
           <GradientButton onClick={onNext} className="w-full" size="lg">
-            학습 설정 하기
+            {t('setupLearning')}
           </GradientButton>
           {/* 삭제됨 */}
         </div>

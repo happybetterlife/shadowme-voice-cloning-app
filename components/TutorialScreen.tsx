@@ -5,12 +5,14 @@ import { Mic, Play, Square, RotateCcw, Pause } from 'lucide-react';
 import { Progress } from './ui/progress';
 import { useRecorder } from '../hooks/useRecorder';
 import { voiceApi } from '../utils/voiceApi';
+import { useTranslation } from '../hooks/useTranslation';
 
 interface TutorialScreenProps {
   onComplete: (clonedVoiceData?: { url: string; sampleText: string; audioBlob?: Blob; sessionId?: string }) => void;
 }
 
 export function TutorialScreen({ onComplete }: TutorialScreenProps) {
+  const { t } = useTranslation();
   const { isRecording, startRecording, stopRecording, resetRecording } = useRecorder();
   const [sessionId] = useState(() => `tutorial_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`);
   const [hasRecorded, setHasRecorded] = useState(false);
@@ -144,7 +146,7 @@ export function TutorialScreen({ onComplete }: TutorialScreenProps) {
     
     if (!clonedAudioUrl) {
       console.log('❌ No audio URL available');
-      alert('음성이 준비되지 않았습니다. 다시 녹음해주세요.');
+      alert(t('voiceNotReady'));
       return;
     }
     
@@ -190,9 +192,9 @@ export function TutorialScreen({ onComplete }: TutorialScreenProps) {
       console.error('Error details:', errorMessage);
       
       if (error instanceof Error && error.name === 'NotAllowedError') {
-        alert('🔊 브라우저에서 자동재생이 차단되었습니다.\n브라우저 설정에서 localhost 자동재생을 허용해주세요.');
+        alert('🔊 ' + t('autoplayBlocked'));
       } else {
-        alert(`음성 재생 실패: ${errorMessage}`);
+        alert(t('playbackFailed') + ': ' + errorMessage);
       }
     }
   };
@@ -207,10 +209,10 @@ export function TutorialScreen({ onComplete }: TutorialScreenProps) {
             <Mic className="w-8 h-8 text-white" />
           </div>
           <h1 className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent mb-2">
-            샘플 녹음
+            {t('recordSample')}
           </h1>
           <p className="text-gray-600 dark:text-gray-300 px-2">
-            아래 문장을 자연스럽게 읽어주세요
+            {t('readSentence')}
           </p>
         </div>
         

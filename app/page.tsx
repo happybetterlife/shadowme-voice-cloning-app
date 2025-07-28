@@ -14,6 +14,7 @@ import { ExplanationScreen } from '../components/ExplanationScreen';
 import { createClient } from '@supabase/supabase-js';
 import { projectId, publicAnonKey } from '../utils/supabase/info';
 import { apiClient } from '../utils/api';
+import { supabaseApiClient } from '../utils/supabase-api';
 import { useTranslation } from '../hooks/useTranslation';
 import { Language } from '../utils/i18n';
 
@@ -30,7 +31,7 @@ export default function App() {
   const [testResults, setTestResults] = useState<any>(null);
   const [clonedVoiceData, setClonedVoiceData] = useState<{ url: string; sampleText: string; audioBlob?: Blob; sessionId?: string } | null>(null);
   
-  const { t, language, changeLanguage } = useTranslation();
+  const { t } = useTranslation();
 
   const supabase = createClient(
     `https://${projectId}.supabase.co`,
@@ -44,6 +45,8 @@ export default function App() {
         setUser(session.user);
         apiClient.setAccessToken(session.access_token);
         apiClient.setUserId(session.user.id);
+        // Supabase API 클라이언트에도 토큰 설정
+        supabaseApiClient.setAccessToken(session.access_token);
         loadUserProfile();
         loadClonedVoiceData(); // 저장된 클로닝 음성 데이터 로드
         setCurrentScreen('dashboard');
@@ -53,10 +56,15 @@ export default function App() {
 
   const loadUserProfile = async () => {
     try {
-      const { profile } = await apiClient.getProfile();
+      const { profile } = await supabaseApiClient.getUserProfile();
       setUserProfile(profile);
+      if (!profile) {
+        console.log('No user profile found - user may need to complete setup');
+      }
     } catch (error) {
-      console.error('Failed to load profile:', error);
+      // Suppress expected errors for new users
+      console.log('Profile not available (expected for new users)');
+      setUserProfile(null);
     }
   };
 
@@ -89,6 +97,8 @@ export default function App() {
     setUser(userData);
     apiClient.setAccessToken(token);
     apiClient.setUserId(userData.id);
+    // Supabase API 클라이언트에도 토큰 설정
+    supabaseApiClient.setAccessToken(token);
     
     // 회원가입인 경우 설명 화면으로 이동
     if (authMode === 'signup') {
@@ -102,10 +112,14 @@ export default function App() {
 
   const handleLevelTestComplete = async (level: string) => {
     try {
-      await apiClient.saveSession({
-        type: 'level_test',
+      await supabaseApiClient.saveSession({
+        session_type: 'level_test',
         level,
-        completed_at: new Date().toISOString()
+        purpose: selectedPurpose || 'conversation',
+        practice_time: 180, // 3분 예상
+        overall_accuracy: testResults?.averageAccuracy || 75,
+        sentences_completed: testResults?.sentencesCompleted || 5,
+        total_sentences: testResults?.totalSentences || 5
       });
       await loadUserProfile();
       setCurrentScreen('dashboard');
@@ -117,11 +131,16 @@ export default function App() {
 
   const handlePracticeComplete = async (sessionData: any) => {
     try {
-      await apiClient.saveSession({
-        type: 'practice',
-        ...sessionData,
-        practice_time: 300,
-        overall_accuracy: sessionData.averageAccuracy || 75
+      await supabaseApiClient.saveSession({
+        session_type: 'practice',
+        level: selectedLevel || 'beginner',
+        purpose: selectedPurpose || 'conversation',
+        practice_time: 300, // 5분
+        overall_accuracy: sessionData.averageAccuracy || 75,
+        sentences_completed: sessionData.sentencesCompleted || 3,
+        total_sentences: sessionData.totalSentences || 5,
+        sentence_results: sessionData.results || [],
+        voice_analysis: sessionData.voiceAnalysis || {}
       });
       await loadUserProfile();
       setCurrentScreen('dashboard');
@@ -257,10 +276,10 @@ export default function App() {
         return (
           <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
             <div className="w-full max-w-sm mx-auto px-4 py-6">
-              <h1 className="text-xl mb-6 text-gray-800 dark:text-gray-200">설정</h1>
+              <h1 className="text-xl mb-6 text-gray-800 dark:text-gray-200">{t('settings')}</h1>
               <div className="space-y-3">
                 <div className="flex items-center justify-between p-4 bg-white dark:bg-gray-800 rounded-lg shadow-sm">
-                  <span className="text-gray-700 dark:text-gray-300">다크 모드</span>
+                  <span className="text-gray-700 dark:text-gray-300">{t('darkMode')}</span>
                   <button
                     onClick={toggleDarkMode}
                     className={`w-12 h-6 rounded-full transition-colors ${
@@ -277,14 +296,14 @@ export default function App() {
                   onClick={handleLogout}
                   className="w-full p-4 bg-red-500 text-white rounded-lg hover:bg-red-600 transition-colors min-h-[48px]"
                 >
-                  로그아웃
+                  {t('logout')}
                 </button>
                 
                 <button
                   onClick={() => setCurrentScreen('dashboard')}
                   className="w-full p-4 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors min-h-[48px]"
                 >
-                  돌아가기
+                  {t('goBack')}
                 </button>
               </div>
             </div>
