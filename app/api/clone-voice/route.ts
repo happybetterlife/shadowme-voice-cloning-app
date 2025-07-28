@@ -144,7 +144,7 @@ export async function POST(request: NextRequest) {
     if (audioBuffer.length < 10000) { // 10KB 미만이면 너무 짧음
       console.warn('⚠️ Audio file too small for voice cloning:', audioBuffer.length, 'bytes');
       console.warn('⚠️ ElevenLabs requires at least 1-2 seconds of audio');
-      return await generateWithDefaultVoice(text);
+      return await generateWithDefaultVoice(text, `Audio file too small: ${audioBuffer.length} bytes (minimum: 10KB)`);
     }
     
     console.log('🧬 Creating voice clone with ElevenLabs...');
@@ -309,7 +309,7 @@ export async function POST(request: NextRequest) {
       }
       
       // Fallback to default voice
-      return await generateWithDefaultVoice(text);
+      return await generateWithDefaultVoice(text, `ElevenLabs voice cloning failed: ${response.status} - ${errorText.substring(0, 100)}`);
     }
 
     const cloneData = await cloneResponse.json();
@@ -398,10 +398,11 @@ export async function POST(request: NextRequest) {
   }
 }
 
-async function generateWithDefaultVoice(text: string) {
+async function generateWithDefaultVoice(text: string, reason: string = 'Voice cloning failed') {
   try {
     console.log('🚨🚨🚨 USING DEFAULT VOICE FALLBACK - NOT USER VOICE! 🚨🚨🚨');
-    console.log('🔄 Reason: Voice cloning failed, using Rachel voice instead');
+    console.log('🔄 Reason:', reason);
+    console.log('🔄 Using Rachel voice instead of user voice');
     
     const response = await fetch(`https://api.elevenlabs.io/v1/text-to-speech/${DEFAULT_VOICE_ID}`, {
       method: 'POST',
@@ -427,6 +428,7 @@ async function generateWithDefaultVoice(text: string) {
           'Content-Disposition': 'inline; filename="fallback_voice.mp3"',
           'Access-Control-Allow-Origin': '*',
           'Accept-Ranges': 'bytes',
+          'X-Fallback-Reason': reason.substring(0, 200), // 실패 이유를 헤더에 포함
         },
       });
     } else {

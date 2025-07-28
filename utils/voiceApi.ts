@@ -50,14 +50,18 @@ export const voiceApi = {
       
       // 서버에서 어떤 음성이 사용되었는지 확인하기 위한 힌트
       const contentDisposition = response.headers.get('content-disposition');
+      const fallbackReason = response.headers.get('x-fallback-reason');
+      
       if (contentDisposition) {
         console.log('📁 Content-Disposition:', contentDisposition);
+        
         if (contentDisposition.includes('fallback_voice.mp3')) {
           console.warn('🚨 SERVER IS USING FALLBACK VOICE - NOT YOUR VOICE!');
-          alert('⚠️ 서버에서 기본 음성을 사용하고 있습니다. 음성 클로닝이 실패했을 수 있습니다.');
+          console.warn('🔍 Fallback Reason:', fallbackReason || 'Unknown reason');
+          alert(`⚠️ 음성 클로닝이 실패했습니다!\n\n실패 이유: ${fallbackReason || '알 수 없는 오류'}\n\n기본 음성이 사용됩니다.`);
         } else if (contentDisposition.includes('cloned_voice.mp3') || contentDisposition.includes('cached_cloned_voice.mp3')) {
           console.log('🎉 SERVER IS USING YOUR CLONED VOICE!');
-          alert('✅ 서버에서 클로닝된 음성을 사용하고 있습니다!');
+          alert('✅ 음성 클로닝이 성공했습니다! 당신의 목소리로 변환되었습니다.');
         }
       }
       
