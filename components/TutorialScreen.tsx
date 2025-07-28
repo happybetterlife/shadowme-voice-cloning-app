@@ -79,6 +79,15 @@ export function TutorialScreen({ onComplete }: TutorialScreenProps) {
             console.log('🔗 Result URL type:', typeof result.url);
             console.log('🔗 Result URL value:', result.url);
             
+            // 클로닝 성공 여부를 사용자에게 알림
+            if (result.url && result.url.includes('blob:')) {
+              console.log('🎉 CLIENT: Voice cloning appears successful!');
+              alert('✅ 음성 클로닝이 성공했습니다! 당신의 목소리로 변환되었습니다.');
+            } else {
+              console.warn('⚠️ CLIENT: Possible fallback voice being used');
+              alert('⚠️ 음성 클로닝에 문제가 있을 수 있습니다. 기본 음성이 사용될 수 있습니다.');
+            }
+            
             // 클로닝 결과가 blob이면 URL 생성, 이미 URL이면 그대로 사용
             if (result.url) {
               console.log('🎯 Setting cloned audio URL:', result.url);

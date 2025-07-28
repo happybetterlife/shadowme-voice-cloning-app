@@ -48,6 +48,19 @@ export const voiceApi = {
       console.log('📡 API Response statusText:', response.statusText);
       console.log('📡 API Response headers:', Object.fromEntries(response.headers.entries()));
       
+      // 서버에서 어떤 음성이 사용되었는지 확인하기 위한 힌트
+      const contentDisposition = response.headers.get('content-disposition');
+      if (contentDisposition) {
+        console.log('📁 Content-Disposition:', contentDisposition);
+        if (contentDisposition.includes('fallback_voice.mp3')) {
+          console.warn('🚨 SERVER IS USING FALLBACK VOICE - NOT YOUR VOICE!');
+          alert('⚠️ 서버에서 기본 음성을 사용하고 있습니다. 음성 클로닝이 실패했을 수 있습니다.');
+        } else if (contentDisposition.includes('cloned_voice.mp3') || contentDisposition.includes('cached_cloned_voice.mp3')) {
+          console.log('🎉 SERVER IS USING YOUR CLONED VOICE!');
+          alert('✅ 서버에서 클로닝된 음성을 사용하고 있습니다!');
+        }
+      }
+      
       if (response.ok) {
         console.log('✅ Response OK, creating blob from response...');
         const blob = await response.blob();
