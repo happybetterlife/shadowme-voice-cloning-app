@@ -1,6 +1,13 @@
 import { NextRequest, NextResponse } from 'next/server';
 
 const ELEVENLABS_API_KEY = process.env.ELEVENLABS_API_KEY || "sk_a44152702031b3af9f1a87072171fc9993fdbfb477fba26c";
+
+// API 키 상태 자세히 확인
+console.log('🔍 DETAILED API KEY CHECK:');
+console.log('  - process.env.ELEVENLABS_API_KEY exists:', !!process.env.ELEVENLABS_API_KEY);
+console.log('  - Final ELEVENLABS_API_KEY used:', ELEVENLABS_API_KEY.substring(0, 15) + '...');
+console.log('  - Key length:', ELEVENLABS_API_KEY.length);
+console.log('  - Key starts with sk_:', ELEVENLABS_API_KEY.startsWith('sk_'));
 const DEFAULT_VOICE_ID = "21m00Tcm4TlvDq8ikWAM"; // Rachel voice
 
 // 세션별 클로닝된 음성 저장소 (메모리 기반 캐시)
@@ -206,6 +213,19 @@ export async function POST(request: NextRequest) {
     if (!cloneResponse.ok) {
       const errorText = await cloneResponse.text();
       console.error('❌ Voice cloning failed:', errorText);
+      console.error('❌ Response status:', cloneResponse.status);
+      console.error('❌ Response headers:', Object.fromEntries(cloneResponse.headers.entries()));
+      
+      // 상세한 오류 분석
+      if (cloneResponse.status === 401) {
+        console.error('🔑 AUTHENTICATION ERROR: API key may be invalid or expired');
+      } else if (cloneResponse.status === 429) {
+        console.error('⏰ RATE LIMIT ERROR: Too many requests');
+      } else if (cloneResponse.status === 402) {
+        console.error('💳 PAYMENT ERROR: Account may have reached quota limits');
+      } else if (errorText.includes('voice_limit_reached')) {
+        console.error('🎤 VOICE LIMIT ERROR: Account has reached voice cloning limit');
+      }
       
       // If voice limit reached, try to clean up old voices first
       if (errorText.includes('voice_limit_reached')) {
