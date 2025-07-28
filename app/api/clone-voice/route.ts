@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 
-const ELEVENLABS_API_KEY = "sk_a44152702031b3af9f1a87072171fc9993fdbfb477fba26c";
+const ELEVENLABS_API_KEY = process.env.ELEVENLABS_API_KEY || "sk_a44152702031b3af9f1a87072171fc9993fdbfb477fba26c";
 const DEFAULT_VOICE_ID = "21m00Tcm4TlvDq8ikWAM"; // Rachel voice
 
 // 세션별 클로닝된 음성 저장소 (메모리 기반 캐시)
@@ -14,11 +14,28 @@ const sessionVoiceCache = new Map<string, {
 // 캐시 정리 (30분 후 만료)
 const CACHE_TIMEOUT = 30 * 60 * 1000; // 30분
 
+// CORS 헤더 설정
+export async function OPTIONS(request: NextRequest) {
+  return new NextResponse(null, {
+    status: 200,
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'POST, OPTIONS',
+      'Access-Control-Allow-Headers': 'Content-Type',
+    },
+  });
+}
+
 export async function POST(request: NextRequest) {
   let body: any;
   try {
     console.log('🚨 CRITICAL: Voice cloning request received (App Router)...');
     console.log('🚨 Request method:', request.method);
+    console.log('🚨 Environment check:');
+    console.log('  - ELEVENLABS_API_KEY exists:', !!ELEVENLABS_API_KEY);
+    console.log('  - ELEVENLABS_API_KEY length:', ELEVENLABS_API_KEY ? ELEVENLABS_API_KEY.length : 0);
+    console.log('  - Current time:', new Date().toISOString());
+    console.log('  - Vercel region:', process.env.VERCEL_REGION || 'unknown');
     
     body = await request.json();
     console.log('🚨 Request body keys:', Object.keys(body));
@@ -39,6 +56,11 @@ export async function POST(request: NextRequest) {
     console.log('🎵 Audio data starts with:', audioData ? audioData.substring(0, 50) : 'N/A');
     console.log('🆔 Session ID:', sessionId);
     
+    if (!ELEVENLABS_API_KEY || ELEVENLABS_API_KEY.length === 0) {
+      console.error('❌ ELEVENLABS_API_KEY is not set!');
+      return NextResponse.json({ error: 'API key not configured' }, { status: 500 });
+    }
+
     if (!audioData || audioData.length < 100) {
       console.log('❌ No valid audio data provided, using default voice');
       console.log('🔍 Reason: audioData is', audioData ? `too short (${audioData.length} chars)` : 'missing');
