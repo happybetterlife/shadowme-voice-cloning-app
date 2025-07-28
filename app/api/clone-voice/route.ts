@@ -38,7 +38,7 @@ export async function POST(request: NextRequest) {
     console.log('  - ELEVENLABS_API_KEY length:', ELEVENLABS_API_KEY ? ELEVENLABS_API_KEY.length : 0);
     console.log('  - Current time:', new Date().toISOString());
     console.log('  - Vercel region:', process.env.VERCEL_REGION || 'unknown');
-    console.log('  - Function timeout limit: 10 seconds for Hobby plan');
+    console.log('  - Function timeout limit: 60 seconds (configured in vercel.json)');
     
     body = await request.json();
     console.log('🚨 Request body keys:', Object.keys(body));
@@ -142,8 +142,8 @@ export async function POST(request: NextRequest) {
     const checkTimeout = () => {
       const elapsed = Date.now() - startTime;
       console.log(`⏱️ Elapsed time: ${elapsed}ms`);
-      if (elapsed > 8000) { // 8초 경과시 경고
-        console.warn('⚠️ Approaching Vercel timeout limit!');
+      if (elapsed > 50000) { // 50초 경과시 경고 (60초 제한)
+        console.warn('⚠️ Approaching Vercel timeout limit (60s)!');
         return true;
       }
       return false;
