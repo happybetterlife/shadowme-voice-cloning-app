@@ -1,9 +1,7 @@
 import { GradientButton } from './GradientButton';
 import { WaveformVisualizer } from './WaveformVisualizer';
-import { Mic, Volume2, Brain, Zap, Globe } from 'lucide-react';
+import { Mic, Volume2, Brain, Zap } from 'lucide-react';
 import { useTranslation } from '../hooks/useTranslation';
-import { Language } from '../utils/i18n';
-import { Button } from './ui/button';
 
 interface WelcomeScreenProps {
   onGetStarted: () => void;
@@ -11,23 +9,11 @@ interface WelcomeScreenProps {
 }
 
 export function WelcomeScreen({ onGetStarted, onLogin }: WelcomeScreenProps) {
-  const { t, language, changeLanguage } = useTranslation();
+  const { t } = useTranslation();
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-cyan-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
       <div className="w-full px-4 py-8 flex flex-col justify-center min-h-screen">
         
-        {/* Language Switcher */}
-        <div className="absolute top-4 right-4 flex items-center gap-2">
-          <Globe className="w-5 h-5 text-gray-600" />
-          <Button
-            variant="ghost"
-            size="sm"
-            onClick={() => changeLanguage(language === 'ko' ? 'en' : 'ko')}
-            className="text-sm"
-          >
-            {language === 'ko' ? 'EN' : '한국어'}
-          </Button>
-        </div>
         
         {/* Logo and Brand */}
         <div className="text-center mb-8">

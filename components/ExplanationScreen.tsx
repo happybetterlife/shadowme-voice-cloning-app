@@ -1,7 +1,7 @@
 import { Button } from './ui/button';
 import { GradientButton } from './GradientButton';
 import { WaveformVisualizer } from './WaveformVisualizer';
-import { Play, User, Volume2, Brain, Zap, ArrowDown, Globe } from 'lucide-react';
+import { Play, User, Volume2, Brain, Zap, ArrowDown } from 'lucide-react';
 import { useTranslation } from '../hooks/useTranslation';
 
 interface ExplanationScreenProps {
@@ -9,24 +9,12 @@ interface ExplanationScreenProps {
 }
 
 export function ExplanationScreen({ onNext }: ExplanationScreenProps) {
-  const { t, language, changeLanguage } = useTranslation();
+  const { t } = useTranslation();
   
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-cyan-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
       <div className="w-full px-4 py-8 flex flex-col justify-center min-h-screen">
         
-        {/* Language Switcher */}
-        <div className="flex justify-end mb-4">
-          <Button
-            onClick={() => changeLanguage(language === 'ko' ? 'en' : 'ko')}
-            variant="outline"
-            size="sm"
-            className="flex items-center gap-2"
-          >
-            <Globe className="w-4 h-4" />
-            {language === 'ko' ? 'EN' : '한국어'}
-          </Button>
-        </div>
 
         {/* Title */}
         <div className="text-center mb-8">
