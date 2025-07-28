@@ -312,7 +312,7 @@ export function TutorialScreen({ onComplete }: TutorialScreenProps) {
               ) : (
                 <>
                   <Mic className="w-5 h-5 mr-2" />
-                  녹음 시작
+                  {t('startRecordingAction')}
                 </>
               )}
             </GradientButton>
@@ -323,7 +323,7 @@ export function TutorialScreen({ onComplete }: TutorialScreenProps) {
                 className="w-full min-h-[56px]" 
                 size="lg"
               >
-                다음 단계로
+                {t('continue')}
               </GradientButton>
               <GradientButton 
                 onClick={handleRetry} 

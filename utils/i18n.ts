@@ -51,6 +51,16 @@ export interface Translations {
   next: string;
   complete: string;
   processingStatus: string;
+  listenClonedVoice: string;
+  listenMyNativePronunciation: string;
+  playing: string;
+  perfect: string;
+  nice: string;
+  practiceMore: string;
+  tryAgain: string;
+  speakSameSentence: string;
+  scoresUntilNow: string;
+  cannotLoadSentence: string;
   
   // 연습 화면
   practice: string;
@@ -303,7 +313,17 @@ export const translations: Record<Language, Translations> = {
     listen: '듣기',
     next: '다음',
     complete: '완료',
-    processingStatus: '처리 중...',
+    processingStatus: '음성을 분석하고 있습니다...',
+    listenClonedVoice: '샘플 녹음으로 클로닝된 당신의 목소리를 들어보세요',
+    listenMyNativePronunciation: '내 원어민 발음 듣기',
+    playing: '재생 중...',
+    perfect: '완벽해요!',
+    nice: '좋아요!',
+    practiceMore: '연습하면 더 좋아질 거예요!',
+    tryAgain: '다시 한번 해보세요!',
+    speakSameSentence: '이제 같은 문장을 따라 말해보세요',
+    scoresUntilNow: '지금까지의 점수',
+    cannotLoadSentence: '문장을 로드할 수 없습니다.',
     
     // 연습 화면
     practice: '연습',
@@ -554,7 +574,17 @@ export const translations: Record<Language, Translations> = {
     listen: 'Listen',
     next: 'Next',
     complete: 'Complete',
-    processingStatus: 'Processing...',
+    processingStatus: 'Analyzing your voice...',
+    listenClonedVoice: 'Listen to your voice cloned from the sample recording',
+    listenMyNativePronunciation: 'Listen to My Native Pronunciation',
+    playing: 'Playing...',
+    perfect: 'Perfect!',
+    nice: 'Nice!',
+    practiceMore: 'Practice more and you\'ll get better!',
+    tryAgain: 'Try again!',
+    speakSameSentence: 'Now try to say the same sentence',
+    scoresUntilNow: 'Scores So Far',
+    cannotLoadSentence: 'Cannot load sentences.',
     
     // 연습 화면
     practice: 'Practice',
