@@ -102,7 +102,8 @@ export async function POST(request: NextRequest) {
           sessionVoiceCache.set(sessionId, cachedVoice);
           
           const audioBuffer = await ttsResponse.arrayBuffer();
-          console.log('✅ 캐시된 음성으로 TTS 완료 (초고속)');
+          console.log('✅🎉 캐시된 클로닝 음성으로 TTS 완료 (초고속)');
+          console.log('🗣️ THIS IS YOUR CACHED CLONED VOICE!');
           return new NextResponse(audioBuffer, {
             headers: {
               'Content-Type': 'audio/mpeg',
@@ -332,8 +333,10 @@ export async function POST(request: NextRequest) {
     const finalAudioBuffer = await ttsResponse.arrayBuffer();
     
     const totalTime = Date.now() - startTime;
-    console.log('🎉 Voice cloning completed successfully!');
+    console.log('🎉🎉🎉 VOICE CLONING COMPLETED SUCCESSFULLY! 🎉🎉🎉');
+    console.log('🗣️ THIS IS YOUR CLONED VOICE - NOT DEFAULT VOICE!');
     console.log(`⏱️ Total execution time: ${totalTime}ms`);
+    console.log(`🎯 Cloned voice ID used: ${clonedVoiceId}`);
     
     // 주의: 음성을 즉시 삭제하지 않음 (캐시된 음성 재사용을 위해)
     // 30분 후 자동으로 정리되도록 설정됨
@@ -356,7 +359,8 @@ export async function POST(request: NextRequest) {
 
 async function generateWithDefaultVoice(text: string) {
   try {
-    console.log('🔄 Using default voice fallback...');
+    console.log('🚨🚨🚨 USING DEFAULT VOICE FALLBACK - NOT USER VOICE! 🚨🚨🚨');
+    console.log('🔄 Reason: Voice cloning failed, using Rachel voice instead');
     
     const response = await fetch(`https://api.elevenlabs.io/v1/text-to-speech/${DEFAULT_VOICE_ID}`, {
       method: 'POST',
