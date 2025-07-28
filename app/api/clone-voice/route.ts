@@ -31,6 +31,7 @@ export async function POST(request: NextRequest) {
   try {
     console.log('🚨 CRITICAL: Voice cloning request received (App Router)...');
     console.log('🚨 Request method:', request.method);
+    console.log('🚨 Deploy timestamp:', new Date().toISOString());
     console.log('🚨 Environment check:');
     console.log('  - ELEVENLABS_API_KEY exists:', !!ELEVENLABS_API_KEY);
     console.log('  - ELEVENLABS_API_KEY length:', ELEVENLABS_API_KEY ? ELEVENLABS_API_KEY.length : 0);
