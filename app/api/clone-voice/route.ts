@@ -140,6 +140,13 @@ export async function POST(request: NextRequest) {
     const audioBuffer = Buffer.from(audioData.split(',')[1], 'base64');
     console.log('📁 Audio data received, size:', audioBuffer.length);
     
+    // ElevenLabs 최소 요구사항 체크
+    if (audioBuffer.length < 10000) { // 10KB 미만이면 너무 짧음
+      console.warn('⚠️ Audio file too small for voice cloning:', audioBuffer.length, 'bytes');
+      console.warn('⚠️ ElevenLabs requires at least 1-2 seconds of audio');
+      return await generateWithDefaultVoice(text);
+    }
+    
     console.log('🧬 Creating voice clone with ElevenLabs...');
     console.log('📊 Environment check:');
     console.log('  - Runtime:', typeof process !== 'undefined' ? 'Node.js' : 'Browser');
@@ -165,20 +172,25 @@ export async function POST(request: NextRequest) {
     }
     
     // 오디오 데이터의 실제 형식 감지
-    let fileExtension = 'mp3';
-    let mimeType = 'audio/mp3';
+    let fileExtension = 'webm';
+    let mimeType = 'audio/webm';
     
     // Base64 헤더에서 MIME 타입 추출
     const base64Header = audioData.split(',')[0];
     if (base64Header.includes('audio/webm')) {
       fileExtension = 'webm';
       mimeType = 'audio/webm';
+      console.log('🎵 WebM audio detected - ElevenLabs should handle this');
     } else if (base64Header.includes('audio/mp4')) {
       fileExtension = 'mp4';
       mimeType = 'audio/mp4';
+      console.log('⚠️ MP4 audio detected - may cause compatibility issues');
     } else if (base64Header.includes('audio/aac')) {
       fileExtension = 'aac';
       mimeType = 'audio/aac';
+      console.log('⚠️ AAC audio detected - may cause compatibility issues');
+    } else {
+      console.log('⚠️ Unknown audio format, defaulting to WebM');
     }
     
     console.log('🎵 Detected audio format:', { mimeType, fileExtension });
@@ -197,6 +209,15 @@ export async function POST(request: NextRequest) {
     formData.append('files', audioFile);
 
     console.log('🌐 Making ElevenLabs voice clone request...');
+    console.log('📊 FormData contents:');
+    for (const [key, value] of formData.entries()) {
+      if (value instanceof File) {
+        console.log(`  - ${key}: File(name=${value.name}, size=${value.size}, type=${value.type})`);
+      } else {
+        console.log(`  - ${key}: ${value}`);
+      }
+    }
+    
     const cloneResponse = await fetch('https://api.elevenlabs.io/v1/voices/add', {
       method: 'POST',
       headers: {
