@@ -168,6 +168,33 @@ export interface Translations {
   choosePurpose: string;
   levelDescription: string;
   purposeDescription: string;
+  learningSettings: string;
+  selectLevelAndPurpose: string;
+  currentEnglishLevel: string;
+  learningPurpose: string;
+  selected: string;
+  startTest: string;
+  levelDesc: {
+    beginner: string;
+    intermediate: string;
+    advanced: string;
+  };
+  purposeDesc: {
+    conversation: string;
+    business: string;
+    exam: string;
+  };
+  feature: {
+    basicWords: string;
+    simpleExpressions: string;
+    pronunciationBasics: string;
+    complexSentences: string;
+    variousExpressions: string;
+    linkingPractice: string;
+    advancedVocabulary: string;
+    subtlePronunciation: string;
+    nativeLevel: string;
+  };
   
   // 튜토리얼 화면
   voiceSetup: string;
@@ -394,6 +421,33 @@ export const translations: Record<Language, Translations> = {
     choosePurpose: '학습 목적을 선택하세요',
     levelDescription: '현재 영어 실력에 맞는 레벨을 선택해주세요',
     purposeDescription: '학습하고자 하는 목적을 선택해주세요',
+    learningSettings: '학습 설정',
+    selectLevelAndPurpose: '당신의 레벨과 목적을 선택해주세요',
+    currentEnglishLevel: '현재 영어 레벨',
+    learningPurpose: '학습 목적',
+    selected: '선택됨',
+    startTest: '테스트 시작하기',
+    levelDesc: {
+      beginner: '기본적인 단어와 문장을 배우고 싶어요',
+      intermediate: '어느 정도 대화가 가능하지만 더 자연스럽게 말하고 싶어요',
+      advanced: '유창하게 말할 수 있지만 완벽한 발음을 원해요',
+    },
+    purposeDesc: {
+      conversation: '친구들과 자연스럽게 대화하고 싶어요',
+      business: '업무에서 전문적으로 소통하고 싶어요',
+      exam: 'TOEFL, IELTS 등 시험을 준비하고 있어요',
+    },
+    feature: {
+      basicWords: '기본 단어 300개',
+      simpleExpressions: '간단한 일상 표현',
+      pronunciationBasics: '발음 기초',
+      complexSentences: '복잡한 문장 구조',
+      variousExpressions: '다양한 표현',
+      linkingPractice: '연음 연습',
+      advancedVocabulary: '고급 어휘',
+      subtlePronunciation: '미묘한 발음 차이',
+      nativeLevel: '원어민 수준',
+    },
     
     // 튜토리얼 화면
     voiceSetup: '음성 설정',
@@ -618,6 +672,33 @@ export const translations: Record<Language, Translations> = {
     choosePurpose: 'Choose Your Learning Purpose',
     levelDescription: 'Please select a level that matches your current English skills',
     purposeDescription: 'Please select your learning purpose',
+    learningSettings: 'Learning Settings',
+    selectLevelAndPurpose: 'Select your level and purpose',
+    currentEnglishLevel: 'Current English Level',
+    learningPurpose: 'Learning Purpose',
+    selected: 'Selected',
+    startTest: 'Start Test',
+    levelDesc: {
+      beginner: 'I want to learn basic words and sentences',
+      intermediate: 'I can have conversations but want to speak more naturally',
+      advanced: 'I can speak fluently but want perfect pronunciation',
+    },
+    purposeDesc: {
+      conversation: 'I want to have natural conversations with friends',
+      business: 'I want to communicate professionally at work',
+      exam: 'I am preparing for exams like TOEFL or IELTS',
+    },
+    feature: {
+      basicWords: '300 basic words',
+      simpleExpressions: 'Simple daily expressions',
+      pronunciationBasics: 'Pronunciation basics',
+      complexSentences: 'Complex sentence structures',
+      variousExpressions: 'Various expressions',
+      linkingPractice: 'Linking practice',
+      advancedVocabulary: 'Advanced vocabulary',
+      subtlePronunciation: 'Subtle pronunciation differences',
+      nativeLevel: 'Native level',
+    },
     
     // 튜토리얼 화면
     voiceSetup: 'Voice Setup',

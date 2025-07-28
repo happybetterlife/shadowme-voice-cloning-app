@@ -18,41 +18,41 @@ export function LevelSelectionScreen({ onNext, onBack }: LevelSelectionScreenPro
   const levels = [
     {
       id: 'beginner',
-      title: '초급',
-      description: '기본적인 단어와 문장을 배우고 싶어요',
-      features: ['기본 단어 300개', '간단한 일상 표현', '발음 기초']
+      title: t('level.beginner'),
+      description: t('levelDesc.beginner'),
+      features: [t('feature.basicWords'), t('feature.simpleExpressions'), t('feature.pronunciationBasics')]
     },
     {
       id: 'intermediate',
-      title: '중급',
-      description: '어느 정도 대화가 가능하지만 더 자연스럽게 말하고 싶어요',
-      features: ['복잡한 문장 구조', '다양한 표현', '연음 연습']
+      title: t('level.intermediate'),
+      description: t('levelDesc.intermediate'),
+      features: [t('feature.complexSentences'), t('feature.variousExpressions'), t('feature.linkingPractice')]
     },
     {
       id: 'advanced',
-      title: '고급',
-      description: '유창하게 말할 수 있지만 완벽한 발음을 원해요',
-      features: ['고급 어휘', '미묘한 발음 차이', '원어민 수준']
+      title: t('level.advanced'),
+      description: t('levelDesc.advanced'),
+      features: [t('feature.advancedVocabulary'), t('feature.subtlePronunciation'), t('feature.nativeLevel')]
     }
   ];
 
   const purposes = [
     {
       id: 'conversation',
-      title: '일상 대화',
-      description: '친구들과 자연스럽게 대화하고 싶어요',
+      title: t('purpose.conversation'),
+      description: t('purposeDesc.conversation'),
       icon: '💬'
     },
     {
       id: 'business',
-      title: '비즈니스',
-      description: '업무에서 전문적으로 소통하고 싶어요',
+      title: t('purpose.business'),
+      description: t('purposeDesc.business'),
       icon: '💼'
     },
     {
       id: 'exam',
-      title: '시험 준비',
-      description: 'TOEFL, IELTS 등 시험을 준비하고 있어요',
+      title: t('purpose.exam'),
+      description: t('purposeDesc.exam'),
       icon: '📚'
     }
   ];
@@ -70,10 +70,10 @@ export function LevelSelectionScreen({ onNext, onBack }: LevelSelectionScreenPro
         {/* Title */}
         <div className="text-center mb-8 flex-shrink-0">
           <h1 className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent mb-2">
-            학습 설정
+            {t('learningSettings')}
           </h1>
           <p className="text-lg text-gray-600 dark:text-gray-300 px-2">
-            당신의 레벨과 목적을 선택해주세요
+            {t('selectLevelAndPurpose')}
           </p>
           
           {/* Waveform Animation */}
@@ -84,7 +84,7 @@ export function LevelSelectionScreen({ onNext, onBack }: LevelSelectionScreenPro
         
         {/* 레벨 선택 */}
         <div className="space-y-4 mb-8 flex-1">
-          <h3 className="text-lg font-semibold text-gray-800 dark:text-gray-200 text-center">현재 영어 레벨</h3>
+          <h3 className="text-lg font-semibold text-gray-800 dark:text-gray-200 text-center">{t('currentEnglishLevel')}</h3>
           <div className="grid gap-4">
             {levels.map((level) => (
               <div 
@@ -101,7 +101,7 @@ export function LevelSelectionScreen({ onNext, onBack }: LevelSelectionScreenPro
                     <div className="flex items-center gap-2 mb-2">
                       <h4 className="font-semibold text-gray-800 dark:text-gray-200">{level.title}</h4>
                       {selectedLevel === level.id && (
-                        <Badge className="bg-gradient-to-r from-blue-500 to-cyan-500 text-white">선택됨</Badge>
+                        <Badge className="bg-gradient-to-r from-blue-500 to-cyan-500 text-white">{t('selected')}</Badge>
                       )}
                     </div>
                     <p className="text-sm text-gray-600 dark:text-gray-400 mb-3">
@@ -123,7 +123,7 @@ export function LevelSelectionScreen({ onNext, onBack }: LevelSelectionScreenPro
         
         {/* 목적 선택 */}
         <div className="space-y-4 mb-8 flex-1">
-          <h3 className="text-lg font-semibold text-gray-800 dark:text-gray-200 text-center">학습 목적</h3>
+          <h3 className="text-lg font-semibold text-gray-800 dark:text-gray-200 text-center">{t('learningPurpose')}</h3>
           <div className="grid gap-4">
             {purposes.map((purpose) => (
               <div 
@@ -141,7 +141,7 @@ export function LevelSelectionScreen({ onNext, onBack }: LevelSelectionScreenPro
                     <div className="flex items-center gap-2 mb-1">
                       <h4 className="font-semibold text-gray-800 dark:text-gray-200">{purpose.title}</h4>
                       {selectedPurpose === purpose.id && (
-                        <Badge className="bg-gradient-to-r from-cyan-500 to-blue-500 text-white">선택됨</Badge>
+                        <Badge className="bg-gradient-to-r from-cyan-500 to-blue-500 text-white">{t('selected')}</Badge>
                       )}
                     </div>
                     <p className="text-sm text-gray-600 dark:text-gray-400">
@@ -157,12 +157,12 @@ export function LevelSelectionScreen({ onNext, onBack }: LevelSelectionScreenPro
         {/* Action Buttons */}
         <div className="space-y-4 flex-shrink-0 relative" style={{ zIndex: 9999 }}>
           <GradientButton onClick={handleNext} disabled={!selectedLevel || !selectedPurpose} className="w-full" size="lg" style={{ position: 'relative', zIndex: 9999 }}>
-            테스트 시작하기
+            {t('startTest')}
           </GradientButton>
           
           <div className="flex justify-between gap-4">
             <Button variant="outline" onClick={onBack} className="flex-1">
-              이전
+              {t('back')}
             </Button>
           </div>
         </div>
