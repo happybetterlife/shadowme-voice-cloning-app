@@ -53,12 +53,42 @@ export const voiceApi = {
         const blob = await response.blob();
         console.log('🎵 Response blob size:', blob.size);
         console.log('🎵 Response blob type:', blob.type);
-        const url = URL.createObjectURL(blob);
-        console.log('🔗 Created object URL:', url);
-        return { url };
+        
+        // Vercel 환경에서 blob URL 생성 문제 체크
+        try {
+          const url = URL.createObjectURL(blob);
+          console.log('🔗 Created object URL:', url);
+          
+          // URL 유효성 테스트
+          const testAudio = new Audio(url);
+          await new Promise((resolve, reject) => {
+            testAudio.onloadeddata = () => {
+              console.log('✅ Audio URL is valid and playable');
+              resolve(true);
+            };
+            testAudio.onerror = (e) => {
+              console.error('❌ Audio URL validation failed:', e);
+              reject(e);
+            };
+            // 타임아웃 설정
+            setTimeout(() => reject(new Error('Audio load timeout')), 5000);
+          });
+          
+          return { url };
+        } catch (urlError) {
+          console.error('❌ Failed to create or validate object URL:', urlError);
+          throw new Error('Failed to create audio URL');
+        }
       } else {
         const errorText = await response.text();
         console.error('❌ API Error:', response.status, errorText);
+        
+        // API 키 문제인지 확인
+        if (errorText.includes('API key not configured') || response.status === 500) {
+          console.error('🔑 API key may not be configured in Vercel environment variables');
+          alert('음성 클로닝 서비스가 일시적으로 사용할 수 없습니다. 환경 설정을 확인해주세요.');
+        }
+        
         throw new Error(`Voice cloning failed: ${response.status} ${errorText}`);
       }
     } catch (error) {
