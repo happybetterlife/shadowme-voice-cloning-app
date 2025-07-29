@@ -18,8 +18,8 @@ const sessionVoiceCache = new Map<string, {
   sampleText: string;
 }>();
 
-// 캐시 정리 (30분 후 만료)
-const CACHE_TIMEOUT = 30 * 60 * 1000; // 30분
+// 캐시 정리 (24시간 후 만료) - 음성 제한 절약을 위해 연장
+const CACHE_TIMEOUT = 24 * 60 * 60 * 1000; // 24시간
 
 // CORS 헤더 설정
 export async function OPTIONS(request: NextRequest) {
@@ -244,6 +244,9 @@ export async function POST(request: NextRequest) {
         console.error('⏰ RATE LIMIT ERROR: Too many requests');
       } else if (cloneResponse.status === 402) {
         console.error('💳 PAYMENT ERROR: Account may have reached quota limits');
+      } else if (cloneResponse.status === 403 && errorText.includes('voice_add_edit_limit_reached')) {
+        console.error('📅 MONTHLY LIMIT ERROR: ElevenLabs monthly voice cloning limit reached');
+        console.error('💡 SOLUTION: Delete old voices or upgrade plan');
       } else if (errorText.includes('voice_limit_reached')) {
         console.error('🎤 VOICE LIMIT ERROR: Account has reached voice cloning limit');
       }
