@@ -309,7 +309,7 @@ export async function POST(request: NextRequest) {
       }
       
       // Fallback to default voice
-      return await generateWithDefaultVoice(text, `ElevenLabs voice cloning failed: ${response.status} - ${errorText.substring(0, 100)}`);
+      return await generateWithDefaultVoice(text, `ElevenLabs voice cloning failed: ${cloneResponse.status} - ${errorText.substring(0, 100)}`);
     }
 
     const cloneData = await cloneResponse.json();
